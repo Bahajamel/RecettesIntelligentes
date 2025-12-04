@@ -15,6 +15,21 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_actionNouveau_triggered();
+
+    void on_actionOuvrir_triggered();
+
+    void on_actionSauvegarder_triggered();
+
+    void on_actionQuitter_triggered();
+
+    void on_actionEdit_triggered();
+
+    void on_actionDelete_triggered();
+
+    void on_actionRecherche_triggered();
+
 private:
     Ui::MainWindow *ui;
 };
