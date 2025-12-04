@@ -36,22 +36,13 @@ void Recette::setDescription(const QString &description)
     m_description = description;
 }
 
-// ---------- Ingrédients ----------
-void Recette::ajouterIngredient(const RecetteIngredient &ri)
-{
-    m_ingredients.append(ri);
+
+void Recette::ajouterIngredient(const Ingredient &ingredient, const float &quantite, UNITE unite) {
+    m_ingredients.append(RecetteIngredient(ingredient, quantite, unite));
 }
 
-void Recette::ajouterIngredient(const Ingredient &ingredient, double quantite, UNITE unite)
-{
-    RecetteIngredient ri;
-    ri.ingredient = ingredient;
-    ri.quantite = quantite;
-    ri.unite = unite;
-    m_ingredients.append(ri);
-}
 
-const QList<Recette::RecetteIngredient>& Recette::getIngredients() const
+const QList<RecetteIngredient>& Recette::getIngredients() const
 {
     return m_ingredients;
 }

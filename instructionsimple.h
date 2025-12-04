@@ -6,7 +6,10 @@
 class InstructionSimple : public Instruction
 {
 public:
-    InstructionSimple(int id, const QString &contenu);
+    InstructionSimple(const QString &titre);
+    bool estSimple() const ;
+private :
+    QString m_titre ;
 };
 
 #endif

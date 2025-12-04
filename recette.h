@@ -8,6 +8,7 @@
 #include "ingredient.h"
 #include "unite.h"
 #include "instruction.h"
+#include "recetteingredient.h"
 
 /**
  * Classe Recette : représente une recette contenant
@@ -22,11 +23,6 @@ public:
     explicit Recette(int id, const QString &titre, const QString &description = QString());
 
     // --- structure pour stocker un ingrédient lié à la recette ---
-    struct RecetteIngredient {
-        Ingredient ingredient;
-        double quantite = 0.0;
-        UNITE unite = UNITE::GRAMME;
-    };
 
     // ---- Getters / Setters pour id, titre, description ----
     int getId() const;
@@ -38,12 +34,8 @@ public:
     QString getDescription() const;
     void setDescription(const QString &description);
 
-    // ---- opérations sur ingrédients ----
-    // Ajoute un ingredient via un objet RecetteIngredient
-    void ajouterIngredient(const RecetteIngredient &ri);
-    // Ajoute un ingredient en fournissant les composants
-    void ajouterIngredient(const Ingredient &ingredient, double quantite = 0.0, UNITE unite = UNITE::GRAMME);
-
+    // ---- opérations sur ingrédients ---
+    void ajouterIngredient(const Ingredient &ingredient ,const float &quantite ,UNITE unite) ;
     // Récupérer la liste (const ref pour éviter copie)
     const QList<RecetteIngredient>& getIngredients() const;
 

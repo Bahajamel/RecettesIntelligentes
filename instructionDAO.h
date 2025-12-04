@@ -2,22 +2,34 @@
 #define INSTRUCTIONDAO_H
 
 #include <QSqlDatabase>
-#include <QVector>
+#include <QSharedPointer>
 #include "instruction.h"
+#include "instructionsimple.h"
+#include "instructioncomposee.h"
 
 class InstructionDAO
 {
 public:
-    InstructionDAO(QSqlDatabase& db);
+    explicit InstructionDAO(const QSqlDatabase &db);
 
-    bool insert(const Instruction& inst);
-    bool update(const Instruction& inst);
+    int createSimple(int recetteId, int parentId, int ordre, const QString &texte);
+    int createComposee(int recetteId, int parentId, int ordre, const QString &titre);
+
+    QList<QSharedPointer<Instruction>> loadForRecette(int recetteId);
+
+    bool deleteForRecette(int recetteId);
+    QSharedPointer<Instruction> findById(int id);
     bool remove(int id);
-    QVector<Instruction> getByRecette(int recetteId);
-    QVector<Instruction> getChildren(int parentId);
 
 private:
     QSqlDatabase m_db;
+
+    QSharedPointer<Instruction> buildTree(
+        int nodeId,
+        const QMap<int, QVariantMap> &nodes,
+        const QMap<int, QString> &simpleTexts,
+        const QMap<int, QString> &composeeTitles
+        );
 };
 
 #endif // INSTRUCTIONDAO_H

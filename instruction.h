@@ -7,17 +7,21 @@ class Instruction
 {
 public:
     Instruction();
-    Instruction(int id, const QString &contenu);
+    Instruction(int id, int ordre , const QString &contenu);
     virtual ~Instruction();
 
     int getId() const;
     virtual QString getContenu() const;
-    bool estSimple() ;
-
-protected:
+    int getOrdre() const ;
+    virtual bool estSimple() const = 0 ;
     int m_id;
     QString m_contenu;
+    int m_ordre ;
+    int recetteId = -1;
 };
 
 #endif
+
+
+
 

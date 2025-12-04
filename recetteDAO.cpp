@@ -22,7 +22,7 @@ int RecetteDAO::creerRecette(const QString &titre, const QString &description) {
 
 Recette RecetteDAO::obtenirRecette(int id) {
     Recette recette;
-    recette.id = -1; // Valeur par défaut
+    recette.setId(-1); // Valeur par défaut
 
     QSqlQuery query;
     query.prepare("SELECT id, titre, description, date_creation, date_modification FROM recettes WHERE id = ?");
@@ -34,12 +34,10 @@ Recette RecetteDAO::obtenirRecette(int id) {
     }
 
     if (query.first()) {
-        recette.id = query.value(0).toInt();
-        recette.titre = query.value(1).toString();
-        recette.description = query.value(2).toString();
-        recette.dateCreation = query.value(3).toString();
-        recette.dateModification = query.value(4).toString();
-        qDebug() << "✓ Recette trouvée:" << recette.titre;
+        recette.setId( query.value(0).toInt());
+        recette.setTitre( query.value(1).toString() );
+        recette.setDescription(query.value(2).toString() );
+        qDebug() << "✓ Recette trouvée:" << recette.getTitre();
     } else {
         qWarning() << "ATTENTION : Recette avec ID" << id << "non trouvée";
     }
@@ -58,11 +56,9 @@ QList<Recette> RecetteDAO::obtenirToutesRecettes() {
 
     while (query.next()) {
         Recette recette;
-        recette.id = query.value(0).toInt();
-        recette.titre = query.value(1).toString();
-        recette.description = query.value(2).toString();
-        recette.dateCreation = query.value(3).toString();
-        recette.dateModification = query.value(4).toString();
+        recette.setId(query.value(0).toInt());
+        recette.setTitre(query.value(1).toString());
+        recette.setDescription(query.value(2).toString());
         recettes.append(recette);
     }
 
@@ -114,11 +110,9 @@ QList<Recette> RecetteDAO::rechercherParTitre(const QString &titre) {
 
     while (query.next()) {
         Recette recette;
-        recette.id = query.value(0).toInt();
-        recette.titre = query.value(1).toString();
-        recette.description = query.value(2).toString();
-        recette.dateCreation = query.value(3).toString();
-        recette.dateModification = query.value(4).toString();
+        recette.setId(query.value(0).toInt());
+        recette.setTitre(query.value(1).toString());
+        recette.setDescription(query.value(2).toString());
         recettes.append(recette);
     }
 

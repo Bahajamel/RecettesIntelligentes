@@ -8,18 +8,14 @@ class Ingredient
 {
 public:
     Ingredient();
-    Ingredient(int id, const QString &nom, float quantite, UNITE unite);
+    Ingredient(int id, const QString &nom);
 
     int getId() const;
     QString getNom() const;
-    float getQuantite() const;
-    UNITE getUnite() const;
-
-private:
+    void setNom(QString nom) ;
     int m_id;
     QString m_nom;
-    float m_quantite;
-    UNITE m_unite;
+
 };
 
 #endif

@@ -1,18 +1,11 @@
 #ifndef RECETTEDAO_H
 #define RECETTEDAO_H
-
+#include "recette.h"
 #include <QString>
 #include <QList>
 #include <QVariant>
 
-// Structure pour représenter une recette
-struct Recette {
-    int id;
-    QString titre;
-    QString description;
-    QString dateCreation;
-    QString dateModification;
-};
+
 
 class RecetteDAO {
 public:

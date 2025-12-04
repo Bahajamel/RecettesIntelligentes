@@ -12,7 +12,7 @@ int IngredientDAO::create(const Ingredient &ing)
 {
     QSqlQuery q(m_db);
     q.prepare("INSERT INTO ingredient (nom) VALUES (?)");
-    q.addBindValue(ing.nom);
+    q.addBindValue(ing.getNom());
 
     if (!q.exec()) {
         qWarning() << "Ingredient create error:" << q.lastError();
@@ -28,8 +28,8 @@ Ingredient IngredientDAO::findById(int id)
     q.prepare("SELECT id, nom FROM ingredient WHERE id=?");
     q.addBindValue(id);
     if (q.exec() && q.next()) {
-        ing.id = q.value(0).toInt();
-        ing.nom = q.value(1).toString();
+        ing.m_id = q.value(0).toInt();
+        ing.m_nom = q.value(1).toString();
     }
     return ing;
 }
@@ -42,8 +42,8 @@ Ingredient IngredientDAO::findByName(const QString &name)
     q.addBindValue(name);
 
     if (q.exec() && q.next()) {
-        ing.id = q.value(0).toInt();
-        ing.nom = q.value(1).toString();
+        ing.m_id = q.value(0).toInt();
+        ing.m_nom = q.value(1).toString();
     }
     return ing;
 }
@@ -51,11 +51,11 @@ Ingredient IngredientDAO::findByName(const QString &name)
 int IngredientDAO::findOrCreate(const QString &name)
 {
     Ingredient found = findByName(name);
-    if (found.id != -1)
-        return found.id;
+    if (found.m_id != -1)
+        return found.m_id;
 
     Ingredient ing;
-    ing.nom = name;
+    ing.m_nom = name;
     return create(ing);
 }
 
@@ -66,8 +66,8 @@ QList<Ingredient> IngredientDAO::findAll()
 
     while (q.next()) {
         Ingredient ing;
-        ing.id = q.value(0).toInt();
-        ing.nom = q.value(1).toString();
+        ing.m_id = q.value(0).toInt();
+        ing.m_nom = q.value(1).toString();
         list.append(ing);
     }
     return list;

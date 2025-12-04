@@ -13,15 +13,19 @@ SOURCES += \
     databasemanager.cpp \
     ingredient.cpp \
     ingredientDAO.cpp \
+    ingredientservice.cpp \
     instruction.cpp \
     instructionDAO.cpp \
     instructioncomposee.cpp \
+    instructionservice.cpp \
     instructionsimple.cpp \
     main.cpp \
     mainwindow.cpp \
     recette.cpp \
     recetteDAO.cpp \
-    recettemodel.cpp \
+    recetteingredient.cpp \
+    recetteingredientdao.cpp \
+    recetteservice.cpp \
     test.cpp \
     unite.cpp
 
@@ -29,14 +33,18 @@ HEADERS += \
     databasemanager.h \
     ingredient.h \
     ingredientDAO.h \
+    ingredientservice.h \
     instruction.h \
     instructionDAO.h \
     instructioncomposee.h \
+    instructionservice.h \
     instructionsimple.h \
     mainwindow.h \
     recette.h \
     recetteDAO.h \
-    recettemodel.h \
+    recetteingredient.h \
+    recetteingredientdao.h \
+    recetteservice.h \
     unite.h
 
 FORMS += \
