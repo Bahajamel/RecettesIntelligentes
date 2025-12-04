@@ -13,6 +13,7 @@ public:
     bool supprimerIngredient(int id);
     Ingredient trouverParNom(const QString &nom);
     QList<Ingredient> listerIngredients();
+    Ingredient getIngredient(int id) ;
 
 private:
     IngredientDAO &m_ingDao;

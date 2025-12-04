@@ -4,12 +4,14 @@
 #include <QString>
 #include <QList>
 #include <QVariant>
+#include <QSqlDatabase>
 
 
 
 class RecetteDAO {
 public:
     // Créer une nouvelle recette
+    explicit RecetteDAO(const QSqlDatabase &db) ;
     static int creerRecette(const QString &titre, const QString &description);
 
     // Obtenir une recette par ID
@@ -29,6 +31,9 @@ public:
 
     // Obtenir le nombre total de recettes
     static int obtenirNombreRecettes();
+
+private :
+    QSqlDatabase m_db;
 };
 
 #endif // RECETTEDAO_H

@@ -4,6 +4,8 @@
 #include <QSqlError>
 #include <QDebug>
 
+RecetteDAO::RecetteDAO(const QSqlDatabase &db) : m_db(db) {}
+
 int RecetteDAO::creerRecette(const QString &titre, const QString &description) {
     QSqlQuery query;
     query.prepare("INSERT INTO recettes (titre, description) VALUES (?, ?)");

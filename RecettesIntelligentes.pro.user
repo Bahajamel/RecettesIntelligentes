@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<<<<<<< HEAD
-<!-- Written by QtCreator 17.0.2, 2025-12-04T12:27:19. -->
-=======
-<<<<<<< HEAD
-<!-- Written by QtCreator 17.0.2, 2025-12-04T12:08:56. -->
-=======
-<!-- Written by QtCreator 18.0.0, 2025-12-04T11:46:51. -->
->>>>>>> Aya
->>>>>>> dd2f61be054e517ae557fe2be939cf72b759d83b
+<!-- Written by QtCreator 17.0.2, 2025-12-04T15:57:54. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -172,11 +164,7 @@
      <value type="QString" key="PerfRecordArgsId">-e cpu-cycles --call-graph &quot;dwarf,4096&quot; -F 250</value>
      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:</value>
-<<<<<<< HEAD
      <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/MSI/RecettesIntelligentes/RecettesIntelligentes.pro</value>
-=======
-     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/Neko/Desktop/QTProject/RecettesIntelligentes/RecettesIntelligentes.pro</value>
->>>>>>> dd2f61be054e517ae557fe2be939cf72b759d83b
      <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">false</value>
      <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
      <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
@@ -212,11 +200,7 @@
     <value type="QString" key="PerfRecordArgsId">-e cpu-cycles --call-graph &quot;dwarf,4096&quot; -F 250</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:</value>
-<<<<<<< HEAD
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/MSI/RecettesIntelligentes/RecettesIntelligentes.pro</value>
-=======
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/Neko/Desktop/QTProject/RecettesIntelligentes/RecettesIntelligentes.pro</value>
->>>>>>> dd2f61be054e517ae557fe2be939cf72b759d83b
     <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>

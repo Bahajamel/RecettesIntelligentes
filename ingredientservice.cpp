@@ -38,4 +38,6 @@ QList<Ingredient> IngredientService::listerIngredients()
 {
     return m_ingDao.findAll();
 }
-
+Ingredient IngredientService::getIngredient(int id) {
+    return m_ingDao.findById(id);
+}
