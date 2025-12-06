@@ -26,11 +26,12 @@ public:
 
     // Nombre d'enfants
     int getNombreEnfants() const;
-    bool estSimple() const  { return false; }
-
+    bool estSimple() const override { return false; }
+    QString afficher() const override { return m_titre ;}
+    QList<QSharedPointer<Instruction>> m_enfants;
 private:
     QString m_titre;
-    QList<QSharedPointer<Instruction>> m_enfants;
+
 };
 
 #endif // INSTRUCTIONCOMPOSEE_H

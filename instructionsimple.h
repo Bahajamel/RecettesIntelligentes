@@ -7,7 +7,8 @@ class InstructionSimple : public Instruction
 {
 public:
     InstructionSimple(const QString &titre);
-    bool estSimple() const ;
+    bool estSimple() const override ;
+    QString afficher() const override { return m_titre  ; };
 private :
     QString m_titre ;
 };

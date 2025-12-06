@@ -3405,7 +3405,8 @@ debug/test.o: ../../test.cpp C:/Qt/6.9.3/mingw_64/include/QtTest/QtTest \
 		../../instructioncomposee.h \
 		../../recetteservice.h \
 		../../recettedao.h \
-		../../recette.h
+		../../recette.h \
+		debug/test.moc
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\test.o ..\..\test.cpp
 
 debug/unite.o: ../../unite.cpp ../../unite.h \

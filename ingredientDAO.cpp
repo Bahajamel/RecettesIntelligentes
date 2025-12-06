@@ -80,3 +80,13 @@ bool IngredientDAO::remove(int id)
     q.addBindValue(id);
     return q.exec();
 }
+bool IngredientDAO::removeAll()
+{
+    QSqlQuery q(m_db);
+    if (!q.exec("DELETE FROM ingredient")) {
+        qWarning() << "Ingredient removeAll error:" << q.lastError();
+        return false;
+    }
+    return true;
+}
+

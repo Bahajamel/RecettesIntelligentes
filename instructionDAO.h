@@ -21,6 +21,7 @@ public:
     QSharedPointer<Instruction> findById(int id);
     bool remove(int id);
 
+
 private:
     QSqlDatabase m_db;
 

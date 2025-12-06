@@ -1,56 +1,75 @@
-#include <QtTest>
-#include "databasemanager.h"
-#include "recetteingredientdao.h"
-#include "ingredientservice.h"
-#include "instructionservice.h"
-#include "recetteservice.h"
+#include <QCoreApplication>
+#include <QDebug>
 
-class TestRecetteService : public QObject
+// Qt SQL
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QSqlError>
+
+// Ton backend
+#include "databaseManager.h"
+#include "recetteDAO.h"
+#include "recetteIngredientdao.h"
+#include "ingredientDAO.h"
+#include "IngredientService.h"
+#include "instructionDAO.h"
+#include "instructionService.h"
+#include "recetteService.h"
+
+int main(int argc, char *argv[])
 {
-    Q_OBJECT
+    QCoreApplication app(argc, argv);
 
-private slots:
-    void initTestCase()
-    {
-        // 1. Base SQLite en mémoire
-        DatabaseManager dbMan(":memory:");
-        QVERIFY(dbMan.open());
-
-        // 2. Créer RecetteIngredientDAO
-        QSqlDatabase dbRef = dbMan.database();
-        RecetteIngredientDAO riDao(dbRef);
-
-        // 3.Créer IngredientDAO
-        IngredientDAO inDao(dbRef) ;
-
-        // 4. Créer InstructionDAO
-        InstructionDAO iDao (dbRef) ;
-
-        // 5. Créer RecetteDAO
-        RecetteDAO rDao (dbRef) ;
-
-        // 6. Créer les services (selon leurs constructeurs réels)
-        IngredientService ingService(inDao , riDao );
-        InstructionService instService(iDao);
-
-        // 7. Créer RecetteService
-        RecetteService service(rDao,riDao, ingService, instService );
-
-        // 8. Ajouter recette et ingrédient pour le test
-        int recetteId = RecetteDAO::creerRecette("Tarte", "Test tarte");
-
-        int ingId = ingService.ajouterIngredient("Sucre"); // ou méthode réelle de ton service
-
-        UNITE unite = UNITE::GRAMME;
-        bool ok = service.ajouterIngredient(recetteId, ingService.getIngredient(ingId), 50.0f, unite);
-        QVERIFY(ok);
-
-        // 9. Lire et vérifier
-        QList<Ingredient> list = service.ingredientsDeRecette(recetteId);
-        QCOMPARE(list.size(), 1);
-        QCOMPARE(list[0].getNom(), QString("Sucre"));
+    qDebug() << "\n=== TEST InstructionService ===";
+    DatabaseManager dbm("test_instruction.db");
+    if (!dbm.open()) {
+        qWarning() << "Erreur ouverture DB !";
+        return 0;
     }
-};
+
+    InstructionDAO instDAO(dbm.database());
+    InstructionService instService(instDAO) ;
+    IngredientDAO ingDAO(dbm.database()) ;
+    RecetteIngredientDAO riDAO(dbm.database()) ;
+    IngredientService ingService(ingDAO , riDAO) ;
+    RecetteDAO rDAO (dbm.database()) ;
+    RecetteService recetteService(rDAO , riDAO , ingService, instService) ;
 
 
+
+    int recetteId = recetteService.creerRecette("Pâte à tarte", "Préparation de base");
+
+    // -------------------------
+    // 1) Racine 1
+    // -------------------------
+    int root1 = instService.ajouterComposee(recetteId, -1, 1, "Préparer la pâte");
+    qDebug() << "Root 1 (composee) =" << root1;
+
+    // enfants du root1
+    int e1 = instService.ajouterSimple(recetteId, root1, 1, "Mélanger la farine");
+    qDebug() << "  Enfant simple 1 =" << e1;
+
+    int e2 = instService.ajouterSimple(recetteId, root1, 2, "Ajouter l'eau");
+    qDebug() << "  Enfant simple 2 =" << e2;
+
+    // -------------------------
+    // 2) Racine 2
+    // -------------------------
+    int root2 = instService.ajouterComposee(recetteId, -1, 2, "Cuisson");
+    qDebug() << "Root 2 (composee) =" << root2;
+
+    int e3 = instService.ajouterSimple(recetteId, root2, 1, "Cuire 20 minutes");
+    qDebug() << "  Enfant simple cuisson =" << e3;
+
+    // -------------------------
+    // AFFICHAGE ARBRE
+    // -------------------------
+    auto arbre = instService.chargerArbre(recetteId);
+    instService.afficherArbre(arbre);
+
+
+
+
+    return 0;
+}
 

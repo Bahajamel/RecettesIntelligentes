@@ -127,9 +127,10 @@ QSharedPointer<Instruction> InstructionDAO::buildTree(
     int ordre = nodes[nodeId]["ordre"].toInt();
 
     QSharedPointer<Instruction> instr;
-    instr.reset(new InstructionSimple(simpleTexts[nodeId]));
+
 
     if (type == "simple") {
+        instr.reset(new InstructionSimple(simpleTexts[nodeId]));
     } else {
         instr.reset(new InstructionComposee(composeeTitles[nodeId]));
     }
@@ -178,41 +179,62 @@ bool InstructionDAO::deleteForRecette(int recetteId)
 // --------------------- FINDById instruction --------------------
 QSharedPointer<Instruction> InstructionDAO::findById(int id)
 {
+    // lire les infos générales de instruction
     QSqlQuery q(m_db);
     q.prepare(R"(
-        SELECT id, recette_id, parent, ordre, type, texte, titre
+        SELECT id, recette_id, parent_id, ordre, type
         FROM instruction
         WHERE id = :id
     )");
+
     q.bindValue(":id", id);
 
     if (!q.exec()) {
-        qWarning() << "InstructionDAO::findById exec error:" << q.lastError();
-        return QSharedPointer<Instruction>(nullptr);
+        qWarning() << "findById error:" << q.lastError();
+        return nullptr;
     }
 
     if (!q.next())
-        return QSharedPointer<Instruction>(nullptr);
+        return nullptr;
 
     QString type = q.value("type").toString();
     int ordre = q.value("ordre").toInt();
+    int recetteId = q.value("recette_id").toInt();
 
     QSharedPointer<Instruction> instr;
 
     if (type == "simple") {
-        QString texte = q.value("texte").toString();
+        // LIRE LE TEXTE DANS instruction_simple
+        QSqlQuery qs(m_db);
+        qs.prepare("SELECT texte FROM instruction_simple WHERE instruction_id = :id");
+        qs.bindValue(":id", id);
+        qs.exec();
+        qs.next();
+
+        QString texte = qs.value(0).toString();
+
         instr.reset(new InstructionSimple(texte));
     }
     else {
-        QString titre = q.value("titre").toString();
+        // LIRE LE TITRE DANS instruction_composee
+        QSqlQuery qc(m_db);
+        qc.prepare("SELECT titre FROM instruction_composee WHERE instruction_id = :id");
+        qc.bindValue(":id", id);
+        qc.exec();
+        qc.next();
+
+        QString titre = qc.value(0).toString();
+
         instr.reset(new InstructionComposee(titre));
     }
 
-    instr->m_id    = q.value("id").toInt();
-    instr->m_ordre = ordre;
-    instr->recetteId = q.value("recette_id").toInt();
+    instr->m_id        = id;
+    instr->m_ordre     = ordre;
+    instr->recetteId = recetteId;
+
     return instr;
 }
+
 // ---------------------- DELETE instruction ----------------------------
 bool InstructionDAO::remove(int id)
 {
@@ -227,4 +249,5 @@ bool InstructionDAO::remove(int id)
 
     return true;
 }
+
 

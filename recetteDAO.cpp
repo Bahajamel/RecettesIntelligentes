@@ -7,8 +7,8 @@
 RecetteDAO::RecetteDAO(const QSqlDatabase &db) : m_db(db) {}
 
 int RecetteDAO::creerRecette(const QString &titre, const QString &description) {
-    QSqlQuery query;
-    query.prepare("INSERT INTO recettes (titre, description) VALUES (?, ?)");
+    QSqlQuery query(m_db);
+    query.prepare("INSERT INTO recette (titre, description) VALUES (?, ?)");
     query.addBindValue(titre);
     query.addBindValue(description);
 
@@ -26,8 +26,8 @@ Recette RecetteDAO::obtenirRecette(int id) {
     Recette recette;
     recette.setId(-1); // Valeur par défaut
 
-    QSqlQuery query;
-    query.prepare("SELECT id, titre, description, date_creation, date_modification FROM recettes WHERE id = ?");
+    QSqlQuery query(m_db);
+    query.prepare("SELECT id, titre, description FROM recette WHERE id = ?");
     query.addBindValue(id);
 
     if (!query.exec()) {
@@ -50,8 +50,8 @@ Recette RecetteDAO::obtenirRecette(int id) {
 QList<Recette> RecetteDAO::obtenirToutesRecettes() {
     QList<Recette> recettes;
 
-    QSqlQuery query;
-    if (!query.exec("SELECT id, titre, description, date_creation, date_modification FROM recettes ORDER BY titre")) {
+    QSqlQuery query(m_db);
+    if (!query.exec("SELECT id, titre, description  FROM recette ORDER BY titre")) {
         qWarning() << "ERREUR lecture toutes recettes:" << query.lastError().text();
         return recettes;
     }
@@ -69,8 +69,8 @@ QList<Recette> RecetteDAO::obtenirToutesRecettes() {
 }
 
 bool RecetteDAO::mettreAJourRecette(int id, const QString &titre, const QString &description) {
-    QSqlQuery query;
-    query.prepare("UPDATE recettes SET titre = ?, description = ?, date_modification = CURRENT_TIMESTAMP WHERE id = ?");
+    QSqlQuery query(m_db);
+    query.prepare("UPDATE recette SET titre = ?, description = ? WHERE id = ?");
     query.addBindValue(titre);
     query.addBindValue(description);
     query.addBindValue(id);
@@ -85,8 +85,8 @@ bool RecetteDAO::mettreAJourRecette(int id, const QString &titre, const QString 
 }
 
 bool RecetteDAO::supprimerRecette(int id) {
-    QSqlQuery query;
-    query.prepare("DELETE FROM recettes WHERE id = ?");
+    QSqlQuery query(m_db);
+    query.prepare("DELETE FROM recette WHERE id = ?");
     query.addBindValue(id);
 
     if (!query.exec()) {
@@ -101,8 +101,8 @@ bool RecetteDAO::supprimerRecette(int id) {
 QList<Recette> RecetteDAO::rechercherParTitre(const QString &titre) {
     QList<Recette> recettes;
 
-    QSqlQuery query;
-    query.prepare("SELECT id, titre, description, date_creation, date_modification FROM recettes WHERE titre LIKE ? ORDER BY titre");
+    QSqlQuery query(m_db);
+    query.prepare("SELECT id, titre, description FROM recette WHERE titre LIKE ? ORDER BY titre");
     query.addBindValue("%" + titre + "%");
 
     if (!query.exec()) {
@@ -123,8 +123,8 @@ QList<Recette> RecetteDAO::rechercherParTitre(const QString &titre) {
 }
 
 int RecetteDAO::obtenirNombreRecettes() {
-    QSqlQuery query;
-    if (!query.exec("SELECT COUNT(*) FROM recettes")) {
+    QSqlQuery query(m_db);
+    if (!query.exec("SELECT COUNT(*) FROM recette")) {
         qWarning() << "ERREUR comptage recettes:" << query.lastError().text();
         return 0;
     }

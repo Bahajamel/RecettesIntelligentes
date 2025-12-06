@@ -14,6 +14,7 @@ public:
     virtual QString getContenu() const;
     int getOrdre() const ;
     virtual bool estSimple() const = 0 ;
+    virtual QString afficher() const = 0;
     int m_id;
     QString m_contenu;
     int m_ordre ;

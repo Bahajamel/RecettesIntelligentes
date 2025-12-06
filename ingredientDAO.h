@@ -15,6 +15,7 @@ public:
     int findOrCreate(const QString &name);
     QList<Ingredient> findAll();
     bool remove(int id);
+    bool removeAll() ;
 
 private:
     QSqlDatabase m_db;

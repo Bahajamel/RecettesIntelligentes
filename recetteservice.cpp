@@ -21,7 +21,7 @@ int RecetteService::creerRecette(const QString &titre, const QString &descriptio
     return m_recDao.creerRecette(titre,description);
 }
 
-bool RecetteService::ajouterIngredient(int recetteId, const Ingredient &ingredient , float qte, UNITE &unite)
+bool RecetteService::ajouterIngredient(int recetteId, const Ingredient &ingredient , float qte, UNITE unite)
 {
     RecetteIngredient ri (ingredient , qte , unite) ;
     return m_riDao.create(recetteId, ri);
