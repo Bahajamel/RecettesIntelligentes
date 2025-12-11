@@ -1,4 +1,4 @@
-#include "ingredient.h"
+#include "metiersHeader/ingredient.h"
 
 Ingredient::Ingredient()
     : m_id(-1), m_nom("")

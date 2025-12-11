@@ -3,9 +3,8 @@
 
 #include <QSqlDatabase>
 #include <QSharedPointer>
-#include "instruction.h"
-#include "instructionsimple.h"
-#include "instructioncomposee.h"
+#include "metiersHeader/instruction.h"
+
 
 class InstructionDAO
 {

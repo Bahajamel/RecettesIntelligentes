@@ -1,4 +1,4 @@
-#include "instructionsimple.h"
+#include "metiersHeader/instructionsimple.h"
 
 InstructionSimple::InstructionSimple(const QString &titre)
     : m_titre(titre)

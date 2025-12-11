@@ -1,6 +1,6 @@
 #ifndef RECETTEDAO_H
 #define RECETTEDAO_H
-#include "recette.h"
+#include "metiersHeader/recette.h"
 #include <QString>
 #include <QList>
 #include <QVariant>

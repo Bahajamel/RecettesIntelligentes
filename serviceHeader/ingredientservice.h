@@ -1,8 +1,8 @@
 #ifndef INGREDIENTSERVICE_H
 #define INGREDIENTSERVICE_H
 
-#include "ingredientdao.h"
-#include "recetteingredientdao.h"
+#include "daoHeader/ingredientDAO.h"
+#include "daoHeader/recetteingredientdao.h"
 
 class IngredientService
 {

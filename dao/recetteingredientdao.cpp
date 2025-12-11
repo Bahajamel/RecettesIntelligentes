@@ -1,4 +1,4 @@
-#include "recetteingredientdao.h"
+#include "daoHeader/recetteingredientdao.h"
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QDebug>

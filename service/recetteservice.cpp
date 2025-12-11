@@ -1,6 +1,6 @@
-#include "recetteservice.h"
-#include "recette.h"
-#include "recetteingredient.h"
+#include "serviceHeader/recetteservice.h"
+#include "metiersHeader/recette.h"
+#include "metiersHeader/recetteingredient.h"
 
 
 

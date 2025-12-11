@@ -1,7 +1,7 @@
-#include "instructionDAO.h"
-#include "instruction.h"
-#include "instructioncomposee.h"
-#include "instructionsimple.h"
+#include "daoHeader/instructionDAO.h"
+#include "metiersHeader/instruction.h"
+#include "metiersHeader/instructioncomposee.h"
+#include "metiersHeader/instructionsimple.h"
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QDebug>

@@ -1,4 +1,4 @@
-#include "recetteingredient.h"
+#include "metiersHeader/recetteingredient.h"
 
 // --------------------------------------------------
 // Constructeur

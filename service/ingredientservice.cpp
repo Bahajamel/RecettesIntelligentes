@@ -1,4 +1,4 @@
-#include "ingredientservice.h"
+#include "serviceHeader/ingredientservice.h"
 
 IngredientService::IngredientService(IngredientDAO &dao, RecetteIngredientDAO &riDao)
     : m_ingDao(dao), m_riDao(riDao)

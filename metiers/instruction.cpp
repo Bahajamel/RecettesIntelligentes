@@ -1,4 +1,4 @@
-#include "instruction.h"
+#include "metiersHeader/instruction.h"
 
 Instruction::Instruction()
     : m_id(-1),m_contenu("") , m_ordre(0)

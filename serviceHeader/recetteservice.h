@@ -1,10 +1,10 @@
 #ifndef RECETTESERVICE_H
 #define RECETTESERVICE_H
 
-#include "recettedao.h"
-#include "recetteingredientdao.h"
-#include "instructionservice.h"
-#include "ingredientservice.h"
+#include "daoHeader/recettedao.h"
+#include "daoHeader/recetteingredientdao.h"
+#include "serviceHeader/instructionservice.h"
+#include "serviceHeader/ingredientservice.h"
 
 class RecetteService
 {
@@ -18,10 +18,10 @@ public:
     bool ajouterIngredient(int recetteId, const Ingredient &ingredient , float qte, UNITE unite);
     QList<Ingredient> ingredientsDeRecette(int recetteId);
     QList<QSharedPointer<Instruction>> instructionsDeRecette(int recetteId);
+    RecetteIngredientDAO &m_riDao;
 
 private:
     RecetteDAO &m_recDao;
-    RecetteIngredientDAO &m_riDao;
     IngredientService &m_ingService;
     InstructionService &m_instService;
 };

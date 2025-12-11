@@ -1,5 +1,5 @@
-#include "ingredientDAO.h"
-#include "ingredient.h"
+#include "daoHeader/ingredientDAO.h"
+#include "metiersHeader/ingredient.h"
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QDebug>

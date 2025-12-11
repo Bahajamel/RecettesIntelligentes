@@ -1,4 +1,4 @@
-#include "recette.h"
+#include "metiersHeader/recette.h"
 
 // ---------- Constructeur ----------
 Recette::Recette(int id, const QString &titre, const QString &description)

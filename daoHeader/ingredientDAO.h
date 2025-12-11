@@ -2,7 +2,7 @@
 #define INGREDIENTDAO_H
 
 #include <QSqlDatabase>
-#include "ingredient.h"
+#include "metiersHeader/ingredient.h"
 
 class IngredientDAO
 {
