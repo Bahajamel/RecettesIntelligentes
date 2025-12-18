@@ -1,4 +1,4 @@
-#include "instructioncomposee.h"
+#include "metiersHeader/instructioncomposee.h"
 
 // -------- Constructeur --------
 InstructionComposee::InstructionComposee(const QString &titre)

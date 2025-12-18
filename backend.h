@@ -30,11 +30,9 @@ public:
 public slots:
     void chargerRecettes();
     int creerRecette(const QString &titre, const QString &description);
-<<<<<<< HEAD
-    void ajouterIngredientARecette(const int &id , const QString &nom , const float &qte , const QString &unite);
-=======
-    void ajouterIngredientARecette(int &id , QString &nom , float &qte , QString &unite);
->>>>>>> Baha
+    void ajouterIngredientARecette(int recetteId, const QString &nom, float qte, const QString &unite);
+    void ajouterInstructionSimple(int recetteId, int parentId, const QString &texte);
+    void ajouterInstructionComposee(int recetteId, int parentId, const QString &titre);
 
 signals:
     void erreur(const QString &message);

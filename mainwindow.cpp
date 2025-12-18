@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "ajouterrecettedialog.h"
 
 MainWindow::MainWindow( Backend *backend , QWidget *parent)
     : QMainWindow(parent)
@@ -68,7 +69,9 @@ void MainWindow::on_actionRecherche_triggered()
 
 void MainWindow::on_btnMyRecipes_clicked()
 {
-
-
+    AjouterRecetteDialog dlg(backend, this);
+    if (dlg.exec() == QDialog::Accepted) {
+        backend->chargerRecettes(); // rafraîchir la table
+    }
 }
 
