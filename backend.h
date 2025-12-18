@@ -33,9 +33,9 @@ public slots:
     void ajouterIngredientARecette(int recetteId, const QString &nom, float qte, const QString &unite);
     void ajouterInstructionSimple(int recetteId, int parentId, const QString &texte);
     void ajouterInstructionComposee(int recetteId, int parentId, const QString &titre);
-
 signals:
     void erreur(const QString &message);
+    void recettesModifiees();
 
 private:
     DatabaseManager m_dbManager;

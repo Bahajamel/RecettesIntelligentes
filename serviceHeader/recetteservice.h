@@ -20,7 +20,6 @@ public:
     QList<QSharedPointer<Instruction>> instructionsDeRecette(int recetteId);
     RecetteIngredientDAO &m_riDao;
     QList<Recette> listerRecettes();
-
 private:
     RecetteDAO &m_recDao;
     IngredientService &m_ingService;

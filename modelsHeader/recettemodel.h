@@ -19,10 +19,11 @@ public:
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
-
+    void recharger();
 private:
     RecetteService m_service ;
     QList<Recette> m_recettes;
+
 };
 
 #endif

@@ -43,6 +43,7 @@ int Backend::creerRecette(const QString &titre, const QString &description)
         return 0;
     }
     return id ;
+    emit recettesModifiees();
     chargerRecettes(); // rafraîchir la vue
 }
 
@@ -66,7 +67,7 @@ void Backend::ajouterIngredientARecette(int recetteId,
         );
 }
 
-// ---------------- INSTRUCTION SIMPLE ----------------
+
 void Backend::ajouterInstructionSimple(int recetteId,
                                        int parentId,
                                        const QString &texte)
@@ -79,7 +80,6 @@ void Backend::ajouterInstructionSimple(int recetteId,
         );
 }
 
-// ---------------- INSTRUCTION COMPOSÉE ----------------
 void Backend::ajouterInstructionComposee(int recetteId,
                                          int parentId,
                                          const QString &titre)
@@ -91,6 +91,10 @@ void Backend::ajouterInstructionComposee(int recetteId,
         titre
         );
 }
-
+void Backend::filtrerRecettes(const QString &motCle)
+{
+    QList<Recette> res = m_recetteService.rechercherParTitre(motCle);
+    m_recetteModel.setRecettes(res);
+}
 
 

@@ -12,8 +12,13 @@ MainWindow::MainWindow( Backend *backend , QWidget *parent)
 
     // charger au démarrage
     backend->chargerRecettes();
+    auto model = qobject_cast<RecetteTableModel*>(ui->tableViewRecettes->model());
+    if (model) {
+        connect(backend, &Backend::recettesModifiees,
+                model,
+                &RecetteTableModel::recharger);
+    }
 
-    backend->creerRecette("Pizza" , "Maison") ;
 }
 
 MainWindow::~MainWindow()
@@ -64,14 +69,13 @@ void MainWindow::on_actionRecherche_triggered()
     qDebug() << "Search Action triggered";
 }
 
-
-
-
 void MainWindow::on_btnMyRecipes_clicked()
 {
     AjouterRecetteDialog dlg(backend, this);
+    dlg.exec();
     if (dlg.exec() == QDialog::Accepted) {
         backend->chargerRecettes(); // rafraîchir la table
     }
 }
+
 

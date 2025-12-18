@@ -1,5 +1,4 @@
 #include "modelsHeader/recettemodel.h"
-
 RecetteTableModel::RecetteTableModel(RecetteService &recetteservice ,QObject *parent)
     : QAbstractTableModel(parent) , m_service(recetteservice)
 {}
@@ -47,4 +46,10 @@ QVariant RecetteTableModel::headerData(int section,
     if (section == 1) return "Description";
 
     return QVariant();
+}
+void RecetteTableModel::recharger()
+{
+    beginResetModel();
+    m_recettes = m_service.listerRecettes();
+    endResetModel();
 }

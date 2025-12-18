@@ -22,6 +22,10 @@ private slots:
     void on_btnAnnuler_clicked();
     void on_btnValider_clicked();
 
+    void on_btnAjouterIngredient_clicked();
+
+    void on_btnAjouterInstruction_clicked();
+
 private:
     Ui::ajouterrecetteDialog *ui;
     Backend *m_backend;
