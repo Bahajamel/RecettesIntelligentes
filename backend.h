@@ -29,7 +29,8 @@ public:
 
 public slots:
     void chargerRecettes();
-    void creerRecette(const QString &titre, const QString &description);
+    int creerRecette(const QString &titre, const QString &description);
+    void ajouterIngredientARecette(int &id , QString &nom , float &qte , QString &unite);
 
 signals:
     void erreur(const QString &message);

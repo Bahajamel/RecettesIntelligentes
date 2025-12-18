@@ -7,7 +7,7 @@
 class Backend;
 
 namespace Ui {
-class AjouterRecetteDialog;
+class ajouterrecetteDialog;
 }
 
 class AjouterRecetteDialog : public QDialog
@@ -23,7 +23,7 @@ private slots:
     void on_btnValider_clicked();
 
 private:
-    Ui::AjouterRecetteDialog *ui;
+    Ui::ajouterrecetteDialog *ui;
     Backend *m_backend;
 };
 
