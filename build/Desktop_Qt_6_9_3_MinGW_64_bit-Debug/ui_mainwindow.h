@@ -14,9 +14,9 @@
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
-#include <QtWidgets/QListView>
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
@@ -26,6 +26,7 @@
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
+#include <QtWidgets/QTableView>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QVBoxLayout>
@@ -55,8 +56,8 @@ public:
     QWidget *recettesWidget;
     QWidget *verticalLayoutWidget_2;
     QVBoxLayout *verticalLayout_2;
+    QTableView *tableViewRecettes;
     QLineEdit *searchLineEdit;
-    QListView *recetteListView;
     QScrollArea *detailsScrollArea;
     QWidget *scrollAreaWidgetContents;
     QWidget *verticalLayoutWidget_3;
@@ -187,10 +188,15 @@ public:
         recettesWidget->setGeometry(QRect(149, -1, 191, 551));
         verticalLayoutWidget_2 = new QWidget(recettesWidget);
         verticalLayoutWidget_2->setObjectName("verticalLayoutWidget_2");
-        verticalLayoutWidget_2->setGeometry(QRect(-1, 9, 191, 501));
+        verticalLayoutWidget_2->setGeometry(QRect(0, 10, 241, 501));
         verticalLayout_2 = new QVBoxLayout(verticalLayoutWidget_2);
         verticalLayout_2->setObjectName("verticalLayout_2");
         verticalLayout_2->setContentsMargins(5, 2, 3, 3);
+        tableViewRecettes = new QTableView(verticalLayoutWidget_2);
+        tableViewRecettes->setObjectName("tableViewRecettes");
+
+        verticalLayout_2->addWidget(tableViewRecettes);
+
         searchLineEdit = new QLineEdit(verticalLayoutWidget_2);
         searchLineEdit->setObjectName("searchLineEdit");
         searchLineEdit->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
@@ -198,24 +204,16 @@ public:
 
         verticalLayout_2->addWidget(searchLineEdit);
 
-        recetteListView = new QListView(verticalLayoutWidget_2);
-        recetteListView->setObjectName("recetteListView");
-        recetteListView->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
-        recetteListView->setAlternatingRowColors(false);
-        recetteListView->setIconSize(QSize(80, 80));
-
-        verticalLayout_2->addWidget(recetteListView);
-
         detailsScrollArea = new QScrollArea(centralwidget);
         detailsScrollArea->setObjectName("detailsScrollArea");
-        detailsScrollArea->setGeometry(QRect(349, 14, 431, 491));
+        detailsScrollArea->setGeometry(QRect(370, 10, 431, 491));
         detailsScrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName("scrollAreaWidgetContents");
         scrollAreaWidgetContents->setGeometry(QRect(0, 0, 429, 489));
         verticalLayoutWidget_3 = new QWidget(scrollAreaWidgetContents);
         verticalLayoutWidget_3->setObjectName("verticalLayoutWidget_3");
-        verticalLayoutWidget_3->setGeometry(QRect(10, 10, 411, 471));
+        verticalLayoutWidget_3->setGeometry(QRect(10, -10, 411, 471));
         verticalLayout_5 = new QVBoxLayout(verticalLayoutWidget_3);
         verticalLayout_5->setObjectName("verticalLayout_5");
         verticalLayout_5->setContentsMargins(0, 0, 0, 0);
@@ -389,7 +387,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
         ingredientTable->setCurrentIndex(2);
 
 
@@ -433,8 +431,8 @@ public:
 #endif // QT_CONFIG(shortcut)
         actionSideBar->setText(QCoreApplication::translate("MainWindow", "SideBar", nullptr));
         logoLabel->setText(QCoreApplication::translate("MainWindow", "Recettes", nullptr));
-        btnAllRecipes->setText(QCoreApplication::translate("MainWindow", "Toutres les Recettes", nullptr));
-        btnMyRecipes->setText(QCoreApplication::translate("MainWindow", "Mes recettes", nullptr));
+        btnAllRecipes->setText(QCoreApplication::translate("MainWindow", "Toutes les Recettes", nullptr));
+        btnMyRecipes->setText(QCoreApplication::translate("MainWindow", "ajouter une recette", nullptr));
         searchLineEdit->setText(QCoreApplication::translate("MainWindow", "Rechercher une recette...", nullptr));
         titleLineEdit->setText(QCoreApplication::translate("MainWindow", "Titre de la recette", nullptr));
         descriptionTextEdit->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"

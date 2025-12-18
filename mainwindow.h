@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "backend.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -12,7 +13,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(Backend *backend, QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
@@ -30,7 +31,10 @@ private slots:
 
     void on_actionRecherche_triggered();
 
+    void on_btnMyRecipes_clicked();
+
 private:
     Ui::MainWindow *ui;
+    Backend *backend;
 };
 #endif // MAINWINDOW_H

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ajouterrecetteDialog</class>
+ <widget class="QDialog" name="ajouterrecetteDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>895</width>
+    <height>512</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QLineEdit" name="lineEditTitre">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>30</y>
+     <width>381</width>
+     <height>28</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="textEditDescription">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>80</y>
+     <width>381</width>
+     <height>41</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableIngredients">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>130</y>
+     <width>381</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="lineWidth">
+    <number>6</number>
+   </property>
+   <property name="rowCount">
+    <number>0</number>
+   </property>
+   <property name="columnCount">
+    <number>3</number>
+   </property>
+   <column>
+    <property name="text">
+     <string>Nom</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Quantite</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Unite</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QPushButton" name="btnAjouterIngredient">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>260</y>
+     <width>181</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Ajouter ingredient</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableInstructions">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>300</y>
+     <width>381</width>
+     <height>151</height>
+    </rect>
+   </property>
+   <column>
+    <property name="text">
+     <string>Type</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Contenu</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Parent</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QPushButton" name="btnAjouterInstruction">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>460</y>
+     <width>161</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Ajouter instruction</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnValider">
+   <property name="geometry">
+    <rect>
+     <x>630</x>
+     <y>470</y>
+     <width>121</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Valider</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnAnnuler">
+   <property name="geometry">
+    <rect>
+     <x>770</x>
+     <y>470</y>
+     <width>111</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Annuler</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>10</y>
+     <width>141</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Nom de la recette</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>60</y>
+     <width>171</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Description de la recette</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
