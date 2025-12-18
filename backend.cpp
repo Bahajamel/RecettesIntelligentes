@@ -34,11 +34,16 @@ void Backend::chargerRecettes()
     QList<Recette> recettes = m_recetteService.listerRecettes();
     m_recetteModel.setRecettes(recettes);
 }
+<<<<<<< HEAD
 int Backend::creerRecette(const QString &titre, const QString &description)
+=======
+void Backend::creerRecette(const QString &titre, const QString &description)
+>>>>>>> Baha
 {
     int id = m_recetteService.creerRecette(titre, description);
     if (id < 0) {
         emit erreur("Impossible de créer la recette");
+<<<<<<< HEAD
         return 0;
     }
     return id ;
@@ -52,3 +57,10 @@ void Backend::ajouterIngredientARecette(const int &id , const QString &Ingredien
 
 }
 
+=======
+        return;
+    }
+    chargerRecettes(); // rafraîchir la vue
+}
+
+>>>>>>> Baha

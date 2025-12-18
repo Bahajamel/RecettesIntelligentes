@@ -4,7 +4,11 @@
 
 AjouterRecetteDialog::AjouterRecetteDialog(Backend *backend, QWidget *parent)
     : QDialog(parent)
+<<<<<<< HEAD
     , ui(new Ui::ajouterrecetteDialog)
+=======
+    , ui(new Ui::AjouterRecetteDialog)
+>>>>>>> Baha
     , m_backend(backend)
 {
     ui->setupUi(this);
@@ -29,7 +33,12 @@ void AjouterRecetteDialog::on_btnValider_clicked()
         QMessageBox::warning(this, "Erreur", "Titre obligatoire");
         return;
     }
+<<<<<<< HEAD
 ⃣     // Créer la recette
+=======
+
+    // 1️⃣ Créer la recette
+>>>>>>> Baha
     int recetteId = m_backend->creerRecette(titre, description);
 
     // 2️⃣ Ajouter ingrédients

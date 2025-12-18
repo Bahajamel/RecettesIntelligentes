@@ -11,44 +11,57 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    databasemanager.cpp \
-    ingredient.cpp \
-    ingredientDAO.cpp \
-    ingredientservice.cpp \
-    instruction.cpp \
-    instructionDAO.cpp \
-    instructioncomposee.cpp \
-    instructionservice.cpp \
-    instructionsimple.cpp \
+    ajouterrecettedialog.cpp \
+    backend.cpp \
+    data/databasemanager.cpp \
+    metiers/ingredient.cpp \
+    dao/ingredientDAO.cpp \
+    models/ingredientmodel.cpp \
+    service/ingredientservice.cpp \
+    metiers/instruction.cpp \
+    dao/instructionDAO.cpp \
+    metiers/instructioncomposee.cpp \
+    service/instructionservice.cpp \
+    metiers/instructionsimple.cpp \
+    models/instructiontreemodel.cpp \
     main.cpp \
     mainwindow.cpp \
-    recette.cpp \
-    recetteDAO.cpp \
-    recetteingredient.cpp \
-    recetteingredientdao.cpp \
-    recetteservice.cpp \
+    metiers/recette.cpp \
+    dao/recetteDAO.cpp \
+    metiers/recetteingredient.cpp \
+    dao/recetteingredientdao.cpp \
+    models/recetteingredientmodel.cpp \
+    models/recettemodel.cpp \
+    service/recetteservice.cpp \
     test.cpp \
-    unite.cpp
+    metiers/unite.cpp
 
 HEADERS += \
-    databasemanager.h \
-    ingredient.h \
-    ingredientDAO.h \
-    ingredientservice.h \
-    instruction.h \
-    instructionDAO.h \
-    instructioncomposee.h \
-    instructionservice.h \
-    instructionsimple.h \
+    ajouterrecettedialog.h \
+    backend.h \
+    dataHeader/databasemanager.h \
+    metiersHeader/ingredient.h \
+    daoHeader/ingredientDAO.h \
+    modelsHeader/ingredientmodel.h \
+    serviceHeader/ingredientservice.h \
+    metiersHeader/instruction.h \
+    daoHeader/instructionDAO.h \
+    metiersHeader/instructioncomposee.h \
+    serviceHeader/instructionservice.h \
+    metiersHeader/instructionsimple.h \
+    modelsHeader/instructiontreemodel.h \
     mainwindow.h \
-    recette.h \
-    recetteDAO.h \
-    recetteingredient.h \
-    recetteingredientdao.h \
-    recetteservice.h \
-    unite.h
+    metiersHeader/recette.h \
+    daoHeader/recetteDAO.h \
+    metiersHeader/recetteingredient.h \
+    daoHeader/recetteingredientdao.h \
+    modelsHeader/recetteingredientmodel.h \
+    modelsHeader/recettemodel.h \
+    serviceHeader/recetteservice.h \
+    metiersHeader/unite.h
 
 FORMS += \
+    ajouterrecettedialog.ui \
     mainwindow.ui
 
 # Default rules for deployment.
