@@ -1,11 +1,27 @@
 #include "mainwindow.h"
-
+#include "backend.h"
 #include <QApplication>
+#include <QSqlDatabase>
+#include <QFile>
+#include <QDebug>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
+    Backend backend;
+    MainWindow w(&backend);
+
+    QFile styleFile(":/StyleSheet/style.qss");   // ou "StyleSheet/style.qss" si pas de .qrc
+    if (styleFile.open(QFile::ReadOnly)) {
+        QString style = QLatin1String(styleFile.readAll());
+        a.setStyleSheet(style);                  // utiliser 'a'
+    }
+
     w.show();
+
+    QSqlDatabase test = QSqlDatabase::addDatabase("QSQLITE", "TEST");
+    test.setDatabaseName("foo.db");
+    qDebug() << "OPEN ?" << test.open();
+
     return a.exec();
 }
