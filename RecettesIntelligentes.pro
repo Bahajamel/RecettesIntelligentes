@@ -48,6 +48,7 @@ HEADERS += \
     unite.h
 
 FORMS += \
+    RecetteDetailDialog.ui \
     mainwindow.ui
 
 # Default rules for deployment.

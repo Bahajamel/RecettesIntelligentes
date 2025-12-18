@@ -13,6 +13,7 @@
 #include <QtGui/QAction>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -59,9 +60,6 @@ public:
     QListView *recetteListView;
     QScrollArea *detailsScrollArea;
     QWidget *scrollAreaWidgetContents;
-    QWidget *verticalLayoutWidget_3;
-    QVBoxLayout *verticalLayout_5;
-    QLineEdit *titleLineEdit;
     QTextEdit *descriptionTextEdit;
     QTabWidget *tabWidget;
     QWidget *tab1;
@@ -88,6 +86,8 @@ public:
     QPushButton *btnAddSubInstruction;
     QPushButton *btnRemoveInstruction;
     QSpacerItem *horizontalSpacer_3;
+    QFrame *line;
+    QLineEdit *titleLineEdit;
     QMenuBar *menubar;
     QMenu *menuFile;
     QMenu *menuEdit;
@@ -99,7 +99,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(800, 600);
+        MainWindow->resize(897, 751);
         actionNouveau = new QAction(MainWindow);
         actionNouveau->setObjectName("actionNouveau");
         QIcon icon(QIcon::fromTheme(QIcon::ThemeIcon::DocumentNew));
@@ -139,11 +139,11 @@ public:
         sidebarWidget = new QWidget(centralwidget);
         sidebarWidget->setObjectName("sidebarWidget");
         sidebarWidget->setEnabled(true);
-        sidebarWidget->setGeometry(QRect(-1, 10, 151, 501));
+        sidebarWidget->setGeometry(QRect(-1, 10, 151, 641));
         sidebarWidget->setStyleSheet(QString::fromUtf8("background-color: rgb(3, 61, 112);"));
         verticalLayoutWidget = new QWidget(sidebarWidget);
         verticalLayoutWidget->setObjectName("verticalLayoutWidget");
-        verticalLayoutWidget->setGeometry(QRect(0, 0, 151, 171));
+        verticalLayoutWidget->setGeometry(QRect(0, 10, 151, 171));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setSpacing(17);
         verticalLayout->setObjectName("verticalLayout");
@@ -184,10 +184,10 @@ public:
         btnAllRecipes->raise();
         recettesWidget = new QWidget(centralwidget);
         recettesWidget->setObjectName("recettesWidget");
-        recettesWidget->setGeometry(QRect(149, -1, 191, 551));
+        recettesWidget->setGeometry(QRect(149, -1, 191, 651));
         verticalLayoutWidget_2 = new QWidget(recettesWidget);
         verticalLayoutWidget_2->setObjectName("verticalLayoutWidget_2");
-        verticalLayoutWidget_2->setGeometry(QRect(-1, 9, 191, 501));
+        verticalLayoutWidget_2->setGeometry(QRect(-1, 9, 191, 641));
         verticalLayout_2 = new QVBoxLayout(verticalLayoutWidget_2);
         verticalLayout_2->setObjectName("verticalLayout_2");
         verticalLayout_2->setContentsMargins(5, 2, 3, 3);
@@ -208,35 +208,18 @@ public:
 
         detailsScrollArea = new QScrollArea(centralwidget);
         detailsScrollArea->setObjectName("detailsScrollArea");
-        detailsScrollArea->setGeometry(QRect(349, 14, 431, 491));
+        detailsScrollArea->setGeometry(QRect(349, 14, 531, 641));
         detailsScrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName("scrollAreaWidgetContents");
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 429, 489));
-        verticalLayoutWidget_3 = new QWidget(scrollAreaWidgetContents);
-        verticalLayoutWidget_3->setObjectName("verticalLayoutWidget_3");
-        verticalLayoutWidget_3->setGeometry(QRect(10, 10, 411, 471));
-        verticalLayout_5 = new QVBoxLayout(verticalLayoutWidget_3);
-        verticalLayout_5->setObjectName("verticalLayout_5");
-        verticalLayout_5->setContentsMargins(0, 0, 0, 0);
-        titleLineEdit = new QLineEdit(verticalLayoutWidget_3);
-        titleLineEdit->setObjectName("titleLineEdit");
-        titleLineEdit->setMinimumSize(QSize(0, 40));
-        QFont font;
-        font.setPointSize(12);
-        font.setBold(true);
-        titleLineEdit->setFont(font);
-
-        verticalLayout_5->addWidget(titleLineEdit);
-
-        descriptionTextEdit = new QTextEdit(verticalLayoutWidget_3);
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 529, 639));
+        descriptionTextEdit = new QTextEdit(scrollAreaWidgetContents);
         descriptionTextEdit->setObjectName("descriptionTextEdit");
-        descriptionTextEdit->setMinimumSize(QSize(0, 80));
-
-        verticalLayout_5->addWidget(descriptionTextEdit);
-
-        tabWidget = new QTabWidget(verticalLayoutWidget_3);
+        descriptionTextEdit->setGeometry(QRect(11, 58, 511, 70));
+        descriptionTextEdit->setMinimumSize(QSize(0, 70));
+        tabWidget = new QTabWidget(scrollAreaWidgetContents);
         tabWidget->setObjectName("tabWidget");
+        tabWidget->setGeometry(QRect(10, 140, 501, 441));
         tab1 = new QWidget();
         tab1->setObjectName("tab1");
         verticalLayout_6 = new QVBoxLayout(tab1);
@@ -256,8 +239,10 @@ public:
         verticalLayout_6->addWidget(ingredientTable);
 
         horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setSpacing(41);
         horizontalLayout_4->setObjectName("horizontalLayout_4");
-        horizontalLayout_4->setContentsMargins(0, -1, 61, 0);
+        horizontalLayout_4->setSizeConstraint(QLayout::SizeConstraint::SetDefaultConstraint);
+        horizontalLayout_4->setContentsMargins(28, -1, 42, 0);
         pushButton_3 = new QPushButton(tab1);
         pushButton_3->setObjectName("pushButton_3");
         pushButton_3->setBaseSize(QSize(0, 0));
@@ -283,11 +268,11 @@ public:
         tab2->setObjectName("tab2");
         instructionList = new QListWidget(tab2);
         instructionList->setObjectName("instructionList");
-        instructionList->setGeometry(QRect(10, 10, 391, 71));
+        instructionList->setGeometry(QRect(10, 10, 481, 261));
         instructionList->setDragDropMode(QAbstractItemView::DragDropMode::InternalMove);
         navigation = new QWidget(tab2);
         navigation->setObjectName("navigation");
-        navigation->setGeometry(QRect(20, 80, 371, 51));
+        navigation->setGeometry(QRect(60, 290, 371, 51));
         horizontalLayout_5 = new QHBoxLayout(navigation);
         horizontalLayout_5->setObjectName("horizontalLayout_5");
         btnPrevInstruction = new QPushButton(navigation);
@@ -320,7 +305,7 @@ public:
 
         widget = new QWidget(tab2);
         widget->setObjectName("widget");
-        widget->setGeometry(QRect(20, 120, 371, 51));
+        widget->setGeometry(QRect(60, 350, 371, 51));
         horizontalLayout_6 = new QHBoxLayout(widget);
         horizontalLayout_6->setObjectName("horizontalLayout_6");
         btnAddInstruction = new QPushButton(widget);
@@ -345,15 +330,25 @@ public:
 
         horizontalLayout_6->addItem(horizontalSpacer_3);
 
+        line = new QFrame(tab2);
+        line->setObjectName("line");
+        line->setGeometry(QRect(0, 340, 501, 16));
+        line->setFrameShape(QFrame::Shape::HLine);
+        line->setFrameShadow(QFrame::Shadow::Sunken);
         tabWidget->addTab(tab2, QString());
-
-        verticalLayout_5->addWidget(tabWidget);
-
+        titleLineEdit = new QLineEdit(scrollAreaWidgetContents);
+        titleLineEdit->setObjectName("titleLineEdit");
+        titleLineEdit->setGeometry(QRect(11, 11, 511, 40));
+        titleLineEdit->setMinimumSize(QSize(0, 40));
+        QFont font;
+        font.setPointSize(12);
+        font.setBold(true);
+        titleLineEdit->setFont(font);
         detailsScrollArea->setWidget(scrollAreaWidgetContents);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 800, 25));
+        menubar->setGeometry(QRect(0, 0, 897, 25));
         menuFile = new QMenu(menubar);
         menuFile->setObjectName("menuFile");
         menuEdit = new QMenu(menubar);
@@ -389,8 +384,8 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(1);
-        ingredientTable->setCurrentIndex(2);
+        tabWidget->setCurrentIndex(0);
+        ingredientTable->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -436,7 +431,6 @@ public:
         btnAllRecipes->setText(QCoreApplication::translate("MainWindow", "Toutres les Recettes", nullptr));
         btnMyRecipes->setText(QCoreApplication::translate("MainWindow", "Mes recettes", nullptr));
         searchLineEdit->setText(QCoreApplication::translate("MainWindow", "Rechercher une recette...", nullptr));
-        titleLineEdit->setText(QCoreApplication::translate("MainWindow", "Titre de la recette", nullptr));
         descriptionTextEdit->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -458,6 +452,7 @@ public:
         btnAddSubInstruction->setText(QCoreApplication::translate("MainWindow", "Sous-\303\251tape", nullptr));
         btnRemoveInstruction->setText(QCoreApplication::translate("MainWindow", "Supprimer", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab2), QCoreApplication::translate("MainWindow", "Instructions", nullptr));
+        titleLineEdit->setText(QCoreApplication::translate("MainWindow", "Titre de la recette", nullptr));
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         menuEdit->setTitle(QCoreApplication::translate("MainWindow", "Edit", nullptr));
         menuAffihce->setTitle(QCoreApplication::translate("MainWindow", "Affiche", nullptr));
