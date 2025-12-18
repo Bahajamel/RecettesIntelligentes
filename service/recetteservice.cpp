@@ -36,3 +36,10 @@ QList<QSharedPointer<Instruction>> RecetteService::instructionsDeRecette(int rec
 {
     return m_instService.chargerArbre(recetteId);
 }
+QList<Recette> RecetteService::listerRecettes()
+{
+    return m_recDao.obtenirToutesRecettes();
+}
+
+
+

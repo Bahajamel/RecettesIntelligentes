@@ -1,5 +1,6 @@
 #include "serviceHeader/instructionservice.h"
-
+#include "metiersHeader/instructionsimple.h"
+#include "metiersHeader/instructioncomposee.h"
 InstructionService::InstructionService(InstructionDAO &dao)
     : m_instDao(dao)
 {}

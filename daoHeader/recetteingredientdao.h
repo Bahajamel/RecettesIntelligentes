@@ -3,7 +3,7 @@
 
 #include <QSqlDatabase>
 #include <QList>
-#include "recetteingredient.h"
+#include "metiersHeader/recetteingredient.h"
 
 class RecetteIngredientDAO
 {

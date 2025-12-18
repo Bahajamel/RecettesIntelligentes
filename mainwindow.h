@@ -31,6 +31,8 @@ private slots:
 
     void on_actionRecherche_triggered();
 
+    void on_btnMyRecipes_clicked();
+
 private:
     Ui::MainWindow *ui;
     Backend *backend;

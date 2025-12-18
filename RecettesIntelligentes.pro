@@ -11,6 +11,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    ajouterrecettedialog.cpp \
     backend.cpp \
     data/databasemanager.cpp \
     metiers/ingredient.cpp \
@@ -19,7 +20,7 @@ SOURCES += \
     service/ingredientservice.cpp \
     metiers/instruction.cpp \
     dao/instructionDAO.cpp \
-    dao/instructioncomposee.cpp \
+    metiers/instructioncomposee.cpp \
     service/instructionservice.cpp \
     metiers/instructionsimple.cpp \
     models/instructiontreemodel.cpp \
@@ -36,6 +37,7 @@ SOURCES += \
     metiers/unite.cpp
 
 HEADERS += \
+    ajouterrecettedialog.h \
     backend.h \
     dataHeader/databasemanager.h \
     metiersHeader/ingredient.h \
@@ -59,6 +61,7 @@ HEADERS += \
     metiersHeader/unite.h
 
 FORMS += \
+    ajouterrecettedialog.ui \
     mainwindow.ui
 
 # Default rules for deployment.

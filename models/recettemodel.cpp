@@ -1,30 +1,24 @@
 #include "modelsHeader/recettemodel.h"
 
-RecetteTableModel::RecetteTableModel(RecetteService &service, QObject *parent)
-    : QAbstractTableModel(parent), m_service(service)
+RecetteTableModel::RecetteTableModel(RecetteService &recetteservice ,QObject *parent)
+    : QAbstractTableModel(parent) , m_service(recetteservice)
 {}
 
-// Charger ingrédients d’une recette
-void RecetteTableModel::chargerRecette(int recetteId)
+void RecetteTableModel::setRecettes(const QList<Recette> &recettes)
 {
     beginResetModel();
-    m_recetteId = recetteId;
-
-    // IMPORTANT :
-    // utiliser findByRecette pour récupérer quantité + unité
-    m_lignes = m_service.m_riDao.findByRecette(recetteId);
-
+    m_recettes = recettes;
     endResetModel();
 }
 
 int RecetteTableModel::rowCount(const QModelIndex &) const
 {
-    return m_lignes.size();
+    return m_recettes.size();
 }
 
 int RecetteTableModel::columnCount(const QModelIndex &) const
 {
-    return 4; // ID, Nom, Quantité, Unité
+    return 2; // Titre | Description
 }
 
 QVariant RecetteTableModel::data(const QModelIndex &index, int role) const
@@ -32,29 +26,25 @@ QVariant RecetteTableModel::data(const QModelIndex &index, int role) const
     if (!index.isValid() || role != Qt::DisplayRole)
         return QVariant();
 
-    const RecetteIngredient &ri = m_lignes[index.row()];
+    const Recette &r = m_recettes.at(index.row());
 
-    switch(index.column())
-    {
-    case 0: return ri.getIngredientId();
-    case 1: return ri.getNom();
-    case 2: return ri.getQuantite();
-    case 3: return uniteToString(ri.getUnite());
-    }
+    if (index.column() == 0)
+        return r.getTitre();
+    if (index.column() == 1)
+        return r.getDescription();
 
     return QVariant();
 }
 
-QVariant RecetteTableModel::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant RecetteTableModel::headerData(int section,
+                                       Qt::Orientation orientation,
+                                       int role) const
 {
-    if (orientation == Qt::Horizontal && role == Qt::DisplayRole) {
-        switch (section) {
-        case 0: return "ID";
-        case 1: return "Nom";
-        case 2: return "Quantité";
-        case 3: return "Unité";
-        }
-    }
+    if (role != Qt::DisplayRole || orientation != Qt::Horizontal)
+        return QVariant();
+
+    if (section == 0) return "Titre";
+    if (section == 1) return "Description";
 
     return QVariant();
 }

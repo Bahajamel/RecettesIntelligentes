@@ -6,6 +6,13 @@ MainWindow::MainWindow( Backend *backend , QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    // connecter le modèle à la table
+    ui->tableViewRecettes->setModel(backend->recetteModel());
+
+    // charger au démarrage
+    backend->chargerRecettes();
+
+    backend->creerRecette("Pizza" , "Maison") ;
 }
 
 MainWindow::~MainWindow()
@@ -54,5 +61,14 @@ void MainWindow::on_actionDelete_triggered()
 void MainWindow::on_actionRecherche_triggered()
 {
     qDebug() << "Search Action triggered";
+}
+
+
+
+
+void MainWindow::on_btnMyRecipes_clicked()
+{
+
+
 }
 

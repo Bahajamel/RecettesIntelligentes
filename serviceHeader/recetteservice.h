@@ -19,6 +19,7 @@ public:
     QList<Ingredient> ingredientsDeRecette(int recetteId);
     QList<QSharedPointer<Instruction>> instructionsDeRecette(int recetteId);
     RecetteIngredientDAO &m_riDao;
+    QList<Recette> listerRecettes();
 
 private:
     RecetteDAO &m_recDao;

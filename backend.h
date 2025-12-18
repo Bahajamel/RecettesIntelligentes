@@ -16,36 +16,42 @@
 #include "serviceHeader/recetteService.h"
 
 // Models
-#include "modelsHeader/ingredientmodel.h"
 #include "modelsHeader/recettemodel.h"
-#include "modelsHeader/recetteingredientmodel.h"
 
 
 class Backend : public QObject
 {
     Q_OBJECT
-
 public:
     explicit Backend(QObject *parent = nullptr);
 
-    // DAO
-    IngredientDAO *ingredientDAO;
-    RecetteDAO *recetteDAO;
-    RecetteIngredientDAO *riDAO;
-    InstructionDAO *instructionDAO;
+    RecetteTableModel* recetteModel();
 
-    // Services
-    IngredientService *ingredientService;
-    RecetteService *recetteService;
-    InstructionService *instructionService;
+public slots:
+    void chargerRecettes();
+    void creerRecette(const QString &titre, const QString &description);
 
-    // Models
-    IngredientTableModel *ingredientModel;
-    RecetteTableModel *recetteModel;
-    RecetteIngredientTableModel *recetteIngredientModel;
+signals:
+    void erreur(const QString &message);
 
 private:
-    DatabaseManager dbManager;
+    DatabaseManager m_dbManager;
+
+    // DAO
+    RecetteDAO m_recetteDAO;
+    IngredientDAO m_ingredientDAO;
+    RecetteIngredientDAO m_riDAO;
+    InstructionDAO m_instructionDAO;
+
+    // Services
+    IngredientService m_ingredientService;
+    InstructionService m_instructionService;
+    RecetteService m_recetteService;
+
+    // Models
+    RecetteTableModel m_recetteModel;
 };
 
 #endif
+
+

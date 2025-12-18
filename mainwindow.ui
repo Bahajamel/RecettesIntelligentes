@@ -98,7 +98,7 @@ color: rgb(255, 255, 255);
 border-color: rgb(255, 255, 255);</string>
         </property>
         <property name="text">
-         <string>Toutres les Recettes</string>
+         <string>Toutes les Recettes</string>
         </property>
         <property name="iconSize">
          <size>
@@ -116,7 +116,7 @@ color: rgb(255, 255, 255);
 border-color: rgb(255, 255, 255);</string>
         </property>
         <property name="text">
-         <string>Mes recettes</string>
+         <string>ajouter une recette</string>
         </property>
        </widget>
       </item>
@@ -138,9 +138,9 @@ border-color: rgb(255, 255, 255);</string>
     <widget class="QWidget" name="verticalLayoutWidget_2">
      <property name="geometry">
       <rect>
-       <x>-1</x>
-       <y>9</y>
-       <width>191</width>
+       <x>0</x>
+       <y>10</y>
+       <width>241</width>
        <height>501</height>
       </rect>
      </property>
@@ -158,6 +158,9 @@ border-color: rgb(255, 255, 255);</string>
        <number>3</number>
       </property>
       <item>
+       <widget class="QTableView" name="tableViewRecettes"/>
+      </item>
+      <item>
        <widget class="QLineEdit" name="searchLineEdit">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(255, 255, 255);
@@ -168,30 +171,14 @@ color: rgb(0, 0, 0);</string>
         </property>
        </widget>
       </item>
-      <item>
-       <widget class="QListView" name="recetteListView">
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 255, 255);</string>
-        </property>
-        <property name="alternatingRowColors">
-         <bool>false</bool>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>80</width>
-          <height>80</height>
-         </size>
-        </property>
-       </widget>
-      </item>
      </layout>
     </widget>
    </widget>
    <widget class="QScrollArea" name="detailsScrollArea">
     <property name="geometry">
      <rect>
-      <x>349</x>
-      <y>14</y>
+      <x>370</x>
+      <y>10</y>
       <width>431</width>
       <height>491</height>
      </rect>
@@ -212,7 +199,7 @@ color: rgb(0, 0, 0);</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>10</y>
+        <y>-10</y>
         <width>411</width>
         <height>471</height>
        </rect>
@@ -260,7 +247,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <item>
         <widget class="QTabWidget" name="tabWidget">
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="tab1">
           <attribute name="title">
