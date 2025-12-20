@@ -331,91 +331,77 @@ void MainWindow::displayIngredients(const Recette &recipe)
         return;
     }
 
-    // Container pour le tableau
-    QWidget *tableContainer = new QWidget(ingredientsContent);
-    tableContainer->setStyleSheet(
-        "QWidget { "
-        "  background: #ffffff; "
-        "  border: 1px solid #e5ddd0; "
-        "  border-radius: 8px; "
-        "  padding: 0; "
-        "}"
-        );
-
-    QVBoxLayout *tableLayout = new QVBoxLayout(tableContainer);
-    tableLayout->setContentsMargins(0, 0, 0, 0);
-    tableLayout->setSpacing(0);
-
-    // Ajouter les ingrédients
+    // Ajouter les ingrédients un par un (sans cadre global)
     for (int i = 0; i < ingredients.size(); ++i) {
         const RecetteIngredient &ri = ingredients[i];
 
-        QWidget *row = new QWidget(tableContainer);
-        row->setObjectName(QString("ingredient_%1").arg(ri.getIngredient().getId()));
+        QWidget *row = new QWidget(ingredientsContent);
+        row->setObjectName(QString("ingredient_%1").arg(i));
+        row->setMinimumHeight(50);
+        row->setMaximumHeight(65);
 
-        // Style alternant + hover
-        QString bgColor = (i % 2 == 0) ? "#ffffff" : "#fafaf9";
+        // Style élégant sans bordure
         row->setStyleSheet(
-            "QWidget#ingredient_" + QString::number(ri.getIngredient().getId()) + " { "
-                                                                                  "  background: " + bgColor + "; "
-                        "  border-bottom: 1px solid #f5f2e8; "
-                        "  padding: 0; "
-                        "}"
-                        "QWidget#ingredient_" + QString::number(ri.getIngredient().getId()) + ":hover { "
-                                                            "  background: #fef3e2; "
-                                                            "}"
+            "QWidget { "
+            "  background: transparent; "
+            "  border: none; "
+            "  border-bottom: 1px solid #f0ede5; "
+            "  padding: 8px 4px; "
+            "}"
+            "QWidget:hover { "
+            "  background: rgba(217, 119, 6, 0.03); "
+            "}"
             );
 
         QHBoxLayout *rowLayout = new QHBoxLayout(row);
-        rowLayout->setContentsMargins(16, 12, 16, 12);
-        rowLayout->setSpacing(16);
+        rowLayout->setContentsMargins(8, 8, 8, 8);
+        rowLayout->setSpacing(20);
 
-        // Quantité (alignée à droite, en gras)
-        QLabel *qteLabel = new QLabel(QString::number(ri.getQuantite()), row);
-        qteLabel->setFixedWidth(70);
+        // Quantité + Unité ensemble (plus compact)
+        QWidget *qteContainer = new QWidget(row);
+        qteContainer->setFixedWidth(140);
+        QHBoxLayout *qteLayout = new QHBoxLayout(qteContainer);
+        qteLayout->setContentsMargins(0, 0, 0, 0);
+        qteLayout->setSpacing(8);
+
+        // Quantité
+        QLabel *qteLabel = new QLabel(QString::number(ri.getQuantite()), qteContainer);
         qteLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
         qteLabel->setStyleSheet(
             "font-weight: 700; "
-            "font-size: 16px; "
+            "font-size: 18px; "
             "color: #d97706; "
             "background: transparent;"
             );
-        rowLayout->addWidget(qteLabel);
+        qteLayout->addWidget(qteLabel);
 
         // Unité
-        QLabel *unitLabel = new QLabel(uniteToString(ri.getUnite()), row);
-        unitLabel->setFixedWidth(90);
+        QLabel *unitLabel = new QLabel(uniteToString(ri.getUnite()), qteContainer);
         unitLabel->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         unitLabel->setStyleSheet(
-            "color: #6b7280; "
+            "color: #9ca3af; "
             "font-size: 14px; "
+            "font-weight: 500; "
             "background: transparent;"
             );
-        rowLayout->addWidget(unitLabel);
+        qteLayout->addWidget(unitLabel);
+        qteLayout->addStretch();
 
-        // Séparateur vertical (ligne)
-        QFrame *separator = new QFrame(row);
-        separator->setFrameShape(QFrame::VLine);
-        separator->setFrameShadow(QFrame::Plain);
-        separator->setFixedWidth(1);
-        separator->setStyleSheet("background: #e5ddd0;");
-        rowLayout->addWidget(separator);
+        rowLayout->addWidget(qteContainer);
 
-        // Nom de l'ingrédient
+        // Nom de l'ingrédient (plus grand, plus lisible)
         QLabel *nameLabel = new QLabel(ri.getIngredient().getNom(), row);
         nameLabel->setStyleSheet(
             "font-weight: 500; "
-            "font-size: 15px; "
+            "font-size: 16px; "
             "color: #2d2418; "
-            "background: transparent; "
-            "padding-left: 8px;"
+            "background: transparent;"
             );
         rowLayout->addWidget(nameLabel, 1);
 
-        tableLayout->addWidget(row);
+        layout->addWidget(row);
     }
 
-    layout->addWidget(tableContainer);
     layout->addStretch();
 }
 
