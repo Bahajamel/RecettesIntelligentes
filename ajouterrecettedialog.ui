@@ -130,6 +130,9 @@
    <property name="text">
     <string>Valider</string>
    </property>
+   <property name="autoDefault">
+    <bool>false</bool>
+   </property>
   </widget>
   <widget class="QPushButton" name="btnAnnuler">
    <property name="geometry">

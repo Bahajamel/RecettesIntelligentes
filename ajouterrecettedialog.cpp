@@ -8,7 +8,13 @@ AjouterRecetteDialog::AjouterRecetteDialog(Backend *backend, QWidget *parent)
 
     , m_backend(backend)
 {
+
     ui->setupUi(this);
+
+    ui->btnValider->setAutoDefault(false);
+    ui->btnValider->setDefault(false);
+    ui->btnAnnuler->setAutoDefault(false);
+
     ui->tableIngredients->setColumnCount(3);
     ui->tableIngredients->setHorizontalHeaderLabels({"Nom", "Quantité", "Unité"});
     ui->tableIngredients->setEditTriggers(QAbstractItemView::DoubleClicked |
@@ -44,6 +50,7 @@ void AjouterRecetteDialog::on_btnValider_clicked()
         QMessageBox::warning(this, "Erreur", "Titre obligatoire");
         return;
     }
+
     int recetteId = m_backend->creerRecette(titre, description);
 
     // 2️⃣ Ajouter ingrédients
@@ -70,6 +77,7 @@ void AjouterRecetteDialog::on_btnValider_clicked()
         else
             m_backend->ajouterInstructionComposee(recetteId, parentId, contenu);
     }
+    emit recetteAjoutee(recetteId);
 
     accept(); // ferme le dialog
 }

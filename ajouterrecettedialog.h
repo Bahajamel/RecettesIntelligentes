@@ -17,7 +17,8 @@ class AjouterRecetteDialog : public QDialog
 public:
     explicit AjouterRecetteDialog(Backend *backend, QWidget *parent = nullptr);
     ~AjouterRecetteDialog();
-
+signals :
+    void recetteAjoutee(int recetteId);
 private slots:
     void on_btnAnnuler_clicked();
     void on_btnValider_clicked();

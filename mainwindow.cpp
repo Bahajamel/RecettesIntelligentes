@@ -118,10 +118,30 @@ void MainWindow::on_actionRecherche_triggered()
 
 void MainWindow::on_btnMyRecipes_clicked()
 {
-    AjouterRecetteDialog dlg(backend, this);
-    if (dlg.exec() == QDialog::Accepted) {
-        backend->chargerRecettes(); // rafraîchir la table
-    }
+    AjouterRecetteDialog *dialog = new AjouterRecetteDialog(backend, this);
+
+    // Connecter le signal du dialog au slot du MainWindow
+    connect(dialog, &AjouterRecetteDialog::recetteAjoutee,
+            this, &MainWindow::onRecetteAjoutee);
+
+    dialog->exec();
+    dialog->deleteLater();
+}
+
+void MainWindow::onRecetteAjoutee(int recetteId)
+{
+    // Option 1 : Recharger toutes les recettes
+    backend->chargerRecettes();
+
+    // Option 2 : Ajouter uniquement la nouvelle recette
+    // (plus efficace si vous avez beaucoup de recettes)
+    /*
+    Recette recette = m_backend->getRecette(recetteId);
+    int row = m_recetteModel->rowCount();
+    m_recetteModel->insertRow(row);
+    m_recetteModel->setData(m_recetteModel->index(row, 0), recette.titre);
+    m_recetteModel->setData(m_recetteModel->index(row, 1), recette.description);
+    */
 }
 
 void MainWindow::on_actionRenitialiser_triggered()

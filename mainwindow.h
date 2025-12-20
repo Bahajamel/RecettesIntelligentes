@@ -43,6 +43,7 @@ private slots:
 
     void onRecetteSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected);
     void onSearchTextChanged(const QString &text);
+     void onRecetteAjoutee(int recetteId);
 
 private:
     Ui::MainWindow *ui;
