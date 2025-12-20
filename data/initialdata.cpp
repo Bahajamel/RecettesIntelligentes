@@ -14,11 +14,20 @@ void initializeSampleRecipes(DatabaseManager &dbManager)
         qWarning() << "Database not open for initialization";
         return;
     }
+//forecec
+    QSqlQuery deleteAll(db);
+    deleteAll.exec("DELETE FROM instruction");
+    deleteAll.exec("DELETE FROM recette_ingredient");
+    deleteAll.exec("DELETE FROM recette");
+    deleteAll.exec("DELETE FROM ingredient");
+    qDebug() << "🗑️ Toutes les données supprimées - Réinitialisation forcée";
 
     RecetteDAO recetteDAO(db);
     IngredientDAO ingredientDAO(db);
     RecetteIngredientDAO riDAO(db);
     InstructionDAO instructionDAO(db);
+
+    qDebug() << "✓ Initialisation des recettes d'exemple...";
 
     // Vérifier si des recettes existent déjà
     QSqlQuery checkQuery(db);
@@ -29,19 +38,13 @@ void initializeSampleRecipes(DatabaseManager &dbManager)
     }
     
     // Si des recettes existent, supprimer les doublons "Pizza Maison" s'ils existent
+    // Si des recettes existent déjà, ne rien faire
     if (count > 0) {
-        QSqlQuery deleteQuery(db);
-        deleteQuery.prepare("DELETE FROM recette WHERE titre = ?");
-        deleteQuery.addBindValue("Pizza Maison");
-        deleteQuery.exec();
-        qDebug() << "✓ Nettoyage des recettes 'Pizza Maison' effectué";
-        
-        // Vérifier à nouveau le compte
-        checkQuery.exec("SELECT COUNT(*) FROM recette");
-        if (checkQuery.next()) {
-            count = checkQuery.value(0).toInt();
-        }
+        qDebug() << "✓ Des recettes existent déjà (" << count << "), pas d'initialisation";
+        return;
     }
+
+    qDebug() << "✓ Initialisation des recettes d'exemple...";
     
     // Si aucune recette ou seulement des doublons supprimés, initialiser
     if (count == 0) {
@@ -180,12 +183,12 @@ void initializeSampleRecipes(DatabaseManager &dbManager)
     riDAO.add(aranciniId, chapelureId, 200, uniteG);
     riDAO.add(aranciniId, citronId, 1, uniteP);
 
-    instructionDAO.createSimple(aranciniId, 0, 1, "Faire cuire le riz dans le bouillon jusqu'à absorption");
-    instructionDAO.createSimple(aranciniId, 0, 2, "Laisser refroidir et ajouter parmesan et œuf");
-    instructionDAO.createSimple(aranciniId, 0, 3, "Former des boules et insérer un morceau de mozzarella au centre");
-    instructionDAO.createSimple(aranciniId, 0, 4, "Passer dans l'œuf battu puis la chapelure");
-    instructionDAO.createSimple(aranciniId, 0, 5, "Frire dans l'huile chaude jusqu'à dorure");
-    instructionDAO.createSimple(aranciniId, 0, 6, "Servir avec quartiers de citron");
+    instructionDAO.createSimple(aranciniId,0, 1, "Faire cuire le riz dans le bouillon jusqu'à absorption");
+    instructionDAO.createSimple(aranciniId,0, 2, "Laisser refroidir et ajouter parmesan et œuf");
+    instructionDAO.createSimple(aranciniId,0, 3, "Former des boules et insérer un morceau de mozzarella au centre");
+    instructionDAO.createSimple(aranciniId,0, 4, "Passer dans l'œuf battu puis la chapelure");
+    instructionDAO.createSimple(aranciniId,0, 5, "Frire dans l'huile chaude jusqu'à dorure");
+    instructionDAO.createSimple(aranciniId,0, 6, "Servir avec quartiers de citron");
 
     qDebug() << "✓ Recettes d'exemple initialisées avec succès !";
 }

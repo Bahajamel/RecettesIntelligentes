@@ -411,3 +411,84 @@ QLabel[category="dessert"] {
     font-size: 12px;
     font-weight: 500;
 }
+
+/* ============================================
+   DIALOGS - Fix pour visibilité
+   ============================================ */
+
+QDialog {
+    background: #fefcf8; /* card - fond clair comme le panel principal */
+    color: #2d2418;
+}
+
+QDialog QLabel {
+    color: #2d2418;
+    background: transparent;
+}
+
+QDialog QLineEdit,
+QDialog QTextEdit,
+QDialog QPlainTextEdit,
+QDialog QComboBox {
+    background: #ffffff;
+    border: 1px solid #e5ddd0;
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: #2d2418;
+}
+
+QDialog QComboBox:focus,
+QDialog QLineEdit:focus,
+QDialog QTextEdit:focus {
+    border: 1px solid #d97706;
+}
+
+QDialog QPushButton {
+    background: #ffffff;
+    color: #2d2418;
+    border: 1px solid #e5ddd0;
+    border-radius: 8px;
+    padding: 8px 16px;
+}
+
+QDialog QPushButton:hover {
+    background: #f5f2e8;
+    border-color: #d97706;
+}
+
+/* Boutons principaux dans les dialogs */
+QDialog QPushButton[text="OK"],
+QDialog QPushButton[text="Ajouter"],
+QDialog QPushButton[text="Sauvegarder"] {
+    background: #d97706;
+    color: #faf8f3;
+    border: none;
+}
+
+QDialog QPushButton[text="OK"]:hover,
+QDialog QPushButton[text="Ajouter"]:hover,
+QDialog QPushButton[text="Sauvegarder"]:hover {
+    background: #c06505;
+}
+
+/* QMessageBox spécifique */
+QMessageBox {
+    background: #fefcf8;
+}
+
+QMessageBox QLabel {
+    color: #2d2418;
+    font-size: 14px;
+}
+
+QMessageBox QPushButton {
+    min-width: 80px;
+    background: #ffffff;
+    color: #2d2418;
+    border: 1px solid #e5ddd0;
+}
+
+QMessageBox QPushButton:hover {
+    background: #f5f2e8;
+    border-color: #d97706;
+}

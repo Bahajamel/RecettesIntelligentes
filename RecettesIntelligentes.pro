@@ -71,6 +71,7 @@ FORMS += \
 RESOURCES += \
     StyleSheet/style.qss \
     Icons/recette.png \
+    resource.qrc
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

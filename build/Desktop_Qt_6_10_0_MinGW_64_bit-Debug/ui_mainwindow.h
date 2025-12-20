@@ -10,12 +10,15 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QAction>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
 #include <QtWidgets/QSpacerItem>
@@ -30,11 +33,15 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
+    QAction *actionNouveau;
+    QAction *actionFr;
+    QAction *actionModifier;
+    QAction *actionSauvegarder;
+    QAction *actionQuitter;
+    QAction *actionQuitter_2;
     QWidget *centralwidget;
     QHBoxLayout *horizontalLayout;
-    QWidget *recipeListWidget;
     QVBoxLayout *sidebarLayout;
-    QWidget *sidebarHeader;
     QVBoxLayout *headerLayout;
     QLabel *sidebarTitle;
     QLineEdit *searchLineEdit;
@@ -42,13 +49,10 @@ public:
     QWidget *recipeListContainer;
     QVBoxLayout *recipeListLayout;
     QSpacerItem *verticalSpacer;
-    QWidget *sidebarFooter;
     QHBoxLayout *footerLayout;
     QPushButton *btnAddRecipe;
     QPushButton *btnDeleteRecipe;
-    QWidget *recipeDetailWidget;
     QVBoxLayout *detailLayout;
-    QWidget *detailHeader;
     QVBoxLayout *detailHeaderLayout;
     QLineEdit *recipeTitleEdit;
     QTextEdit *recipeDescriptionEdit;
@@ -79,35 +83,43 @@ public:
     QSpacerItem *verticalSpacer_4;
     QPushButton *btnAddInstruction;
     QStatusBar *statusbar;
+    QMenuBar *menuBar;
+    QMenu *menuFile;
+    QMenu *menuEdit;
+    QMenu *menuLangage;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(1400, 900);
+        MainWindow->resize(1217, 900);
+        actionNouveau = new QAction(MainWindow);
+        actionNouveau->setObjectName("actionNouveau");
+        actionNouveau->setCheckable(true);
+        actionFr = new QAction(MainWindow);
+        actionFr->setObjectName("actionFr");
+        actionModifier = new QAction(MainWindow);
+        actionModifier->setObjectName("actionModifier");
+        actionSauvegarder = new QAction(MainWindow);
+        actionSauvegarder->setObjectName("actionSauvegarder");
+        actionQuitter = new QAction(MainWindow);
+        actionQuitter->setObjectName("actionQuitter");
+        actionQuitter_2 = new QAction(MainWindow);
+        actionQuitter_2->setObjectName("actionQuitter_2");
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         horizontalLayout = new QHBoxLayout(centralwidget);
         horizontalLayout->setSpacing(24);
         horizontalLayout->setObjectName("horizontalLayout");
         horizontalLayout->setContentsMargins(16, 16, 16, 16);
-        recipeListWidget = new QWidget(centralwidget);
-        recipeListWidget->setObjectName("recipeListWidget");
-        recipeListWidget->setMinimumSize(QSize(320, 0));
-        recipeListWidget->setMaximumSize(QSize(320, 16777215));
-        sidebarLayout = new QVBoxLayout(recipeListWidget);
+        sidebarLayout = new QVBoxLayout();
         sidebarLayout->setSpacing(0);
         sidebarLayout->setObjectName("sidebarLayout");
-        sidebarLayout->setContentsMargins(0, 0, 0, 0);
-        sidebarHeader = new QWidget(recipeListWidget);
-        sidebarHeader->setObjectName("sidebarHeader");
-        sidebarHeader->setMinimumSize(QSize(0, 0));
-        sidebarHeader->setMaximumSize(QSize(16777215, 16777215));
-        headerLayout = new QVBoxLayout(sidebarHeader);
+        headerLayout = new QVBoxLayout();
         headerLayout->setSpacing(12);
         headerLayout->setObjectName("headerLayout");
         headerLayout->setContentsMargins(16, 16, 16, 16);
-        sidebarTitle = new QLabel(sidebarHeader);
+        sidebarTitle = new QLabel(centralwidget);
         sidebarTitle->setObjectName("sidebarTitle");
         QFont font;
         font.setPointSize(20);
@@ -116,22 +128,27 @@ public:
 
         headerLayout->addWidget(sidebarTitle);
 
-        searchLineEdit = new QLineEdit(sidebarHeader);
+        searchLineEdit = new QLineEdit(centralwidget);
         searchLineEdit->setObjectName("searchLineEdit");
 
         headerLayout->addWidget(searchLineEdit);
 
 
-        sidebarLayout->addWidget(sidebarHeader);
+        sidebarLayout->addLayout(headerLayout);
 
-        recipeScrollArea = new QScrollArea(recipeListWidget);
+        recipeScrollArea = new QScrollArea(centralwidget);
         recipeScrollArea->setObjectName("recipeScrollArea");
-        recipeScrollArea->setWidgetResizable(true);
+        QSizePolicy sizePolicy(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(recipeScrollArea->sizePolicy().hasHeightForWidth());
+        recipeScrollArea->setSizePolicy(sizePolicy);
         recipeScrollArea->setFrameShape(QFrame::Shape::NoFrame);
         recipeScrollArea->setFrameShadow(QFrame::Shadow::Plain);
+        recipeScrollArea->setWidgetResizable(true);
         recipeListContainer = new QWidget();
         recipeListContainer->setObjectName("recipeListContainer");
-        recipeListContainer->setGeometry(QRect(0, 0, 280, 500));
+        recipeListContainer->setGeometry(QRect(0, 0, 330, 647));
         recipeListLayout = new QVBoxLayout(recipeListContainer);
         recipeListLayout->setSpacing(8);
         recipeListLayout->setObjectName("recipeListLayout");
@@ -144,20 +161,16 @@ public:
 
         sidebarLayout->addWidget(recipeScrollArea);
 
-        sidebarFooter = new QWidget(recipeListWidget);
-        sidebarFooter->setObjectName("sidebarFooter");
-        sidebarFooter->setMinimumSize(QSize(0, 0));
-        sidebarFooter->setMaximumSize(QSize(16777215, 16777215));
-        footerLayout = new QHBoxLayout(sidebarFooter);
+        footerLayout = new QHBoxLayout();
         footerLayout->setSpacing(8);
         footerLayout->setObjectName("footerLayout");
         footerLayout->setContentsMargins(12, 12, 12, 12);
-        btnAddRecipe = new QPushButton(sidebarFooter);
+        btnAddRecipe = new QPushButton(centralwidget);
         btnAddRecipe->setObjectName("btnAddRecipe");
 
         footerLayout->addWidget(btnAddRecipe);
 
-        btnDeleteRecipe = new QPushButton(sidebarFooter);
+        btnDeleteRecipe = new QPushButton(centralwidget);
         btnDeleteRecipe->setObjectName("btnDeleteRecipe");
         QIcon icon(QIcon::fromTheme(QIcon::ThemeIcon::EditDelete));
         btnDeleteRecipe->setIcon(icon);
@@ -165,26 +178,19 @@ public:
         footerLayout->addWidget(btnDeleteRecipe);
 
 
-        sidebarLayout->addWidget(sidebarFooter);
+        sidebarLayout->addLayout(footerLayout);
 
 
-        horizontalLayout->addWidget(recipeListWidget);
+        horizontalLayout->addLayout(sidebarLayout);
 
-        recipeDetailWidget = new QWidget(centralwidget);
-        recipeDetailWidget->setObjectName("recipeDetailWidget");
-        detailLayout = new QVBoxLayout(recipeDetailWidget);
+        detailLayout = new QVBoxLayout();
         detailLayout->setSpacing(0);
         detailLayout->setObjectName("detailLayout");
-        detailLayout->setContentsMargins(0, 0, 0, 0);
-        detailHeader = new QWidget(recipeDetailWidget);
-        detailHeader->setObjectName("detailHeader");
-        detailHeader->setMinimumSize(QSize(0, 0));
-        detailHeader->setMaximumSize(QSize(16777215, 16777215));
-        detailHeaderLayout = new QVBoxLayout(detailHeader);
+        detailHeaderLayout = new QVBoxLayout();
         detailHeaderLayout->setSpacing(16);
         detailHeaderLayout->setObjectName("detailHeaderLayout");
         detailHeaderLayout->setContentsMargins(24, 24, 24, 24);
-        recipeTitleEdit = new QLineEdit(detailHeader);
+        recipeTitleEdit = new QLineEdit(centralwidget);
         recipeTitleEdit->setObjectName("recipeTitleEdit");
         QFont font1;
         font1.setPointSize(24);
@@ -193,19 +199,19 @@ public:
 
         detailHeaderLayout->addWidget(recipeTitleEdit);
 
-        recipeDescriptionEdit = new QTextEdit(detailHeader);
+        recipeDescriptionEdit = new QTextEdit(centralwidget);
         recipeDescriptionEdit->setObjectName("recipeDescriptionEdit");
-        recipeDescriptionEdit->setMaximumHeight(80);
 
         detailHeaderLayout->addWidget(recipeDescriptionEdit);
 
-        recipeStatsWidget = new QWidget(detailHeader);
+        recipeStatsWidget = new QWidget(centralwidget);
         recipeStatsWidget->setObjectName("recipeStatsWidget");
         recipeStatsWidget->setMinimumSize(QSize(0, 0));
         recipeStatsWidget->setMaximumSize(QSize(16777215, 16777215));
         statsLayout = new QHBoxLayout(recipeStatsWidget);
         statsLayout->setSpacing(24);
         statsLayout->setObjectName("statsLayout");
+        statsLayout->setSizeConstraint(QLayout::SizeConstraint::SetDefaultConstraint);
         timeLabel = new QLabel(recipeStatsWidget);
         timeLabel->setObjectName("timeLabel");
 
@@ -221,12 +227,12 @@ public:
         statsLayout->addItem(horizontalSpacer);
 
 
-        detailHeaderLayout->addWidget(recipeStatsWidget);
+        detailHeaderLayout->addWidget(recipeStatsWidget, 0, Qt::AlignmentFlag::AlignTop);
 
 
-        detailLayout->addWidget(detailHeader);
+        detailLayout->addLayout(detailHeaderLayout);
 
-        recipeTabs = new QTabWidget(recipeDetailWidget);
+        recipeTabs = new QTabWidget(centralwidget);
         recipeTabs->setObjectName("recipeTabs");
         detailsTab = new QWidget();
         detailsTab->setObjectName("detailsTab");
@@ -236,11 +242,11 @@ public:
         detailsTabLayout->setContentsMargins(24, 24, 24, 24);
         detailsScrollArea = new QScrollArea(detailsTab);
         detailsScrollArea->setObjectName("detailsScrollArea");
-        detailsScrollArea->setWidgetResizable(true);
         detailsScrollArea->setFrameShape(QFrame::Shape::NoFrame);
+        detailsScrollArea->setWidgetResizable(true);
         detailsContent = new QWidget();
         detailsContent->setObjectName("detailsContent");
-        detailsContent->setGeometry(QRect(0, 0, 500, 400));
+        detailsContent->setGeometry(QRect(0, 0, 775, 459));
         detailsContentLayout = new QVBoxLayout(detailsContent);
         detailsContentLayout->setSpacing(24);
         detailsContentLayout->setObjectName("detailsContentLayout");
@@ -261,11 +267,11 @@ public:
         ingredientsTabLayout->setContentsMargins(24, 24, 24, 24);
         ingredientsScrollArea = new QScrollArea(ingredientsTab);
         ingredientsScrollArea->setObjectName("ingredientsScrollArea");
-        ingredientsScrollArea->setWidgetResizable(true);
         ingredientsScrollArea->setFrameShape(QFrame::Shape::NoFrame);
+        ingredientsScrollArea->setWidgetResizable(true);
         ingredientsContent = new QWidget();
         ingredientsContent->setObjectName("ingredientsContent");
-        ingredientsContent->setGeometry(QRect(0, 0, 500, 400));
+        ingredientsContent->setGeometry(QRect(0, 0, 775, 430));
         ingredientsContentLayout = new QVBoxLayout(ingredientsContent);
         ingredientsContentLayout->setSpacing(8);
         ingredientsContentLayout->setObjectName("ingredientsContentLayout");
@@ -291,11 +297,11 @@ public:
         instructionsTabLayout->setContentsMargins(24, 24, 24, 24);
         instructionsScrollArea = new QScrollArea(instructionsTab);
         instructionsScrollArea->setObjectName("instructionsScrollArea");
-        instructionsScrollArea->setWidgetResizable(true);
         instructionsScrollArea->setFrameShape(QFrame::Shape::NoFrame);
+        instructionsScrollArea->setWidgetResizable(true);
         instructionsContent = new QWidget();
         instructionsContent->setObjectName("instructionsContent");
-        instructionsContent->setGeometry(QRect(0, 0, 500, 400));
+        instructionsContent->setGeometry(QRect(0, 0, 775, 430));
         instructionsContentLayout = new QVBoxLayout(instructionsContent);
         instructionsContentLayout->setSpacing(12);
         instructionsContentLayout->setObjectName("instructionsContentLayout");
@@ -316,17 +322,40 @@ public:
 
         detailLayout->addWidget(recipeTabs);
 
+        detailLayout->setStretch(0, 1);
+        detailLayout->setStretch(1, 2);
 
-        horizontalLayout->addWidget(recipeDetailWidget);
+        horizontalLayout->addLayout(detailLayout);
 
+        horizontalLayout->setStretch(0, 2);
+        horizontalLayout->setStretch(1, 5);
         MainWindow->setCentralWidget(centralwidget);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
         MainWindow->setStatusBar(statusbar);
+        menuBar = new QMenuBar(MainWindow);
+        menuBar->setObjectName("menuBar");
+        menuBar->setGeometry(QRect(0, 0, 1217, 25));
+        menuFile = new QMenu(menuBar);
+        menuFile->setObjectName("menuFile");
+        menuEdit = new QMenu(menuBar);
+        menuEdit->setObjectName("menuEdit");
+        menuLangage = new QMenu(menuBar);
+        menuLangage->setObjectName("menuLangage");
+        MainWindow->setMenuBar(menuBar);
+
+        menuBar->addAction(menuFile->menuAction());
+        menuBar->addAction(menuEdit->menuAction());
+        menuBar->addAction(menuLangage->menuAction());
+        menuFile->addAction(actionNouveau);
+        menuFile->addAction(actionSauvegarder);
+        menuFile->addSeparator();
+        menuFile->addAction(actionQuitter_2);
+        menuEdit->addAction(actionModifier);
 
         retranslateUi(MainWindow);
 
-        recipeTabs->setCurrentIndex(0);
+        recipeTabs->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -335,19 +364,28 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Mes Recettes", nullptr));
+        actionNouveau->setText(QCoreApplication::translate("MainWindow", "Nouveau", nullptr));
+        actionFr->setText(QCoreApplication::translate("MainWindow", "Fr", nullptr));
+        actionModifier->setText(QCoreApplication::translate("MainWindow", "Modifier", nullptr));
+        actionSauvegarder->setText(QCoreApplication::translate("MainWindow", "Sauvegarder", nullptr));
+        actionQuitter->setText(QCoreApplication::translate("MainWindow", "Quitter", nullptr));
+        actionQuitter_2->setText(QCoreApplication::translate("MainWindow", "Quitter", nullptr));
         sidebarTitle->setText(QCoreApplication::translate("MainWindow", "Mes Recettes", nullptr));
         searchLineEdit->setPlaceholderText(QCoreApplication::translate("MainWindow", "Rechercher une recette...", nullptr));
         btnAddRecipe->setText(QCoreApplication::translate("MainWindow", "Nouveau", nullptr));
         btnDeleteRecipe->setText(QString());
         recipeTitleEdit->setPlaceholderText(QCoreApplication::translate("MainWindow", "Titre de la recette", nullptr));
         recipeDescriptionEdit->setPlaceholderText(QCoreApplication::translate("MainWindow", "Description de la recette...", nullptr));
-        timeLabel->setText(QCoreApplication::translate("MainWindow", "0 min total", nullptr));
-        servingsLabel->setText(QCoreApplication::translate("MainWindow", "0 portions", nullptr));
+        timeLabel->setText(QCoreApplication::translate("MainWindow", "0 instruction", nullptr));
+        servingsLabel->setText(QCoreApplication::translate("MainWindow", "0 ingr\303\251dient", nullptr));
         recipeTabs->setTabText(recipeTabs->indexOf(detailsTab), QCoreApplication::translate("MainWindow", "D\303\251tails", nullptr));
         btnAddIngredient->setText(QCoreApplication::translate("MainWindow", "Ajouter un ingr\303\251dient", nullptr));
         recipeTabs->setTabText(recipeTabs->indexOf(ingredientsTab), QCoreApplication::translate("MainWindow", "Ingr\303\251dients", nullptr));
         btnAddInstruction->setText(QCoreApplication::translate("MainWindow", "Ajouter une instruction", nullptr));
         recipeTabs->setTabText(recipeTabs->indexOf(instructionsTab), QCoreApplication::translate("MainWindow", "Instructions", nullptr));
+        menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
+        menuEdit->setTitle(QCoreApplication::translate("MainWindow", "Edit", nullptr));
+        menuLangage->setTitle(QCoreApplication::translate("MainWindow", "Langage", nullptr));
     } // retranslateUi
 
 };
