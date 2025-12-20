@@ -15,6 +15,7 @@ SOURCES += \
     backend.cpp \
     data/databasemanager.cpp \
     data/initialdata.cpp \
+    imagedroplabel.cpp \
     metiers/ingredient.cpp \
     dao/ingredientDAO.cpp \
     models/ingredientmodel.cpp \
@@ -42,6 +43,7 @@ HEADERS += \
     backend.h \
     dataHeader/databasemanager.h \
     dataHeader/initialdata.h \
+    imagedroplabel.h \
     metiersHeader/ingredient.h \
     daoHeader/ingredientDAO.h \
     modelsHeader/ingredientmodel.h \
