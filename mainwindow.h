@@ -7,8 +7,16 @@
 #include <QItemSelection>
 #include <QSortFilterProxyModel>
 #include "backend.h"
+<<<<<<< HEAD
 #include "modelsHeader/recetteingredientmodel.h"
 #include "modelsHeader/instructiontreemodel.h"
+=======
+#include <QSortFilterProxyModel>
+#include <QRegularExpression>
+#include <QPushButton>
+#include <QVBoxLayout>
+#include "metiersHeader/recette.h"
+>>>>>>> 3567aa235b818089fe94588a01d93cf16570992a
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -24,20 +32,17 @@ public:
 
 private slots:
     void on_actionNouveau_triggered();
-
     void on_actionOuvrir_triggered();
-
     void on_actionSauvegarder_triggered();
-
     void on_actionQuitter_triggered();
-
     void on_actionEdit_triggered();
-
     void on_actionDelete_triggered();
-
     void on_actionRecherche_triggered();
-
-    void on_btnMyRecipes_clicked();
+    void on_btnAddRecipe_clicked();
+    void on_btnDeleteRecipe_clicked();
+    void on_searchLineEdit_textChanged(const QString &text);
+    void on_btnAddIngredient_clicked();
+    void on_btnAddInstruction_clicked();
 
     void on_actionRenitialiser_triggered();
 
@@ -45,13 +50,31 @@ private slots:
     void onSearchTextChanged(const QString &text);
 
 private:
+    void refreshRecipeList();
+    void displayRecipeDetails(const Recette &recipe);
+    void clearRecipeDetails();
+    QPushButton* createRecipeCard(const Recette &recipe, int index);
+    void updateRecipeDetails();
+    void displayRecipeImage(const QString &photoUrl);
+    void displayIngredients(const Recette &recipe);
+    void displayInstructions(const Recette &recipe);
+
     Ui::MainWindow *ui;
     Backend *backend;
+<<<<<<< HEAD
 
     RecetteIngredientTableModel m_ingredientModel;
     InstructionTreeModel m_instructionModel;
     QTableView *m_ingredientsView = nullptr;
     QTreeView *m_instructionsView = nullptr;
     QSortFilterProxyModel *m_proxyModel = nullptr;
+=======
+    QSortFilterProxyModel *m_proxyModel = nullptr;
+    QList<QPushButton*> m_recipeCards;
+    int m_selectedRecipeId = -1;
+    QString m_searchQuery;
+    QString m_currentPhotoUrl;
+    QTimer *m_updateTimer = nullptr;
+>>>>>>> 3567aa235b818089fe94588a01d93cf16570992a
 };
 #endif // MAINWINDOW_H

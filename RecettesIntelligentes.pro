@@ -14,6 +14,7 @@ SOURCES += \
     ajouterrecettedialog.cpp \
     backend.cpp \
     data/databasemanager.cpp \
+    data/initialdata.cpp \
     metiers/ingredient.cpp \
     dao/ingredientDAO.cpp \
     models/ingredientmodel.cpp \
@@ -40,6 +41,7 @@ HEADERS += \
     ajouterrecettedialog.h \
     backend.h \
     dataHeader/databasemanager.h \
+    dataHeader/initialdata.h \
     metiersHeader/ingredient.h \
     daoHeader/ingredientDAO.h \
     modelsHeader/ingredientmodel.h \
@@ -61,8 +63,12 @@ HEADERS += \
     metiersHeader/unite.h
 
 FORMS += \
+    RecetteDetailDialog.ui \
     ajouterrecettedialog.ui \
     mainwindow.ui
+RESOURCES += \
+    StyleSheet/style.qss \
+    Icons/recette.png \
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

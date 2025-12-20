@@ -15,11 +15,17 @@ public:
                    InstructionService &instService);
 
     int creerRecette(const QString &titre, const QString &description);
+    bool mettreAJourRecette(int id, const QString &titre, const QString &description, const QString &photo);
     bool ajouterIngredient(int recetteId, const Ingredient &ingredient , float qte, UNITE unite);
     QList<Ingredient> ingredientsDeRecette(int recetteId);
     QList<QSharedPointer<Instruction>> instructionsDeRecette(int recetteId);
     RecetteIngredientDAO &m_riDao;
     QList<Recette> listerRecettes();
+<<<<<<< HEAD
+=======
+    Recette obtenirRecetteComplete(int id);
+
+>>>>>>> 3567aa235b818089fe94588a01d93cf16570992a
 private:
     RecetteDAO &m_recDao;
     IngredientService &m_ingService;

@@ -5,7 +5,10 @@
 AjouterRecetteDialog::AjouterRecetteDialog(Backend *backend, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::ajouterrecetteDialog)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3567aa235b818089fe94588a01d93cf16570992a
     , m_backend(backend)
 {
     ui->setupUi(this);
@@ -44,6 +47,11 @@ void AjouterRecetteDialog::on_btnValider_clicked()
         QMessageBox::warning(this, "Erreur", "Titre obligatoire");
         return;
     }
+<<<<<<< HEAD
+=======
+
+    // 1️⃣ Créer la recette
+>>>>>>> 3567aa235b818089fe94588a01d93cf16570992a
     int recetteId = m_backend->creerRecette(titre, description);
 
     // 2️⃣ Ajouter ingrédients
@@ -88,11 +96,17 @@ void AjouterRecetteDialog::on_btnAjouterIngredient_clicked()
     // Optionnel : mettre le focus sur la première cellule de la nouvelle ligne
     ui->tableIngredients->setCurrentCell(row, 0);
     ui->tableIngredients->editItem(ui->tableIngredients->item(row, 0));
+<<<<<<< HEAD
 
 }
 
 
 
+=======
+}
+
+
+>>>>>>> 3567aa235b818089fe94588a01d93cf16570992a
 void AjouterRecetteDialog::on_btnAjouterInstruction_clicked()
 {
     // Ajouter une nouvelle ligne vide dans le tableau des instructions

@@ -55,6 +55,7 @@ bool DatabaseManager::open()
 
 void DatabaseManager::close()
 {
+<<<<<<< HEAD
     if (m_db.isOpen()) {
         // Vérifier si la connexion est encore utilisée avant de la supprimer
         QStringList connections = QSqlDatabase::connectionNames();
@@ -64,6 +65,12 @@ void DatabaseManager::close()
             // Elle sera supprimée automatiquement à la fin du programme
         }
     }
+=======
+    if (m_db.isOpen())
+        m_db.close();
+
+    //QSqlDatabase::removeDatabase("GESTION_RECETTES_CONN");
+>>>>>>> 3567aa235b818089fe94588a01d93cf16570992a
 }
 
 QSqlDatabase DatabaseManager::database() const
@@ -82,7 +89,8 @@ bool DatabaseManager::createTables()
         CREATE TABLE IF NOT EXISTS recette (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             titre TEXT NOT NULL,
-            description TEXT
+            description TEXT,
+            photo TEXT
         );
         )",
 
@@ -145,6 +153,25 @@ for (const QString &sql : queries) {
         qWarning() << "Erreur creation table:\n" << sql
                    << "\n->" << q.lastError().text();
         return false;
+    }
+}
+
+// Migration: Ajouter colonne photo si elle n'existe pas
+QSqlQuery checkCol(m_db);
+if (checkCol.exec("PRAGMA table_info(recette)")) {
+    bool hasPhoto = false;
+    while (checkCol.next()) {
+        if (checkCol.value(1).toString() == "photo") {
+            hasPhoto = true;
+            break;
+        }
+    }
+    if (!hasPhoto) {
+        if (!q.exec("ALTER TABLE recette ADD COLUMN photo TEXT")) {
+            qWarning() << "Erreur ajout colonne photo:" << q.lastError().text();
+        } else {
+            qDebug() << "✓ Colonne photo ajoutée à la table recette";
+        }
     }
 }
 
