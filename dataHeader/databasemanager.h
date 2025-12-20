@@ -12,6 +12,7 @@ public:
 
     bool open();
     void close();
+    bool resetDatabase() ;
 
     QSqlDatabase database() const;
 

@@ -56,8 +56,8 @@ public:
     QWidget *recettesWidget;
     QWidget *verticalLayoutWidget_2;
     QVBoxLayout *verticalLayout_2;
-    QTableView *tableViewRecettes;
     QLineEdit *searchLineEdit;
+    QTableView *tableViewRecettes;
     QScrollArea *detailsScrollArea;
     QWidget *scrollAreaWidgetContents;
     QWidget *verticalLayoutWidget_3;
@@ -72,23 +72,17 @@ public:
     QWidget *tab_2;
     QWidget *tab_3;
     QHBoxLayout *horizontalLayout_4;
-    QPushButton *pushButton_3;
-    QPushButton *pushButton_4;
     QWidget *tab2;
     QListWidget *instructionList;
     QWidget *navigation;
     QHBoxLayout *horizontalLayout_5;
-    QPushButton *btnPrevInstruction;
     QSpacerItem *horizontalSpacer;
+    QPushButton *btnPrevInstruction;
     QLabel *instructionCounterLabel;
-    QSpacerItem *horizontalSpacer_2;
     QPushButton *btnNextInstruction;
+    QSpacerItem *horizontalSpacer_2;
     QWidget *widget;
     QHBoxLayout *horizontalLayout_6;
-    QPushButton *btnAddInstruction;
-    QPushButton *btnAddSubInstruction;
-    QPushButton *btnRemoveInstruction;
-    QSpacerItem *horizontalSpacer_3;
     QMenuBar *menubar;
     QMenu *menuFile;
     QMenu *menuEdit;
@@ -100,7 +94,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(800, 600);
+        MainWindow->resize(876, 600);
         actionNouveau = new QAction(MainWindow);
         actionNouveau->setObjectName("actionNouveau");
         QIcon icon(QIcon::fromTheme(QIcon::ThemeIcon::DocumentNew));
@@ -192,17 +186,17 @@ public:
         verticalLayout_2 = new QVBoxLayout(verticalLayoutWidget_2);
         verticalLayout_2->setObjectName("verticalLayout_2");
         verticalLayout_2->setContentsMargins(5, 2, 3, 3);
-        tableViewRecettes = new QTableView(verticalLayoutWidget_2);
-        tableViewRecettes->setObjectName("tableViewRecettes");
-
-        verticalLayout_2->addWidget(tableViewRecettes);
-
         searchLineEdit = new QLineEdit(verticalLayoutWidget_2);
         searchLineEdit->setObjectName("searchLineEdit");
         searchLineEdit->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);"));
 
         verticalLayout_2->addWidget(searchLineEdit);
+
+        tableViewRecettes = new QTableView(verticalLayoutWidget_2);
+        tableViewRecettes->setObjectName("tableViewRecettes");
+
+        verticalLayout_2->addWidget(tableViewRecettes);
 
         detailsScrollArea = new QScrollArea(centralwidget);
         detailsScrollArea->setObjectName("detailsScrollArea");
@@ -213,7 +207,7 @@ public:
         scrollAreaWidgetContents->setGeometry(QRect(0, 0, 429, 489));
         verticalLayoutWidget_3 = new QWidget(scrollAreaWidgetContents);
         verticalLayoutWidget_3->setObjectName("verticalLayoutWidget_3");
-        verticalLayoutWidget_3->setGeometry(QRect(10, -10, 411, 471));
+        verticalLayoutWidget_3->setGeometry(QRect(30, -10, 411, 471));
         verticalLayout_5 = new QVBoxLayout(verticalLayoutWidget_3);
         verticalLayout_5->setObjectName("verticalLayout_5");
         verticalLayout_5->setContentsMargins(0, 0, 0, 0);
@@ -256,23 +250,6 @@ public:
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName("horizontalLayout_4");
         horizontalLayout_4->setContentsMargins(0, -1, 61, 0);
-        pushButton_3 = new QPushButton(tab1);
-        pushButton_3->setObjectName("pushButton_3");
-        pushButton_3->setBaseSize(QSize(0, 0));
-        QIcon icon8(QIcon::fromTheme(QString::fromUtf8("list-add")));
-        pushButton_3->setIcon(icon8);
-        pushButton_3->setIconSize(QSize(10, 10));
-
-        horizontalLayout_4->addWidget(pushButton_3);
-
-        pushButton_4 = new QPushButton(tab1);
-        pushButton_4->setObjectName("pushButton_4");
-        QIcon icon9(QIcon::fromTheme(QString::fromUtf8("list-remove")));
-        pushButton_4->setIcon(icon9);
-        pushButton_4->setIconSize(QSize(10, 10));
-
-        horizontalLayout_4->addWidget(pushButton_4);
-
 
         verticalLayout_6->addLayout(horizontalLayout_4);
 
@@ -285,64 +262,42 @@ public:
         instructionList->setDragDropMode(QAbstractItemView::DragDropMode::InternalMove);
         navigation = new QWidget(tab2);
         navigation->setObjectName("navigation");
-        navigation->setGeometry(QRect(20, 80, 371, 51));
+        navigation->setGeometry(QRect(10, 100, 371, 51));
         horizontalLayout_5 = new QHBoxLayout(navigation);
         horizontalLayout_5->setObjectName("horizontalLayout_5");
-        btnPrevInstruction = new QPushButton(navigation);
-        btnPrevInstruction->setObjectName("btnPrevInstruction");
-        QIcon icon10(QIcon::fromTheme(QIcon::ThemeIcon::GoPrevious));
-        btnPrevInstruction->setIcon(icon10);
-
-        horizontalLayout_5->addWidget(btnPrevInstruction);
-
         horizontalSpacer = new QSpacerItem(20, 7, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         horizontalLayout_5->addItem(horizontalSpacer);
+
+        btnPrevInstruction = new QPushButton(navigation);
+        btnPrevInstruction->setObjectName("btnPrevInstruction");
+        QIcon icon8(QIcon::fromTheme(QIcon::ThemeIcon::GoPrevious));
+        btnPrevInstruction->setIcon(icon8);
+
+        horizontalLayout_5->addWidget(btnPrevInstruction);
 
         instructionCounterLabel = new QLabel(navigation);
         instructionCounterLabel->setObjectName("instructionCounterLabel");
 
         horizontalLayout_5->addWidget(instructionCounterLabel);
 
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
-
-        horizontalLayout_5->addItem(horizontalSpacer_2);
-
         btnNextInstruction = new QPushButton(navigation);
         btnNextInstruction->setObjectName("btnNextInstruction");
-        QIcon icon11(QIcon::fromTheme(QIcon::ThemeIcon::GoNext));
-        btnNextInstruction->setIcon(icon11);
+        QIcon icon9(QIcon::fromTheme(QIcon::ThemeIcon::GoNext));
+        btnNextInstruction->setIcon(icon9);
         btnNextInstruction->setCheckable(false);
 
         horizontalLayout_5->addWidget(btnNextInstruction);
+
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout_5->addItem(horizontalSpacer_2);
 
         widget = new QWidget(tab2);
         widget->setObjectName("widget");
         widget->setGeometry(QRect(20, 120, 371, 51));
         horizontalLayout_6 = new QHBoxLayout(widget);
         horizontalLayout_6->setObjectName("horizontalLayout_6");
-        btnAddInstruction = new QPushButton(widget);
-        btnAddInstruction->setObjectName("btnAddInstruction");
-
-        horizontalLayout_6->addWidget(btnAddInstruction);
-
-        btnAddSubInstruction = new QPushButton(widget);
-        btnAddSubInstruction->setObjectName("btnAddSubInstruction");
-        QIcon icon12(QIcon::fromTheme(QIcon::ThemeIcon::ListAdd));
-        btnAddSubInstruction->setIcon(icon12);
-        btnAddSubInstruction->setIconSize(QSize(10, 10));
-
-        horizontalLayout_6->addWidget(btnAddSubInstruction);
-
-        btnRemoveInstruction = new QPushButton(widget);
-        btnRemoveInstruction->setObjectName("btnRemoveInstruction");
-
-        horizontalLayout_6->addWidget(btnRemoveInstruction);
-
-        horizontalSpacer_3 = new QSpacerItem(52, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
-
-        horizontalLayout_6->addItem(horizontalSpacer_3);
-
         tabWidget->addTab(tab2, QString());
 
         verticalLayout_5->addWidget(tabWidget);
@@ -351,7 +306,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 800, 25));
+        menubar->setGeometry(QRect(0, 0, 876, 25));
         menuFile = new QMenu(menubar);
         menuFile->setObjectName("menuFile");
         menuEdit = new QMenu(menubar);
@@ -387,7 +342,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
         ingredientTable->setCurrentIndex(2);
 
 
@@ -446,15 +401,10 @@ public:
         ingredientTable->setTabText(ingredientTable->indexOf(tab), QCoreApplication::translate("MainWindow", "Nom", nullptr));
         ingredientTable->setTabText(ingredientTable->indexOf(tab_2), QCoreApplication::translate("MainWindow", "Quantit\303\251", nullptr));
         ingredientTable->setTabText(ingredientTable->indexOf(tab_3), QCoreApplication::translate("MainWindow", "Unit\303\251", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("MainWindow", "Ajouter", nullptr));
-        pushButton_4->setText(QCoreApplication::translate("MainWindow", "Supprimer", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab1), QCoreApplication::translate("MainWindow", "Ingr\303\251dients", nullptr));
         btnPrevInstruction->setText(QCoreApplication::translate("MainWindow", "Pr\303\251c\303\251dent", nullptr));
         instructionCounterLabel->setText(QCoreApplication::translate("MainWindow", "1 / 5", nullptr));
         btnNextInstruction->setText(QCoreApplication::translate("MainWindow", "Suivant", nullptr));
-        btnAddInstruction->setText(QCoreApplication::translate("MainWindow", "Ajouter Instruction", nullptr));
-        btnAddSubInstruction->setText(QCoreApplication::translate("MainWindow", "Sous-\303\251tape", nullptr));
-        btnRemoveInstruction->setText(QCoreApplication::translate("MainWindow", "Supprimer", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab2), QCoreApplication::translate("MainWindow", "Instructions", nullptr));
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         menuEdit->setTitle(QCoreApplication::translate("MainWindow", "Edit", nullptr));

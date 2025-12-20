@@ -2,10 +2,17 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QDebug>
+#include <QSqlDriver>
 
 DatabaseManager::DatabaseManager(const QString &path)
     : m_path(path)
 {
+    // Vérifier que le driver SQLite est disponible
+    if (!QSqlDatabase::isDriverAvailable("QSQLITE")) {
+        qCritical() << "ERREUR: Le driver QSQLITE n'est pas disponible!";
+        qCritical() << "Drivers disponibles:" << QSqlDatabase::drivers();
+    }
+    
     // Connexion nommée (important pour éviter collisions Qt)
     m_db = QSqlDatabase::addDatabase("QSQLITE", "GESTION_RECETTES_CONN");
     m_db.setDatabaseName(m_path);
@@ -18,25 +25,45 @@ DatabaseManager::~DatabaseManager()
 
 bool DatabaseManager::open()
 {
-    if (!m_db.open()) {
-        qWarning() << "Erreur ouverture DB:" << m_db.lastError().text();
+    if (!m_db.isValid()) {
+        qCritical() << "ERREUR: La connexion à la base de données n'est pas valide!";
+        qCritical() << "Driver:" << m_db.driverName();
         return false;
     }
+    
+    if (!m_db.open()) {
+        qCritical() << "ERREUR ouverture DB:" << m_db.lastError().text();
+        qCritical() << "Chemin DB:" << m_path;
+        return false;
+    }
+    
+    qDebug() << "✓ Base de données ouverte avec succès:" << m_path;
 
     // Active les foreign keys
     QSqlQuery pragma(m_db);
-    pragma.exec("PRAGMA foreign_keys = ON;");
+    if (!pragma.exec("PRAGMA foreign_keys = ON;")) {
+        qWarning() << "Erreur activation foreign keys:" << pragma.lastError().text();
+    }
 
     // Création des tables
-    return createTables();
+    bool success = createTables();
+    if (success) {
+        qDebug() << "✓ Tables créées/vérifiées avec succès";
+    }
+    return success;
 }
 
 void DatabaseManager::close()
 {
-    if (m_db.isOpen())
-        m_db.close();
-
-    QSqlDatabase::removeDatabase("GESTION_RECETTES_CONN");
+    if (m_db.isOpen()) {
+        // Vérifier si la connexion est encore utilisée avant de la supprimer
+        QStringList connections = QSqlDatabase::connectionNames();
+        if (connections.contains("GESTION_RECETTES_CONN")) {
+            m_db.close();
+            // Ne pas supprimer immédiatement la connexion si elle est encore référencée
+            // Elle sera supprimée automatiquement à la fin du programme
+        }
+    }
 }
 
 QSqlDatabase DatabaseManager::database() const
@@ -122,4 +149,53 @@ for (const QString &sql : queries) {
 }
 
 return true;
+}
+
+
+bool DatabaseManager::resetDatabase()
+{
+    if (!m_db.isOpen()) {
+        qWarning() << "ERREUR: La base de données n'est pas ouverte pour resetDatabase()";
+        return false;
+    }
+    
+    QSqlQuery q(m_db);
+
+    // Désactiver les foreign keys pour permettre la suppression
+    if (!q.exec("PRAGMA foreign_keys = OFF")) {
+        qWarning() << "Erreur désactivation foreign keys:" << q.lastError().text();
+    }
+
+    // Supprimer dans l'ordre pour respecter les dépendances
+    QStringList deleteQueries = {
+        "DELETE FROM instruction_simple",
+        "DELETE FROM instruction_composee",
+        "DELETE FROM instruction",
+        "DELETE FROM recette_ingredient",
+        "DELETE FROM recette",
+        "DELETE FROM ingredient"
+    };
+
+    bool allSuccess = true;
+    for (const QString &sql : deleteQueries) {
+        if (!q.exec(sql)) {
+            qWarning() << "Erreur lors de la suppression:" << sql << "-" << q.lastError().text();
+            allSuccess = false;
+        } else {
+            qDebug() << "✓ Supprimé:" << sql << "-" << q.numRowsAffected() << "lignes affectées";
+        }
+    }
+
+    // Réactiver les foreign keys
+    if (!q.exec("PRAGMA foreign_keys = ON")) {
+        qWarning() << "Erreur activation foreign keys:" << q.lastError().text();
+    }
+
+    if (allSuccess) {
+        qDebug() << "✓ Base de données réinitialisée (toutes les données supprimées)";
+    } else {
+        qWarning() << "⚠ Certaines suppressions ont échoué";
+    }
+    
+    return allSuccess;
 }

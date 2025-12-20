@@ -53,3 +53,10 @@ void RecetteTableModel::recharger()
     m_recettes = m_service.listerRecettes();
     endResetModel();
 }
+
+Recette RecetteTableModel::recetteAt(int row) const
+{
+    if (row < 0 || row >= m_recettes.size())
+        return Recette();
+    return m_recettes.at(row);
+}

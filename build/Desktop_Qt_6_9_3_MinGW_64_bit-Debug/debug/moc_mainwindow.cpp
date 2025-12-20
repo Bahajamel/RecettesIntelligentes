@@ -47,7 +47,14 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "on_actionEdit_triggered",
         "on_actionDelete_triggered",
         "on_actionRecherche_triggered",
-        "on_btnMyRecipes_clicked"
+        "on_btnMyRecipes_clicked",
+        "on_actionRenitialiser_triggered",
+        "onRecetteSelectionChanged",
+        "QItemSelection",
+        "selected",
+        "deselected",
+        "onSearchTextChanged",
+        "text"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -67,6 +74,16 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         QtMocHelpers::SlotData<void()>(8, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnMyRecipes_clicked'
         QtMocHelpers::SlotData<void()>(9, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_actionRenitialiser_triggered'
+        QtMocHelpers::SlotData<void()>(10, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onRecetteSelectionChanged'
+        QtMocHelpers::SlotData<void(const QItemSelection &, const QItemSelection &)>(11, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 12, 13 }, { 0x80000000 | 12, 14 },
+        }}),
+        // Slot 'onSearchTextChanged'
+        QtMocHelpers::SlotData<void(const QString &)>(15, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 16 },
+        }}),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -98,10 +115,25 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 5: _t->on_actionDelete_triggered(); break;
         case 6: _t->on_actionRecherche_triggered(); break;
         case 7: _t->on_btnMyRecipes_clicked(); break;
+        case 8: _t->on_actionRenitialiser_triggered(); break;
+        case 9: _t->onRecetteSelectionChanged((*reinterpret_cast< std::add_pointer_t<QItemSelection>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QItemSelection>>(_a[2]))); break;
+        case 10: _t->onSearchTextChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         default: ;
         }
     }
-    (void)_a;
+    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        switch (_id) {
+        default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+        case 9:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 1:
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QItemSelection >(); break;
+            }
+            break;
+        }
+    }
 }
 
 const QMetaObject *MainWindow::metaObject() const
@@ -123,14 +155,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 11;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
-            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 8;
+        if (_id < 11)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 11;
     }
     return _id;
 }

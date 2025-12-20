@@ -17,6 +17,8 @@
 
 // Models
 #include "modelsHeader/recettemodel.h"
+#include "modelsHeader/instructiontreemodel.h"
+#include "metiersHeader/recetteingredient.h"
 
 
 class Backend : public QObject
@@ -26,13 +28,18 @@ public:
     explicit Backend(QObject *parent = nullptr);
 
     RecetteTableModel* recetteModel();
+    QList<RecetteIngredient> ingredientsDeRecette(int recetteId);
+    void chargerInstructionsDansModele(InstructionTreeModel &model, int recetteId);
+    InstructionService& instructionService();
 
 public slots:
     void chargerRecettes();
     int creerRecette(const QString &titre, const QString &description);
     void ajouterIngredientARecette(int recetteId, const QString &nom, float qte, const QString &unite);
     void ajouterInstructionSimple(int recetteId, int parentId, const QString &texte);
-    void ajouterInstructionComposee(int recetteId, int parentId, const QString &titre);
+    int ajouterInstructionComposee(int recetteId, int parentId, const QString &titre);
+    void resetDatabase();
+    void insererRecettesTest() ;
 signals:
     void erreur(const QString &message);
     void recettesModifiees();

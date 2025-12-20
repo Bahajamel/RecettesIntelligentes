@@ -1,3 +1,5 @@
+#ifndef INSTRUCTIONTREEMODEL_H
+#define INSTRUCTIONTREEMODEL_H
 
 #include <QAbstractItemModel>
 #include "serviceHeader/instructionservice.h"
@@ -28,3 +30,5 @@ private:
     QList<Node*> m_all;    // pour delete
     Node* buildNodeTree(const QSharedPointer<Instruction>& instr, Node *parent);
 };
+
+#endif

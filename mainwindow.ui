@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>876</width>
     <height>600</height>
    </rect>
   </property>
@@ -158,9 +158,6 @@ border-color: rgb(255, 255, 255);</string>
        <number>3</number>
       </property>
       <item>
-       <widget class="QTableView" name="tableViewRecettes"/>
-      </item>
-      <item>
        <widget class="QLineEdit" name="searchLineEdit">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(255, 255, 255);
@@ -170,6 +167,9 @@ color: rgb(0, 0, 0);</string>
          <string>Rechercher une recette...</string>
         </property>
        </widget>
+      </item>
+      <item>
+       <widget class="QTableView" name="tableViewRecettes"/>
       </item>
      </layout>
     </widget>
@@ -198,7 +198,7 @@ color: rgb(0, 0, 0);</string>
      <widget class="QWidget" name="verticalLayoutWidget_3">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>30</x>
         <y>-10</y>
         <width>411</width>
         <height>471</height>
@@ -247,7 +247,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <item>
         <widget class="QTabWidget" name="tabWidget">
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="tab1">
           <attribute name="title">
@@ -287,44 +287,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <property name="bottomMargin">
               <number>0</number>
              </property>
-             <item>
-              <widget class="QPushButton" name="pushButton_3">
-               <property name="baseSize">
-                <size>
-                 <width>0</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>Ajouter</string>
-               </property>
-               <property name="icon">
-                <iconset theme="list-add"/>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>10</width>
-                 <height>10</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_4">
-               <property name="text">
-                <string>Supprimer</string>
-               </property>
-               <property name="icon">
-                <iconset theme="list-remove"/>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>10</width>
-                 <height>10</height>
-                </size>
-               </property>
-              </widget>
-             </item>
             </layout>
            </item>
           </layout>
@@ -349,23 +311,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <widget class="QWidget" name="navigation" native="true">
            <property name="geometry">
             <rect>
-             <x>20</x>
-             <y>80</y>
+             <x>10</x>
+             <y>100</y>
              <width>371</width>
              <height>51</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_5">
-            <item>
-             <widget class="QPushButton" name="btnPrevInstruction">
-              <property name="text">
-               <string>Précédent</string>
-              </property>
-              <property name="icon">
-               <iconset theme="QIcon::ThemeIcon::GoPrevious"/>
-              </property>
-             </widget>
-            </item>
             <item>
              <spacer name="horizontalSpacer">
               <property name="orientation">
@@ -380,9 +332,32 @@ li.checked::marker { content: &quot;\2612&quot;; }
              </spacer>
             </item>
             <item>
+             <widget class="QPushButton" name="btnPrevInstruction">
+              <property name="text">
+               <string>Précédent</string>
+              </property>
+              <property name="icon">
+               <iconset theme="QIcon::ThemeIcon::GoPrevious"/>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QLabel" name="instructionCounterLabel">
               <property name="text">
                <string>1 / 5</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnNextInstruction">
+              <property name="text">
+               <string>Suivant</string>
+              </property>
+              <property name="icon">
+               <iconset theme="QIcon::ThemeIcon::GoNext"/>
+              </property>
+              <property name="checkable">
+               <bool>false</bool>
               </property>
              </widget>
             </item>
@@ -399,19 +374,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </property>
              </spacer>
             </item>
-            <item>
-             <widget class="QPushButton" name="btnNextInstruction">
-              <property name="text">
-               <string>Suivant</string>
-              </property>
-              <property name="icon">
-               <iconset theme="QIcon::ThemeIcon::GoNext"/>
-              </property>
-              <property name="checkable">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </item>
            </layout>
           </widget>
           <widget class="QWidget" name="widget" native="true">
@@ -423,51 +385,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <height>51</height>
             </rect>
            </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_6">
-            <item>
-             <widget class="QPushButton" name="btnAddInstruction">
-              <property name="text">
-               <string>Ajouter Instruction</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="btnAddSubInstruction">
-              <property name="text">
-               <string>Sous-étape</string>
-              </property>
-              <property name="icon">
-               <iconset theme="QIcon::ThemeIcon::ListAdd"/>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>10</width>
-                <height>10</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="btnRemoveInstruction">
-              <property name="text">
-               <string>Supprimer</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer_3">
-              <property name="orientation">
-               <enum>Qt::Orientation::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>52</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
+           <layout class="QHBoxLayout" name="horizontalLayout_6"/>
           </widget>
          </widget>
         </widget>
@@ -482,7 +400,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>876</width>
      <height>25</height>
     </rect>
    </property>

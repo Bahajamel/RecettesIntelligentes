@@ -2,10 +2,17 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QDebug>
+#include <QSqlDriver>
 
 DatabaseManager::DatabaseManager(const QString &path)
     : m_path(path)
 {
+    // Vérifier que le driver SQLite est disponible
+    if (!QSqlDatabase::isDriverAvailable("QSQLITE")) {
+        qCritical() << "ERREUR: Le driver QSQLITE n'est pas disponible!";
+        qCritical() << "Drivers disponibles:" << QSqlDatabase::drivers();
+    }
+    
     // Connexion nommée (important pour éviter collisions Qt)
     m_db = QSqlDatabase::addDatabase("QSQLITE", "GESTION_RECETTES_CONN");
     m_db.setDatabaseName(m_path);
@@ -18,17 +25,32 @@ DatabaseManager::~DatabaseManager()
 
 bool DatabaseManager::open()
 {
-    if (!m_db.open()) {
-        qWarning() << "Erreur ouverture DB:" << m_db.lastError().text();
+    if (!m_db.isValid()) {
+        qCritical() << "ERREUR: La connexion à la base de données n'est pas valide!";
+        qCritical() << "Driver:" << m_db.driverName();
         return false;
     }
+    
+    if (!m_db.open()) {
+        qCritical() << "ERREUR ouverture DB:" << m_db.lastError().text();
+        qCritical() << "Chemin DB:" << m_path;
+        return false;
+    }
+    
+    qDebug() << "✓ Base de données ouverte avec succès:" << m_path;
 
     // Active les foreign keys
     QSqlQuery pragma(m_db);
-    pragma.exec("PRAGMA foreign_keys = ON;");
+    if (!pragma.exec("PRAGMA foreign_keys = ON;")) {
+        qWarning() << "Erreur activation foreign keys:" << pragma.lastError().text();
+    }
 
     // Création des tables
-    return createTables();
+    bool success = createTables();
+    if (success) {
+        qDebug() << "✓ Tables créées/vérifiées avec succès";
+    }
+    return success;
 }
 
 void DatabaseManager::close()

@@ -6,13 +6,17 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    Backend backend ;
+
+    // Vérifier que le driver SQLite est disponible
+    if (!QSqlDatabase::isDriverAvailable("QSQLITE")) {
+        qCritical() << "ERREUR CRITIQUE: Le driver QSQLITE n'est pas disponible!";
+        qCritical() << "Drivers disponibles:" << QSqlDatabase::drivers();
+        return -1;
+    }
+
+    Backend backend;
     MainWindow w(&backend);
     w.show();
-    QSqlDatabase test = QSqlDatabase::addDatabase("QSQLITE", "TEST");
-    test.setDatabaseName("foo.db");
-    qDebug() << "OPEN ?" << test.open();
-
 
     return a.exec();
 }
