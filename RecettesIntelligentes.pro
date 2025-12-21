@@ -12,9 +12,9 @@ CONFIG += embed_translations
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    ajouteringredientdialog.cpp \
-    ajouterinstructiondialog.cpp \
-    ajouterrecettedialog.cpp \
+    dialog/ajouteringredientdialog.cpp \
+    dialog/ajouterinstructiondialog.cpp \
+    dialog/ajouterrecettedialog.cpp \
     backend.cpp \
     data/databasemanager.cpp \
     data/initialdata.cpp \
@@ -42,9 +42,9 @@ SOURCES += \
     metiers/unite.cpp
 
 HEADERS += \
-    ajouteringredientdialog.h \
-    ajouterinstructiondialog.h \
-    ajouterrecettedialog.h \
+    dialogHeader/ajouteringredientdialog.h \
+    dialogHeader/ajouterinstructiondialog.h \
+    dialogHeader/ajouterrecettedialog.h \
     backend.h \
     dataHeader/databasemanager.h \
     dataHeader/initialdata.h \

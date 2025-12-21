@@ -1,4 +1,4 @@
-#include "ajouterinstructiondialog.h"
+#include "dialogHeader/ajouterinstructiondialog.h"
 #include "ui_ajouterinstructiondialog.h"
 #include <QMessageBox>
 

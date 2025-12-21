@@ -36,7 +36,7 @@ public slots:
     void chargerRecettes();
     int creerRecette(const QString &titre, const QString &description);
     void ajouterIngredientARecette(int recetteId, const QString &nom, float qte, const QString &unite);
-    void ajouterInstructionSimple(int recetteId, int parentId, const QString &texte);
+    int ajouterInstructionSimple(int recetteId, int parentId, const QString &texte);
     int ajouterInstructionComposee(int recetteId, int parentId, const QString &titre);
     void resetDatabase();
     void insererRecettesTest() ;

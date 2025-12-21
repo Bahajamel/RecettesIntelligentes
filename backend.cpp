@@ -128,29 +128,31 @@ void Backend::ajouterIngredientARecette(int recetteId,
 }
 
 
-void Backend::ajouterInstructionSimple(int recetteId,
+int Backend::ajouterInstructionSimple(int recetteId,
                                        int parentId,
                                        const QString &texte)
 {
-    m_instructionService.ajouterSimple(
+    int id = m_instructionService.ajouterSimple(
         recetteId,
         parentId,
         1,          // ordre par défaut
         texte
         );
+    return id;
 }
 
 int Backend::ajouterInstructionComposee(int recetteId,
                                         int parentId,
                                         const QString &titre)
 {
-    return m_instructionService.ajouterComposee(
+    int id = m_instructionService.ajouterComposee(
     recetteId,
     parentId,
     1,
     titre
     );
-    chargerRecettes(); // rafraîchir la vue
+
+    return id ;
 }
 
 Recette Backend::obtenirRecetteComplete(int id)

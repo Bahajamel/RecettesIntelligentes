@@ -1,11 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "ajouterrecettedialog.h"
+#include "dialogHeader/ajouterrecettedialog.h"
 #include "metiersHeader/recetteingredient.h"
 #include "metiersHeader/instructioncomposee.h"
 #include "metiersHeader/unite.h"
-#include "ajouteringredientdialog.h"
-#include "ajouterinstructiondialog.h"
+#include "dialogHeader/ajouteringredientdialog.h"
+#include "dialogHeader/ajouterinstructiondialog.h"
 #include "ImageDropLabel.h"
 #include <QVBoxLayout>
 #include <QRegularExpression>
