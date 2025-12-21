@@ -8,6 +8,10 @@ AjouterIngredientDialog::AjouterIngredientDialog(QWidget *parent)
 {
     ui->setupUi(this);
     setWindowTitle("Ajouter un ingrédient");
+    setModal(true); // IMPORTANT
+    setWindowFlags(Qt::Dialog | Qt::WindowCloseButtonHint);
+    ui->lineEditNom->setFocus();
+
 }
 
 AjouterIngredientDialog::~AjouterIngredientDialog()

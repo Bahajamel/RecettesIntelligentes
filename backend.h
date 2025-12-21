@@ -43,6 +43,9 @@ public slots:
     Recette obtenirRecetteComplete(int id);
     bool mettreAJourRecette(int id, const QString &titre, const QString &description, const QString &photo);
     bool supprimerRecette(int id);
+    QString sauvegarderImage(const QString &cheminSource);
+
+    static QString getAppDataPath();
 
 signals :
     void erreur(const QString &message);
@@ -50,6 +53,9 @@ signals :
 
 private:
     DatabaseManager m_dbManager;
+
+    QString m_dossierImages;
+
 
     // DAO
     RecetteDAO m_recetteDAO;

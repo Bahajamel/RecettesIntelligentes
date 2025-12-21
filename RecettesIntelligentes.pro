@@ -75,7 +75,6 @@ FORMS += \
     ajouterrecettedialog.ui \
     mainwindow.ui
 RESOURCES += \
-    StyleSheet/style.qss \
     Icons/recette.png \
     resource.qrc
 
@@ -83,3 +82,6 @@ RESOURCES += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    StyleSheet/style.qss

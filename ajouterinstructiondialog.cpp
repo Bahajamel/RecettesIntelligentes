@@ -9,6 +9,9 @@ AjouterInstructionDialog::AjouterInstructionDialog(QWidget *parent)
     ui->setupUi(this);
     setWindowTitle("Ajouter une instruction");
 
+    setModal(true); // IMPORTANT
+    setWindowFlags(Qt::Dialog | Qt::WindowCloseButtonHint);
+
     // Par défaut : instruction simple
     ui->radioSimple->setChecked(true);
 }

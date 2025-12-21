@@ -1,11 +1,18 @@
 #include "backend.h"
 #include "metiersHeader/unite.h"
+#include <QDir>
+#include <QFile>
+#include <QFileInfo>
+#include <QDateTime>
+#include <QCryptographicHash>
+#include <QStandardPaths>
+
 
 Backend::Backend(QObject *parent)
     : QObject(parent),
 
     // 1️⃣ Database
-    m_dbManager("app.db"),
+    m_dbManager(getAppDataPath() +"app.db"),
 
     // 2️⃣ DAO
     m_recetteDAO(m_dbManager.database()),
@@ -21,11 +28,23 @@ Backend::Backend(QObject *parent)
     // 4️⃣ Models
     m_recetteModel(m_recetteService)
 {
+    m_dossierImages = QDir::currentPath() + "/recettes_images";
+    QDir dir;
+    if (!dir.exists(m_dossierImages)) {
+        dir.mkpath(m_dossierImages);
+        qDebug() << "✓ Dossier images créé:" << m_dossierImages;
+    }
+
     if (!m_dbManager.open()) {
         qCritical() << "ERREUR: Impossible d'ouvrir la base de données!";
         emit erreur("Impossible d'ouvrir la base de données. Vérifiez que le driver SQLite est disponible.");
         return;
     }
+
+
+    qDebug() << "📁 Dossier de l'application:" << getAppDataPath();
+    qDebug() << "📁 Base de données:" << getAppDataPath() + "/app.db";
+    qDebug() << "📁 Dossier images:" << m_dossierImages;
 
     chargerRecettes();
 
@@ -35,6 +54,20 @@ Backend::Backend(QObject *parent)
     } else {
         qDebug() << "✓" << m_recetteModel.rowCount() << "recettes chargées depuis la base de données";
     }
+}
+
+QString Backend::getAppDataPath()
+{
+    // Utiliser le dossier Documents de l'utilisateur (multi-OS)
+    QString path = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+    path += "/MesRecettes"; // Nom de votre application
+
+    QDir dir;
+    if (!dir.exists(path)) {
+        dir.mkpath(path);
+    }
+
+    return path;
 }
 
 RecetteTableModel* Backend::recetteModel()
@@ -351,4 +384,54 @@ void Backend::insererRecettesTest()
     emit recettesModifiees();
 
     qDebug() << "✓ 15 recettes de test insérées avec succès";
+}
+
+
+QString Backend::sauvegarderImage(const QString &cheminSource)
+{
+    // Si c'est déjà une image dans notre dossier, ne rien faire
+    if (cheminSource.startsWith(m_dossierImages)) {
+        return cheminSource;
+    }
+
+    // Vérifier que le fichier source existe
+    QFileInfo sourceInfo(cheminSource);
+    if (!sourceInfo.exists() || !sourceInfo.isFile()) {
+        qWarning() << "⚠️ Fichier source introuvable:" << cheminSource;
+        return QString();
+    }
+
+    // Générer un nom unique basé sur le hash du fichier + timestamp
+    QFile sourceFile(cheminSource);
+    if (!sourceFile.open(QIODevice::ReadOnly)) {
+        qWarning() << "⚠️ Impossible d'ouvrir le fichier source";
+        return QString();
+    }
+
+    QByteArray fileData = sourceFile.readAll();
+    sourceFile.close();
+
+    // Hash MD5 du contenu
+    QByteArray hash = QCryptographicHash::hash(fileData, QCryptographicHash::Md5);
+    QString hashStr = hash.toHex();
+
+    // Extension du fichier original
+    QString extension = sourceInfo.suffix().toLower();
+    if (extension.isEmpty()) {
+        extension = "jpg"; // Par défaut
+    }
+
+    // Nom du nouveau fichier : hash_timestamp.extension
+    QString timestamp = QString::number(QDateTime::currentSecsSinceEpoch());
+    QString nouveauNom = QString("%1_%2.%3").arg(hashStr.left(12)).arg(timestamp).arg(extension);
+    QString cheminDestination = m_dossierImages + "/" + nouveauNom;
+
+    // Copier le fichier
+    if (QFile::copy(cheminSource, cheminDestination)) {
+        qDebug() << "✓ Image copiée:" << cheminDestination;
+        return cheminDestination;
+    } else {
+        qWarning() << "⚠️ Échec de la copie de l'image";
+        return QString();
+    }
 }
