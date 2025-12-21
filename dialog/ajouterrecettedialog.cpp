@@ -186,3 +186,12 @@ void AjouterRecetteDialog::on_btnAjouterInstruction_clicked()
     ui->tableInstructions->setCurrentCell(row, 1);
     ui->tableInstructions->editItem(ui->tableInstructions->item(row, 1));
 }
+
+void AjouterRecetteDialog::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::LanguageChange) {
+        ui->retranslateUi(this); // Qt met à jour automatiquement les textes du .ui
+    }
+    QDialog::changeEvent(event); // appelle la version parent
+}
+

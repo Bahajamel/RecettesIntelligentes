@@ -84,7 +84,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    StyleSheet/style.qss
+    StyleSheet/style.qss \
 
 TRANSLATIONS += \
     RecettesIntelligentes_en_AS.ts \

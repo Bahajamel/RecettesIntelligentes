@@ -32,6 +32,8 @@ public:
     void chargerInstructionsDansModele(InstructionTreeModel &model, int recetteId);
     InstructionService& instructionService();
 
+    static QString getAppDataPath();
+
 public slots:
     void chargerRecettes();
     int creerRecette(const QString &titre, const QString &description);
@@ -45,7 +47,6 @@ public slots:
     bool supprimerRecette(int id);
     QString sauvegarderImage(const QString &cheminSource);
 
-    static QString getAppDataPath();
 
 signals :
     void erreur(const QString &message);
