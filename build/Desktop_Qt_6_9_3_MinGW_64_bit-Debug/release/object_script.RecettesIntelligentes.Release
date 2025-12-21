@@ -1,6 +1,9 @@
+release/ajouteringredientdialog.o
 release/ajouterrecettedialog.o
 release/backend.o
 release/databasemanager.o
+release/initialdata.o
+release/imagedroplabel.o
 release/ingredient.o
 release/ingredientDAO.o
 release/ingredientmodel.o
@@ -22,8 +25,12 @@ release/recettemodel.o
 release/recetteservice.o
 release/test.o
 release/unite.o
+release/qrc_resource.o
+release/qrc_qmake_qmake_immediate.o
+release/moc_ajouteringredientdialog.o
 release/moc_ajouterrecettedialog.o
 release/moc_backend.o
+release/moc_imagedroplabel.o
 release/moc_ingredientmodel.o
 release/moc_instructiontreemodel.o
 release/moc_mainwindow.o

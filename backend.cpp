@@ -112,12 +112,38 @@ int Backend::ajouterInstructionComposee(int recetteId,
                                         const QString &titre)
 {
     return m_instructionService.ajouterComposee(
-        recetteId,
-        parentId,
-        1,          // ordre par défaut
-        titre
-        );
+    recetteId,
+    parentId,
+    1,
+    titre
+    );
+    chargerRecettes(); // rafraîchir la vue
 }
+
+Recette Backend::obtenirRecetteComplete(int id)
+{
+    return m_recetteService.obtenirRecetteComplete(id);
+}
+
+bool Backend::mettreAJourRecette(int id, const QString &titre, const QString &description, const QString &photo)
+{
+    bool success = m_recetteService.mettreAJourRecette(id, titre, description, photo);
+    if (success) {
+        chargerRecettes(); // rafraîchir la vue
+    }
+    return success;
+}
+
+bool Backend::supprimerRecette(int id)
+{
+    bool success = m_recetteDAO.supprimerRecette(id);
+    if (success) {
+        chargerRecettes(); // rafraîchir la vue
+    }
+    return success;
+}
+
+
 void Backend::resetDatabase()
 {
     m_dbManager.resetDatabase();

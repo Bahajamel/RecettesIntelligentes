@@ -50,7 +50,7 @@ void AjouterRecetteDialog::on_btnValider_clicked()
         QMessageBox::warning(this, "Erreur", "Titre obligatoire");
         return;
     }
-
+    // 1️⃣ Créer la recette
     int recetteId = m_backend->creerRecette(titre, description);
 
     // 2️⃣ Ajouter ingrédients
@@ -78,8 +78,8 @@ void AjouterRecetteDialog::on_btnValider_clicked()
             m_backend->ajouterInstructionComposee(recetteId, parentId, contenu);
     }
     emit recetteAjoutee(recetteId);
+    accept() ;
 
-    accept(); // ferme le dialog
 }
 
 void AjouterRecetteDialog::on_btnAjouterIngredient_clicked()
@@ -98,9 +98,6 @@ void AjouterRecetteDialog::on_btnAjouterIngredient_clicked()
     ui->tableIngredients->editItem(ui->tableIngredients->item(row, 0));
 
 }
-
-
-
 void AjouterRecetteDialog::on_btnAjouterInstruction_clicked()
 {
     // Ajouter une nouvelle ligne vide dans le tableau des instructions

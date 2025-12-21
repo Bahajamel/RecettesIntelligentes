@@ -40,7 +40,11 @@ public slots:
     int ajouterInstructionComposee(int recetteId, int parentId, const QString &titre);
     void resetDatabase();
     void insererRecettesTest() ;
-signals:
+    Recette obtenirRecetteComplete(int id);
+    bool mettreAJourRecette(int id, const QString &titre, const QString &description, const QString &photo);
+    bool supprimerRecette(int id);
+
+signals :
     void erreur(const QString &message);
     void recettesModifiees();
 
@@ -63,5 +67,3 @@ private:
 };
 
 #endif
-
-

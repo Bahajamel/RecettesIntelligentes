@@ -1,6 +1,9 @@
+debug/ajouteringredientdialog.o
 debug/ajouterrecettedialog.o
 debug/backend.o
 debug/databasemanager.o
+debug/initialdata.o
+debug/imagedroplabel.o
 debug/ingredient.o
 debug/ingredientDAO.o
 debug/ingredientmodel.o
@@ -22,8 +25,12 @@ debug/recettemodel.o
 debug/recetteservice.o
 debug/test.o
 debug/unite.o
+debug/qrc_resource.o
+debug/qrc_qmake_qmake_immediate.o
+debug/moc_ajouteringredientdialog.o
 debug/moc_ajouterrecettedialog.o
 debug/moc_backend.o
+debug/moc_imagedroplabel.o
 debug/moc_ingredientmodel.o
 debug/moc_instructiontreemodel.o
 debug/moc_mainwindow.o

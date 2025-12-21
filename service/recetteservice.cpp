@@ -41,5 +41,32 @@ QList<Recette> RecetteService::listerRecettes()
     return m_recDao.obtenirToutesRecettes();
 }
 
+bool RecetteService::mettreAJourRecette(int id, const QString &titre, const QString &description, const QString &photo)
+{
+    return m_recDao.mettreAJourRecetteComplete(id, titre, description, photo);
+}
+
+Recette RecetteService::obtenirRecetteComplete(int id)
+{
+    Recette recette = m_recDao.obtenirRecette(id);
+    if (recette.getId() < 0) {
+        return recette; // Recette non trouvée
+    }
+
+    // Charger les ingrédients avec quantités et unités
+    QList<RecetteIngredient> recetteIngredients = m_riDao.findByRecette(id);
+    for (const RecetteIngredient &ri : recetteIngredients) {
+        recette.ajouterIngredient(ri.getIngredient(), ri.getQuantite(), ri.getUnite());
+    }
+
+    // Charger les instructions
+    QList<QSharedPointer<Instruction>> instructions = instructionsDeRecette(id);
+    for (const QSharedPointer<Instruction> &inst : instructions) {
+        recette.ajouterInstruction(inst);
+    }
+
+    return recette;
+}
+
 
 

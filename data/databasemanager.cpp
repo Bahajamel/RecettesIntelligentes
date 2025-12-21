@@ -82,7 +82,8 @@ bool DatabaseManager::createTables()
         CREATE TABLE IF NOT EXISTS recette (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             titre TEXT NOT NULL,
-            description TEXT
+            description TEXT,
+            photo TEXT
         );
         )",
 
@@ -145,6 +146,25 @@ for (const QString &sql : queries) {
         qWarning() << "Erreur creation table:\n" << sql
                    << "\n->" << q.lastError().text();
         return false;
+    }
+}
+
+// Migration: Ajouter colonne photo si elle n'existe pas
+QSqlQuery checkCol(m_db);
+if (checkCol.exec("PRAGMA table_info(recette)")) {
+    bool hasPhoto = false;
+    while (checkCol.next()) {
+        if (checkCol.value(1).toString() == "photo") {
+            hasPhoto = true;
+            break;
+        }
+    }
+    if (!hasPhoto) {
+        if (!q.exec("ALTER TABLE recette ADD COLUMN photo TEXT")) {
+            qWarning() << "Erreur ajout colonne photo:" << q.lastError().text();
+        } else {
+            qDebug() << "✓ Colonne photo ajoutée à la table recette";
+        }
     }
 }
 

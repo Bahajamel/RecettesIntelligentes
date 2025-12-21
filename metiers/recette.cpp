@@ -36,6 +36,15 @@ void Recette::setDescription(const QString &description)
     m_description = description;
 }
 
+QString Recette::getPhoto() const
+{
+    return m_photo;
+}
+
+void Recette::setPhoto(const QString &photo)
+{
+    m_photo = photo;
+}
 
 void Recette::ajouterIngredient(const Ingredient &ingredient, const float &quantite, UNITE unite) {
     m_ingredients.append(RecetteIngredient(ingredient, quantite, unite));

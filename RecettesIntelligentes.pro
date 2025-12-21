@@ -11,9 +11,12 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    ajouteringredientdialog.cpp \
     ajouterrecettedialog.cpp \
     backend.cpp \
     data/databasemanager.cpp \
+    data/initialdata.cpp \
+    imagedroplabel.cpp \
     metiers/ingredient.cpp \
     dao/ingredientDAO.cpp \
     models/ingredientmodel.cpp \
@@ -37,9 +40,12 @@ SOURCES += \
     metiers/unite.cpp
 
 HEADERS += \
+    ajouteringredientdialog.h \
     ajouterrecettedialog.h \
     backend.h \
     dataHeader/databasemanager.h \
+    dataHeader/initialdata.h \
+    imagedroplabel.h \
     metiersHeader/ingredient.h \
     daoHeader/ingredientDAO.h \
     modelsHeader/ingredientmodel.h \
@@ -61,8 +67,14 @@ HEADERS += \
     metiersHeader/unite.h
 
 FORMS += \
+    RecetteDetailDialog.ui \
+    ajouteringredientdialog.ui \
     ajouterrecettedialog.ui \
     mainwindow.ui
+RESOURCES += \
+    StyleSheet/style.qss \
+    Icons/recette.png \
+    resource.qrc
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

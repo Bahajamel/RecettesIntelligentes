@@ -20,9 +20,11 @@ public:
     QVariant data(const QModelIndex &index, int role) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
     void recharger();
-
-    // Récupérer une recette à partir d'une ligne (pour afficher les détails)
     Recette recetteAt(int row) const;
+    // Get recipes
+    QList<Recette> getRecettes() const;
+    Recette getRecette(int row) const;
+
 private:
     RecetteService m_service ;
     QList<Recette> m_recettes;

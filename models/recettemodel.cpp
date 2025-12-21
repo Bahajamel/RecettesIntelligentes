@@ -60,3 +60,15 @@ Recette RecetteTableModel::recetteAt(int row) const
         return Recette();
     return m_recettes.at(row);
 }
+
+QList<Recette> RecetteTableModel::getRecettes() const
+{
+    return m_recettes;
+}
+
+Recette RecetteTableModel::getRecette(int row) const
+{
+    if (row >= 0 && row < m_recettes.size())
+        return m_recettes.at(row);
+    return Recette();
+}

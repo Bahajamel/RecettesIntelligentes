@@ -47,16 +47,18 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "on_actionEdit_triggered",
         "on_actionDelete_triggered",
         "on_actionRecherche_triggered",
-        "on_btnMyRecipes_clicked",
+        "on_btnAddRecipe_clicked",
+        "on_btnDeleteRecipe_clicked",
+        "on_searchLineEdit_textChanged",
+        "text",
+        "on_btnAddIngredient_clicked",
+        "on_btnAddInstruction_clicked",
         "on_actionRenitialiser_triggered",
         "onRecetteSelectionChanged",
         "QItemSelection",
         "selected",
         "deselected",
-        "onSearchTextChanged",
-        "text",
-        "onRecetteAjoutee",
-        "recetteId"
+        "onSearchTextChanged"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -74,21 +76,27 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         QtMocHelpers::SlotData<void()>(7, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_actionRecherche_triggered'
         QtMocHelpers::SlotData<void()>(8, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_btnMyRecipes_clicked'
+        // Slot 'on_btnAddRecipe_clicked'
         QtMocHelpers::SlotData<void()>(9, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_actionRenitialiser_triggered'
+        // Slot 'on_btnDeleteRecipe_clicked'
         QtMocHelpers::SlotData<void()>(10, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_searchLineEdit_textChanged'
+        QtMocHelpers::SlotData<void(const QString &)>(11, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 12 },
+        }}),
+        // Slot 'on_btnAddIngredient_clicked'
+        QtMocHelpers::SlotData<void()>(13, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnAddInstruction_clicked'
+        QtMocHelpers::SlotData<void()>(14, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_actionRenitialiser_triggered'
+        QtMocHelpers::SlotData<void()>(15, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onRecetteSelectionChanged'
-        QtMocHelpers::SlotData<void(const QItemSelection &, const QItemSelection &)>(11, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { 0x80000000 | 12, 13 }, { 0x80000000 | 12, 14 },
+        QtMocHelpers::SlotData<void(const QItemSelection &, const QItemSelection &)>(16, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 17, 18 }, { 0x80000000 | 17, 19 },
         }}),
         // Slot 'onSearchTextChanged'
-        QtMocHelpers::SlotData<void(const QString &)>(15, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::QString, 16 },
-        }}),
-        // Slot 'onRecetteAjoutee'
-        QtMocHelpers::SlotData<void(int)>(17, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 18 },
+        QtMocHelpers::SlotData<void(const QString &)>(20, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 12 },
         }}),
     };
     QtMocHelpers::UintData qt_properties {
@@ -120,18 +128,21 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 4: _t->on_actionEdit_triggered(); break;
         case 5: _t->on_actionDelete_triggered(); break;
         case 6: _t->on_actionRecherche_triggered(); break;
-        case 7: _t->on_btnMyRecipes_clicked(); break;
-        case 8: _t->on_actionRenitialiser_triggered(); break;
-        case 9: _t->onRecetteSelectionChanged((*reinterpret_cast< std::add_pointer_t<QItemSelection>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QItemSelection>>(_a[2]))); break;
-        case 10: _t->onSearchTextChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 11: _t->onRecetteAjoutee((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 7: _t->on_btnAddRecipe_clicked(); break;
+        case 8: _t->on_btnDeleteRecipe_clicked(); break;
+        case 9: _t->on_searchLineEdit_textChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 10: _t->on_btnAddIngredient_clicked(); break;
+        case 11: _t->on_btnAddInstruction_clicked(); break;
+        case 12: _t->on_actionRenitialiser_triggered(); break;
+        case 13: _t->onRecetteSelectionChanged((*reinterpret_cast< std::add_pointer_t<QItemSelection>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QItemSelection>>(_a[2]))); break;
+        case 14: _t->onSearchTextChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         default: ;
         }
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
-        case 9:
+        case 13:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
             case 1:
@@ -162,14 +173,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 12)
+        if (_id < 15)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 12;
+        _id -= 15;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 12)
+        if (_id < 15)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 12;
+        _id -= 15;
     }
     return _id;
 }
