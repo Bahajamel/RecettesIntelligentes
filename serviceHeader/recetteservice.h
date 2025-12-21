@@ -21,11 +21,8 @@ public:
     QList<QSharedPointer<Instruction>> instructionsDeRecette(int recetteId);
     RecetteIngredientDAO &m_riDao;
     QList<Recette> listerRecettes();
-<<<<<<< HEAD
-=======
     Recette obtenirRecetteComplete(int id);
 
->>>>>>> 3567aa235b818089fe94588a01d93cf16570992a
 private:
     RecetteDAO &m_recDao;
     IngredientService &m_ingService;

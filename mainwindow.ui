@@ -7,10 +7,14 @@
     <x>0</x>
     <y>0</y>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <width>876</width>
     <height>600</height>
 =======
     <width>1400</width>
+=======
+    <width>1217</width>
+>>>>>>> 15cc3be827937bcdf8183491999dd08ad806de69
     <height>900</height>
 >>>>>>> 3567aa235b818089fe94588a01d93cf16570992a
    </rect>
@@ -19,7 +23,7 @@
    <string>Mes Recettes</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout">
+   <layout class="QHBoxLayout" name="horizontalLayout" stretch="2,5">
     <property name="spacing">
      <number>24</number>
     </property>
@@ -106,6 +110,7 @@ color: rgb(0, 0, 0);</string>
      <number>16</number>
     </property>
     <item>
+<<<<<<< HEAD
      <!-- Left Sidebar: Recipe List -->
      <widget class="QWidget" name="recipeListWidget">
       <property name="minimumSize">
@@ -114,142 +119,78 @@ color: rgb(0, 0, 0);</string>
         <height>0</height>
        </size>
 >>>>>>> 3567aa235b818089fe94588a01d93cf16570992a
+=======
+     <layout class="QVBoxLayout" name="sidebarLayout" stretch="0,0,0">
+      <property name="spacing">
+       <number>0</number>
+>>>>>>> 15cc3be827937bcdf8183491999dd08ad806de69
       </property>
-      <property name="maximumSize">
-       <size>
-        <width>320</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <layout class="QVBoxLayout" name="sidebarLayout">
-       <property name="spacing">
-        <number>0</number>
-       </property>
-       <item>
-        <!-- Header -->
-        <widget class="QWidget" name="sidebarHeader">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <layout class="QVBoxLayout" name="headerLayout">
-          <property name="spacing">
-           <number>12</number>
+      <item>
+       <layout class="QVBoxLayout" name="headerLayout" stretch="0,0">
+        <property name="spacing">
+         <number>12</number>
+        </property>
+        <property name="leftMargin">
+         <number>16</number>
+        </property>
+        <property name="topMargin">
+         <number>16</number>
+        </property>
+        <property name="rightMargin">
+         <number>16</number>
+        </property>
+        <property name="bottomMargin">
+         <number>16</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="sidebarTitle">
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+            <bold>true</bold>
+           </font>
           </property>
-          <property name="leftMargin">
-           <number>16</number>
+          <property name="text">
+           <string>Mes Recettes</string>
           </property>
-          <property name="topMargin">
-           <number>16</number>
-          </property>
-          <property name="rightMargin">
-           <number>16</number>
-          </property>
-          <property name="bottomMargin">
-           <number>16</number>
-          </property>
-          <item>
-           <widget class="QLabel" name="sidebarTitle">
-            <property name="text">
-             <string>Mes Recettes</string>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>20</pointsize>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="searchLineEdit">
-            <property name="placeholderText">
-             <string>Rechercher une recette...</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <!-- Recipe List Scroll Area -->
-        <widget class="QScrollArea" name="recipeScrollArea">
-         <property name="widgetResizable">
-          <bool>true</bool>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::Shape::NoFrame</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Shadow::Plain</enum>
-         </property>
-         <widget class="QWidget" name="recipeListContainer">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>280</width>
-            <height>500</height>
-           </rect>
-          </property>
-          <layout class="QVBoxLayout" name="recipeListLayout">
-           <property name="spacing">
-            <number>8</number>
-           </property>
-           <property name="leftMargin">
-            <number>12</number>
-           </property>
-           <property name="topMargin">
-            <number>8</number>
-           </property>
-           <property name="rightMargin">
-            <number>12</number>
-           </property>
-           <property name="bottomMargin">
-            <number>8</number>
-           </property>
-           <item>
-            <spacer name="verticalSpacer">
-             <property name="orientation">
-              <enum>Qt::Orientation::Vertical</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>40</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
          </widget>
-        </widget>
-       </item>
-       <item>
-        <!-- Footer Actions -->
-        <widget class="QWidget" name="sidebarFooter">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="searchLineEdit">
+          <property name="placeholderText">
+           <string>Rechercher une recette...</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QScrollArea" name="recipeScrollArea">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Shape::NoFrame</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Shadow::Plain</enum>
+        </property>
+        <property name="widgetResizable">
+         <bool>true</bool>
+        </property>
+        <widget class="QWidget" name="recipeListContainer">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>330</width>
+           <height>647</height>
+          </rect>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <layout class="QHBoxLayout" name="footerLayout">
+         <layout class="QVBoxLayout" name="recipeListLayout">
           <property name="spacing">
            <number>8</number>
           </property>
@@ -257,62 +198,179 @@ color: rgb(0, 0, 0);</string>
            <number>12</number>
           </property>
           <property name="topMargin">
-           <number>12</number>
+           <number>8</number>
           </property>
           <property name="rightMargin">
            <number>12</number>
           </property>
           <property name="bottomMargin">
-           <number>12</number>
+           <number>8</number>
           </property>
           <item>
-           <widget class="QPushButton" name="btnAddRecipe">
-            <property name="text">
-             <string>Nouveau</string>
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Orientation::Vertical</enum>
             </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="btnDeleteRecipe">
-            <property name="text">
-             <string/>
+            <property name="sizeType">
+             <enum>QSizePolicy::Policy::Expanding</enum>
             </property>
-            <property name="icon">
-             <iconset theme="QIcon::ThemeIcon::EditDelete"/>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
             </property>
-           </widget>
+           </spacer>
           </item>
          </layout>
         </widget>
-       </item>
-      </layout>
-     </widget>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="footerLayout" stretch="0,0">
+        <property name="spacing">
+         <number>8</number>
+        </property>
+        <property name="leftMargin">
+         <number>12</number>
+        </property>
+        <property name="topMargin">
+         <number>12</number>
+        </property>
+        <property name="rightMargin">
+         <number>12</number>
+        </property>
+        <property name="bottomMargin">
+         <number>12</number>
+        </property>
+        <item>
+         <widget class="QPushButton" name="btnAddRecipe">
+          <property name="text">
+           <string>Nouveau</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnDeleteRecipe">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset theme="QIcon::ThemeIcon::EditDelete"/>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
     </item>
     <item>
-     <!-- Right Panel: Recipe Detail -->
-     <widget class="QWidget" name="recipeDetailWidget">
-      <layout class="QVBoxLayout" name="detailLayout">
-       <property name="spacing">
-        <number>0</number>
-       </property>
-       <item>
-        <!-- Detail Header -->
-        <widget class="QWidget" name="detailHeader">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <layout class="QVBoxLayout" name="detailHeaderLayout">
+     <layout class="QVBoxLayout" name="detailLayout" stretch="1,2">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <item>
+       <layout class="QVBoxLayout" name="detailHeaderLayout">
+        <property name="spacing">
+         <number>16</number>
+        </property>
+        <property name="leftMargin">
+         <number>24</number>
+        </property>
+        <property name="topMargin">
+         <number>24</number>
+        </property>
+        <property name="rightMargin">
+         <number>24</number>
+        </property>
+        <property name="bottomMargin">
+         <number>24</number>
+        </property>
+        <item>
+         <widget class="QLineEdit" name="recipeTitleEdit">
+          <property name="font">
+           <font>
+            <pointsize>24</pointsize>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="placeholderText">
+           <string>Titre de la recette</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTextEdit" name="recipeDescriptionEdit">
+          <property name="placeholderText">
+           <string>Description de la recette...</string>
+          </property>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignmentFlag::AlignTop">
+         <widget class="QWidget" name="recipeStatsWidget" native="true">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <layout class="QHBoxLayout" name="statsLayout">
+           <property name="spacing">
+            <number>24</number>
+           </property>
+           <property name="sizeConstraint">
+            <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
+           </property>
+           <item>
+            <widget class="QLabel" name="timeLabel">
+             <property name="text">
+              <string>0 instruction</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="servingsLabel">
+             <property name="text">
+              <string>0 ingrédient</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Orientation::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QTabWidget" name="recipeTabs">
+        <property name="currentIndex">
+         <number>2</number>
+        </property>
+        <widget class="QWidget" name="detailsTab">
+         <attribute name="title">
+          <string>Détails</string>
+         </attribute>
+         <layout class="QVBoxLayout" name="detailsTabLayout">
           <property name="spacing">
-           <number>16</number>
+           <number>0</number>
           </property>
           <property name="leftMargin">
            <number>24</number>
@@ -327,79 +385,46 @@ color: rgb(0, 0, 0);</string>
            <number>24</number>
           </property>
           <item>
-           <widget class="QLineEdit" name="recipeTitleEdit">
-            <property name="placeholderText">
-             <string>Titre de la recette</string>
+           <widget class="QScrollArea" name="detailsScrollArea">
+            <property name="frameShape">
+             <enum>QFrame::Shape::NoFrame</enum>
             </property>
-            <property name="font">
-             <font>
-              <pointsize>24</pointsize>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
+            <property name="widgetResizable">
+             <bool>true</bool>
             </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QTextEdit" name="recipeDescriptionEdit">
-            <property name="placeholderText">
-             <string>Description de la recette...</string>
-            </property>
-            <property name="maximumHeight">
-             <number>80</number>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="recipeStatsWidget" native="true">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <layout class="QHBoxLayout" name="statsLayout">
-             <property name="spacing">
-              <number>24</number>
+            <widget class="QWidget" name="detailsContent">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>775</width>
+               <height>459</height>
+              </rect>
              </property>
-             <item>
-              <widget class="QLabel" name="timeLabel">
-               <property name="text">
-                <string>0 min total</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="servingsLabel">
-               <property name="text">
-                <string>0 portions</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer">
-               <property name="orientation">
-                <enum>Qt::Orientation::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
+             <layout class="QVBoxLayout" name="detailsContentLayout">
+              <property name="spacing">
+               <number>24</number>
+              </property>
+              <item>
+               <spacer name="verticalSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
            </widget>
           </item>
          </layout>
         </widget>
+<<<<<<< HEAD
        </item>
        <item>
         <!-- Tabs -->
@@ -431,39 +456,65 @@ color: rgb(0, 0, 0);</string>
             <widget class="QScrollArea" name="detailsScrollArea">
              <property name="widgetResizable">
               <bool>true</bool>
+=======
+        <widget class="QWidget" name="ingredientsTab">
+         <attribute name="title">
+          <string>Ingrédients</string>
+         </attribute>
+         <layout class="QVBoxLayout" name="ingredientsTabLayout">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>24</number>
+          </property>
+          <property name="topMargin">
+           <number>24</number>
+          </property>
+          <property name="rightMargin">
+           <number>24</number>
+          </property>
+          <property name="bottomMargin">
+           <number>24</number>
+          </property>
+          <item>
+           <widget class="QScrollArea" name="ingredientsScrollArea">
+            <property name="frameShape">
+             <enum>QFrame::Shape::NoFrame</enum>
+            </property>
+            <property name="widgetResizable">
+             <bool>true</bool>
+            </property>
+            <widget class="QWidget" name="ingredientsContent">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>775</width>
+               <height>430</height>
+              </rect>
+>>>>>>> 15cc3be827937bcdf8183491999dd08ad806de69
              </property>
-             <property name="frameShape">
-              <enum>QFrame::Shape::NoFrame</enum>
-             </property>
-             <widget class="QWidget" name="detailsContent">
-              <property name="geometry">
-               <rect>
-                <x>0</x>
-                <y>0</y>
-                <width>500</width>
-                <height>400</height>
-               </rect>
+             <layout class="QVBoxLayout" name="ingredientsContentLayout">
+              <property name="spacing">
+               <number>8</number>
               </property>
-              <layout class="QVBoxLayout" name="detailsContentLayout">
-               <property name="spacing">
-                <number>24</number>
-               </property>
-               <item>
-                <spacer name="verticalSpacer_2">
-                 <property name="orientation">
-                  <enum>Qt::Orientation::Vertical</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>20</width>
-                   <height>40</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-              </layout>
-             </widget>
+              <item>
+               <spacer name="verticalSpacer_3">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
             </widget>
+<<<<<<< HEAD
            </item>
           </layout>
          </widget>
@@ -740,11 +791,160 @@ color: rgb(0, 0, 0);</string>
    <addaction name="menuEdit"/>
    <addaction name="menuAffihce"/>
 =======
+=======
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnAddIngredient">
+            <property name="text">
+             <string>Ajouter un ingrédient</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="instructionsTab">
+         <attribute name="title">
+          <string>Instructions</string>
+         </attribute>
+         <layout class="QVBoxLayout" name="instructionsTabLayout">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>24</number>
+          </property>
+          <property name="topMargin">
+           <number>24</number>
+          </property>
+          <property name="rightMargin">
+           <number>24</number>
+          </property>
+          <property name="bottomMargin">
+           <number>24</number>
+          </property>
+          <item>
+           <widget class="QScrollArea" name="instructionsScrollArea">
+            <property name="frameShape">
+             <enum>QFrame::Shape::NoFrame</enum>
+            </property>
+            <property name="widgetResizable">
+             <bool>true</bool>
+            </property>
+            <widget class="QWidget" name="instructionsContent">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>775</width>
+               <height>430</height>
+              </rect>
+             </property>
+             <layout class="QVBoxLayout" name="instructionsContentLayout">
+              <property name="spacing">
+               <number>12</number>
+              </property>
+              <item>
+               <spacer name="verticalSpacer_4">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnAddInstruction">
+            <property name="text">
+             <string>Ajouter une instruction</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+>>>>>>> 15cc3be827937bcdf8183491999dd08ad806de69
     </item>
    </layout>
 >>>>>>> 3567aa235b818089fe94588a01d93cf16570992a
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1217</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionNouveau"/>
+    <addaction name="actionSauvegarder"/>
+    <addaction name="separator"/>
+    <addaction name="actionQuitter_2"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="actionModifier"/>
+   </widget>
+   <widget class="QMenu" name="menuLangage">
+    <property name="title">
+     <string>Langage</string>
+    </property>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuLangage"/>
+  </widget>
+  <action name="actionNouveau">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Nouveau</string>
+   </property>
+  </action>
+  <action name="actionFr">
+   <property name="text">
+    <string>Fr</string>
+   </property>
+  </action>
+  <action name="actionModifier">
+   <property name="text">
+    <string>Modifier</string>
+   </property>
+  </action>
+  <action name="actionSauvegarder">
+   <property name="text">
+    <string>Sauvegarder</string>
+   </property>
+  </action>
+  <action name="actionQuitter">
+   <property name="text">
+    <string>Quitter</string>
+   </property>
+  </action>
+  <action name="actionQuitter_2">
+   <property name="text">
+    <string>Quitter</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

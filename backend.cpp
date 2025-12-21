@@ -112,8 +112,12 @@ int Backend::ajouterInstructionComposee(int recetteId,
                                         const QString &titre)
 {
     return m_instructionService.ajouterComposee(
+    recetteId,
+    parentId,
+    1,
+    titre
+    );
     chargerRecettes(); // rafraîchir la vue
-    return id;
 }
 
 Recette Backend::obtenirRecetteComplete(int id)
@@ -139,53 +143,7 @@ bool Backend::supprimerRecette(int id)
     return success;
 }
 
-void Backend::ajouterIngredientARecette(int recetteId,
-                                        const QString &nom,
-                                        float qte,
-                                        const QString &uniteStr)
-{
 
-    int ingredientId = m_ingredientService.ajouterIngredient(nom);
-
-
-    UNITE unite = stringToUnite(uniteStr);
-
-
-    m_recetteService.ajouterIngredient(
-        recetteId,
-        m_ingredientService.getIngredient(ingredientId),
-        qte,
-        unite
-        );
-}
-
-// ---------------- INSTRUCTION SIMPLE ----------------
-void Backend::ajouterInstructionSimple(int recetteId,
-                                       int parentId,
-                                       const QString &texte)
-{
-    m_instructionService.ajouterSimple(
-        recetteId,
-        parentId,
-        1,          // ordre par défaut
-        texte
-        );
-}
-
-// ---------------- INSTRUCTION COMPOSÉE ----------------
-void Backend::ajouterInstructionComposee(int recetteId,
-                                         int parentId,
-                                         const QString &titre)
-{
-    m_instructionService.ajouterComposee(
->>>>>>> 3567aa235b818089fe94588a01d93cf16570992a
-        recetteId,
-        parentId,
-        1,          // ordre par défaut
-        titre
-        );
-}
-<<<<<<< HEAD
 void Backend::resetDatabase()
 {
     m_dbManager.resetDatabase();
@@ -394,5 +352,3 @@ void Backend::insererRecettesTest()
 
     qDebug() << "✓ 15 recettes de test insérées avec succès";
 }
-=======
->>>>>>> 3567aa235b818089fe94588a01d93cf16570992a

@@ -7,16 +7,14 @@
 #include <QItemSelection>
 #include <QSortFilterProxyModel>
 #include "backend.h"
-<<<<<<< HEAD
 #include "modelsHeader/recetteingredientmodel.h"
 #include "modelsHeader/instructiontreemodel.h"
-=======
 #include <QSortFilterProxyModel>
 #include <QRegularExpression>
 #include <QPushButton>
 #include <QVBoxLayout>
 #include "metiersHeader/recette.h"
->>>>>>> 3567aa235b818089fe94588a01d93cf16570992a
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -61,20 +59,17 @@ private:
 
     Ui::MainWindow *ui;
     Backend *backend;
-<<<<<<< HEAD
 
     RecetteIngredientTableModel m_ingredientModel;
     InstructionTreeModel m_instructionModel;
     QTableView *m_ingredientsView = nullptr;
     QTreeView *m_instructionsView = nullptr;
     QSortFilterProxyModel *m_proxyModel = nullptr;
-=======
-    QSortFilterProxyModel *m_proxyModel = nullptr;
+
     QList<QPushButton*> m_recipeCards;
     int m_selectedRecipeId = -1;
     QString m_searchQuery;
     QString m_currentPhotoUrl;
     QTimer *m_updateTimer = nullptr;
->>>>>>> 3567aa235b818089fe94588a01d93cf16570992a
 };
 #endif // MAINWINDOW_H

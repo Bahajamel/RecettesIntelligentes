@@ -35,22 +35,16 @@ public:
 public slots:
     void chargerRecettes();
     int creerRecette(const QString &titre, const QString &description);
-<<<<<<< HEAD
     void ajouterIngredientARecette(int recetteId, const QString &nom, float qte, const QString &unite);
     void ajouterInstructionSimple(int recetteId, int parentId, const QString &texte);
     int ajouterInstructionComposee(int recetteId, int parentId, const QString &titre);
     void resetDatabase();
     void insererRecettesTest() ;
-=======
     Recette obtenirRecetteComplete(int id);
     bool mettreAJourRecette(int id, const QString &titre, const QString &description, const QString &photo);
     bool supprimerRecette(int id);
-    void ajouterIngredientARecette(int recetteId, const QString &nom, float qte, const QString &unite);
-    void ajouterInstructionSimple(int recetteId, int parentId, const QString &texte);
-    void ajouterInstructionComposee(int recetteId, int parentId, const QString &titre);
 
->>>>>>> 3567aa235b818089fe94588a01d93cf16570992a
-signals:
+signals :
     void erreur(const QString &message);
     void recettesModifiees();
 
