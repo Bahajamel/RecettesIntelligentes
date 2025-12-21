@@ -14,6 +14,7 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 #include "metiersHeader/recette.h"
+#include <QTranslator>
 
 
 QT_BEGIN_NAMESPACE
@@ -27,6 +28,14 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(Backend *backend, QWidget *parent = nullptr);
     ~MainWindow();
+
+    // Nouveaux slots pour les langues
+    void loadLanguage(const QString &language);    // Charger la langue au démarrage
+    void changeLanguage(const QString &language);  // Changer dynamiquement
+    void retranslateUi();                           // Mettre à jour éléments dynamiques
+    void retranslateLanguageMenu();                 // Mettre à jour le menu
+    void setupLanguageMenu();
+
 
 private slots:
     void on_actionNouveau_triggered();
@@ -45,6 +54,12 @@ private slots:
     void onRecetteSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected);
     void onSearchTextChanged(const QString &text);
 
+
+
+
+protected:
+    void changeEvent(QEvent *event) override;
+
 private:
     void refreshRecipeList();
     void displayRecipeDetails(const Recette &recipe);
@@ -57,6 +72,13 @@ private:
 
     Ui::MainWindow *ui;
     Backend *backend;
+
+
+    QTranslator m_translator;
+    QString m_currentLanguage;
+    QAction *actionFrancais = nullptr;
+    QAction *actionEnglish = nullptr;
+
 
     RecetteIngredientTableModel m_ingredientModel;
     InstructionTreeModel m_instructionModel;

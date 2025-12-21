@@ -25,6 +25,9 @@ private slots:
 
 private:
     Ui::AjouterIngredientDialog *ui;
+
 };
+
+
 
 #endif

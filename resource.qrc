@@ -1,5 +1,8 @@
 <RCC>
-    <qresource prefix="/StyleSheet">
+    <qresource prefix="/StyleSheet"/>
+    <qresource prefix="/">
         <file>StyleSheet/style.qss</file>
+        <file>RecettesIntelligentes_en_AS.qm</file>
+        <file>RecettesIntelligentes_fr_FR.qm</file>
     </qresource>
 </RCC>
