@@ -577,9 +577,6 @@
      <string>File</string>
     </property>
     <addaction name="actionNouveau"/>
-    <addaction name="actionOuvrir"/>
-    <addaction name="actionSauvegarder"/>
-    <addaction name="actionExporter"/>
     <addaction name="separator"/>
     <addaction name="actionQuitter"/>
    </widget>
@@ -587,7 +584,6 @@
     <property name="title">
      <string>Edit</string>
     </property>
-    <addaction name="actionEdit"/>
     <addaction name="actionDelete"/>
     <addaction name="actionRecherche"/>
    </widget>
@@ -595,8 +591,14 @@
     <property name="title">
      <string>Affichage</string>
     </property>
+    <widget class="QMenu" name="menuLangue">
+     <property name="title">
+      <string>Langue</string>
+     </property>
+    </widget>
     <addaction name="actionSideBar"/>
     <addaction name="actionRenitialiser"/>
+    <addaction name="menuLangue"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -650,6 +652,16 @@
   <action name="actionRenitialiser">
    <property name="text">
     <string>Réinitialiser</string>
+   </property>
+  </action>
+  <action name="actionFran_ais">
+   <property name="text">
+    <string>Français</string>
+   </property>
+  </action>
+  <action name="actionEnglish">
+   <property name="text">
+    <string>English</string>
    </property>
   </action>
  </widget>

@@ -24,6 +24,11 @@
 #include <QMimeData>
 #include <QFileDialog>
 #include <QFileInfo>
+#include <QActionGroup>
+#include <QEvent>
+#include <QTranslator>
+#include <QSettings>
+#include <QMenu>
 
 
 MainWindow::MainWindow(Backend *backend, QWidget *parent)
@@ -37,6 +42,10 @@ MainWindow::MainWindow(Backend *backend, QWidget *parent)
 {
 
     ui->setupUi(this);
+
+    QSettings settings("VotreCompagnie", "RecettesApp");
+    QString language = settings.value("language", "fr").toString(); // "fr" par défaut
+    loadLanguage(language);
 
     // Setup proxy model for filtering
     RecetteTableModel *sourceModel = backend->recetteModel();
@@ -79,15 +88,6 @@ MainWindow::MainWindow(Backend *backend, QWidget *parent)
     connect(ui->btnDeleteRecipe, &QPushButton::clicked, this, &MainWindow::on_btnDeleteRecipe_clicked);
     connect(ui->btnAddIngredient, &QPushButton::clicked, this, &MainWindow::on_btnAddIngredient_clicked);
     connect(ui->btnAddInstruction, &QPushButton::clicked, this, &MainWindow::on_btnAddInstruction_clicked);
-    // Connect buttons
-    connect(ui->btnAddRecipe, &QPushButton::clicked,
-            this, &MainWindow::on_btnAddRecipe_clicked);
-    connect(ui->btnDeleteRecipe, &QPushButton::clicked,
-            this, &MainWindow::on_btnDeleteRecipe_clicked);
-    connect(ui->btnAddIngredient, &QPushButton::clicked,
-            this, &MainWindow::on_btnAddIngredient_clicked);
-    connect(ui->btnAddInstruction, &QPushButton::clicked,
-            this, &MainWindow::on_btnAddInstruction_clicked);
 
     // Connect recipe detail edits avec délai pour éviter trop de sauvegardes
     m_updateTimer = new QTimer(this);
@@ -126,6 +126,9 @@ MainWindow::MainWindow(Backend *backend, QWidget *parent)
 
     // Show empty state initially
     clearRecipeDetails();
+
+    // Créer le menu de langue
+    setupLanguageMenu();
 }
 
 
@@ -326,8 +329,8 @@ void MainWindow::displayRecipeDetails(const Recette &recipe)
     // Update stats
     int ingredientCount = recipe.getIngredients().size();
     int instructionCount = recipe.getNombreInstructions();
-    ui->timeLabel->setText(QString("%1 ingrédients").arg(ingredientCount));
-    ui->servingsLabel->setText(QString("%1 instructions").arg(instructionCount));
+    ui->timeLabel->setText(tr("%1 ingrédients").arg(ingredientCount));
+    ui->servingsLabel->setText(tr("%1 instructions").arg(instructionCount));
 
     // Enable delete button
     ui->btnDeleteRecipe->setEnabled(true);
@@ -337,8 +340,8 @@ void MainWindow::clearRecipeDetails()
 {
     ui->recipeTitleEdit->clear();
     ui->recipeDescriptionEdit->clear();
-    ui->timeLabel->setText("0 min total");
-    ui->servingsLabel->setText("0 portions");
+    ui->timeLabel->setText(tr("0 min total"));
+    ui->servingsLabel->setText(tr("0 portions"));
     ui->btnDeleteRecipe->setEnabled(false);
     m_selectedRecipeId = -1;
 }
@@ -373,7 +376,8 @@ void MainWindow::on_btnDeleteRecipe_clicked()
 {
     if (m_selectedRecipeId < 0) return;
 
-    int ret = QMessageBox::question(this, "Supprimer", "Voulez-vous vraiment supprimer cette recette ?",
+    int ret = QMessageBox::question(this, tr("Supprimer"),
+                                    tr("Voulez-vous vraiment supprimer cette recette ?"),
                                     QMessageBox::Yes | QMessageBox::No);
     if (ret == QMessageBox::Yes) {
         bool success = backend->supprimerRecette(m_selectedRecipeId);
@@ -381,7 +385,8 @@ void MainWindow::on_btnDeleteRecipe_clicked()
             refreshRecipeList();
             clearRecipeDetails();
         } else {
-            QMessageBox::warning(this, "Erreur", "Impossible de supprimer la recette");
+            QMessageBox::warning(this, tr("Erreur"),
+                                 tr("Impossible de supprimer la recette"));
         }
     }
 }
@@ -405,7 +410,7 @@ void MainWindow::displayIngredients(const Recette &recipe)
     const QList<RecetteIngredient> &ingredients = recipe.getIngredients();
 
     if (ingredients.isEmpty()) {
-        QLabel *emptyLabel = new QLabel("Aucun ingrédient", ingredientsContent);
+        QLabel *emptyLabel = new QLabel(tr("Aucun ingrédient"), ingredientsContent);
         emptyLabel->setAlignment(Qt::AlignCenter);
         emptyLabel->setStyleSheet("color: #9ca3af; padding: 40px; background: transparent;");
         layout->addWidget(emptyLabel);
@@ -507,7 +512,7 @@ void MainWindow::displayInstructions(const Recette &recipe)
     qDebug() << "📝 [DISPLAY] Affichage de" << instructions.size() << "instructions";
 
     if (instructions.isEmpty()) {
-        QLabel *emptyLabel = new QLabel("Aucune instruction", instructionsContent);
+        QLabel *emptyLabel = new QLabel(tr("Aucune instruction"), instructionsContent);
         emptyLabel->setAlignment(Qt::AlignCenter);
         emptyLabel->setStyleSheet("color: #9ca3af; padding: 40px; background: transparent;");
         layout->addWidget(emptyLabel);
@@ -759,7 +764,7 @@ void MainWindow::displayRecipeImage(const QString &photoUrl)
         }
     } else {
         imageLabel->clear();
-        imageLabel->setText("📷\n\nGlissez une image ici\nou cliquez sur Parcourir");
+        imageLabel->setText(tr("📷\n\nGlissez une image ici\nou cliquez sur Parcourir"));
         imageLabel->setStyleSheet(
             "QLabel { "
             "  background: rgba(245, 242, 232, 0.3); "
@@ -792,8 +797,8 @@ void MainWindow::on_btnAddIngredient_clicked()
         Recette recette = backend->obtenirRecetteComplete(m_selectedRecipeId);
         displayRecipeDetails(recette);
 
-        QMessageBox::information(this, "Succès",
-                                 QString("Ingrédient '%1' ajouté avec succès").arg(nom));
+        QMessageBox::information(this, tr("Succès"),
+                                 tr(("Ingrédient '%1' ajouté avec succès")).arg(nom));
     }
 }
 
@@ -802,7 +807,7 @@ void MainWindow::on_btnAddIngredient_clicked()
 void MainWindow::on_btnAddInstruction_clicked()
 {
     if (m_selectedRecipeId < 0) {
-        QMessageBox::information(this, "Info", "Veuillez sélectionner une recette d'abord");
+        QMessageBox::information(this, tr("Info"), tr("Veuillez sélectionner une recette d'abord"));
         return;
     }
 
@@ -923,3 +928,126 @@ void MainWindow::onSearchTextChanged(const QString &text)
     }
 }
 
+
+
+// Nouvelle méthode : Charger une langue
+// Charger la langue au démarrage
+void MainWindow::loadLanguage(const QString &language)
+{
+    // Retirer l'ancien traducteur si présent
+    qApp->removeTranslator(&m_translator);
+
+    QString qmPath;
+    if (language == "fr") qmPath = ":/RecettesIntelligentes_fr_FR.qm";
+    else if (language == "en") qmPath = ":/RecettesIntelligentes_en_AS.qm";
+    else {
+        qWarning() << "Langue inconnue:" << language;
+        return;
+    }
+
+    if (m_translator.load(qmPath)) {
+        qApp->installTranslator(&m_translator);
+        m_currentLanguage = language;
+
+        // Sauvegarder la préférence
+        QSettings settings("VotreCompagnie", "RecettesApp");
+        settings.setValue("language", language);
+
+        qDebug() << "✓ Langue chargée:" << language;
+    } else {
+        qWarning() << "⚠️ Impossible de charger" << qmPath;
+    }
+}
+
+// Changer la langue dynamiquement via menu
+void MainWindow::changeLanguage(const QString &language)
+{
+    if (m_currentLanguage == language) return;
+
+    qApp->removeTranslator(&m_translator);
+
+    QString qmPath;
+    if (language == "fr") qmPath = ":/RecettesIntelligentes_fr_FR.qm";
+    else if (language == "en") qmPath = ":/RecettesIntelligentes_en_AS.qm";
+    else {
+        qWarning() << "Langue inconnue:" << language;
+        return;
+    }
+
+    if (m_translator.load(qmPath)) {
+        qApp->installTranslator(&m_translator);
+        m_currentLanguage = language;
+
+        QSettings settings("VotreCompagnie", "RecettesApp");
+        settings.setValue("language", language);
+
+        // Qt va émettre automatiquement QEvent::LanguageChange
+        // Donc changeEvent() appellera ui->retranslateUi()
+    } else {
+        qWarning() << "Impossible de charger" << qmPath;
+    }
+}
+
+// Mettre à jour les textes dynamiques (labels, boutons créés dynamiquement)
+void MainWindow::retranslateUi()
+{
+    if (m_selectedRecipeId >= 0) {
+        Recette recette = backend->obtenirRecetteComplete(m_selectedRecipeId);
+        int ingredientCount = recette.getIngredients().size();
+        int instructionCount = recette.getNombreInstructions();
+
+        ui->timeLabel->setText(tr("%1 ingrédients").arg(ingredientCount));
+        ui->servingsLabel->setText(tr("%1 instructions").arg(instructionCount));
+    }
+
+    if (ui->searchLineEdit->text().isEmpty()) {
+        ui->searchLineEdit->setPlaceholderText(tr("Rechercher une recette..."));
+    }
+}
+
+// Mettre à jour le menu de langue
+void MainWindow::retranslateLanguageMenu()
+{
+    if (actionFrancais) actionFrancais->setText(tr("Français"));
+    if (actionEnglish) actionEnglish->setText(tr("English"));
+}
+
+// Créer le menu de langue
+void MainWindow::setupLanguageMenu()
+{
+    QActionGroup *languageGroup = new QActionGroup(this);
+    languageGroup->setExclusive(true);
+
+    actionFrancais = new QAction(tr("Français"), this);
+    actionFrancais->setCheckable(true);
+    actionFrancais->setData("fr");
+
+    actionEnglish = new QAction(tr("English"), this);
+    actionEnglish->setCheckable(true);
+    actionEnglish->setData("en");
+
+    languageGroup->addAction(actionFrancais);
+    languageGroup->addAction(actionEnglish);
+
+    ui->menuLangue->addAction(actionFrancais);
+    ui->menuLangue->addAction(actionEnglish);
+
+    actionFrancais->setChecked(m_currentLanguage == "fr");
+    actionEnglish->setChecked(m_currentLanguage == "en");
+
+    connect(languageGroup, &QActionGroup::triggered, this,
+            [this](QAction *action) {
+                changeLanguage(action->data().toString());
+            });
+}
+
+// Gérer l'événement LanguageChange
+void MainWindow::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::LanguageChange) {
+        ui->retranslateUi(this);        // widgets du .ui
+        retranslateUi();                 // éléments dynamiques
+        retranslateLanguageMenu();       // menu langue
+    }
+    QMainWindow::changeEvent(event);
+}

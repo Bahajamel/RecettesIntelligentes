@@ -7,7 +7,7 @@ AjouterInstructionDialog::AjouterInstructionDialog(QWidget *parent)
     , ui(new Ui::ajouterinstructionDialog)
 {
     ui->setupUi(this);
-    setWindowTitle("Ajouter une instruction");
+    setWindowTitle(tr("Ajouter une instruction"));
 
     setModal(true); // IMPORTANT
     setWindowFlags(Qt::Dialog | Qt::WindowCloseButtonHint);
@@ -39,7 +39,7 @@ bool AjouterInstructionDialog::estComposee() const
 void AjouterInstructionDialog::on_btnValider_clicked()
 {
     if (getContenu().isEmpty()) {
-        QMessageBox::warning(this, "Erreur", "Le contenu de l'instruction est obligatoire");
+        QMessageBox::warning(this, tr("Erreur"),  tr("Le contenu de l'instruction est obligatoire"));
         return;
     }
 
@@ -54,13 +54,34 @@ void AjouterInstructionDialog::on_btnAnnuler_clicked()
 void AjouterInstructionDialog::on_radioSimple_toggled(bool checked)
 {
     if (checked) {
-        ui->labelInfo->setText("Instruction simple : une étape unique de la recette");
+        ui->labelInfo->setText(tr("Instruction simple : une étape unique de la recette"));
     }
 }
 
 void AjouterInstructionDialog::on_radioComposee_toggled(bool checked)
 {
     if (checked) {
-        ui->labelInfo->setText("Instruction composée : un groupe d'étapes (ex: 'Préparation de la pâte')");
+        ui->labelInfo->setText(tr("Instruction composée : un groupe d'étapes (ex: 'Préparation de la pâte')"));
     }
 }
+
+void AjouterInstructionDialog::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::LanguageChange) {
+        ui->retranslateUi(this);
+
+        // remettre les textes dynamiques
+        if (ui->radioSimple->isChecked()) {
+            ui->labelInfo->setText(
+                tr("Instruction simple : une étape unique de la recette")
+                );
+        } else {
+            ui->labelInfo->setText(
+                tr("Instruction composée : un groupe d'étapes (ex: 'Préparation de la pâte')")
+                );
+        }
+    }
+    QDialog::changeEvent(event);
+}
+
+

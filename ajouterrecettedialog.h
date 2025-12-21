@@ -30,6 +30,10 @@ private slots:
 private:
     Ui::ajouterrecetteDialog *ui;
     Backend *m_backend;
+protected:
+    void changeEvent(QEvent *event) override;
+
+
 };
 
 #endif // AJOUTERRECETTEDIALOG_H

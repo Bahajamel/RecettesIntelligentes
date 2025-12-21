@@ -2,6 +2,7 @@
 #define AJOUTERINSTRUCTIONDIALOG_H
 
 #include <QDialog>
+#include <QEvent>
 
 namespace Ui {
 class ajouterinstructionDialog;
@@ -16,8 +17,11 @@ public:
     ~AjouterInstructionDialog();
 
     QString getContenu() const;
-    QString getType() const;  // "simple" ou "composee"
+    QString getType() const;
     bool estComposee() const;
+
+protected:
+    void changeEvent(QEvent *event) override;
 
 private slots:
     void on_btnValider_clicked();

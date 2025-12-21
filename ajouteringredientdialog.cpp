@@ -7,7 +7,7 @@ AjouterIngredientDialog::AjouterIngredientDialog(QWidget *parent)
     , ui(new Ui::AjouterIngredientDialog)
 {
     ui->setupUi(this);
-    setWindowTitle("Ajouter un ingrédient");
+    setWindowTitle(tr("Ajouter un ingrédient"));
     setModal(true); // IMPORTANT
     setWindowFlags(Qt::Dialog | Qt::WindowCloseButtonHint);
     ui->lineEditNom->setFocus();
@@ -37,12 +37,12 @@ QString AjouterIngredientDialog::getUnite() const
 void AjouterIngredientDialog::on_btnValider_clicked()
 {
     if (getNom().isEmpty()) {
-        QMessageBox::warning(this, "Erreur", "Le nom de l'ingrédient est obligatoire");
+        QMessageBox::warning(this,tr("Erreur"), tr("Le nom de l'ingrédient est obligatoire"));
         return;
     }
 
     if (getQuantite() <= 0) {
-        QMessageBox::warning(this, "Erreur", "La quantité doit être supérieure à 0");
+        QMessageBox::warning(this, tr("Erreur"), tr("La quantité doit être supérieure à 0"));
         return;
     }
 

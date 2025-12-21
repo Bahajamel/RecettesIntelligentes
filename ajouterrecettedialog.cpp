@@ -114,3 +114,20 @@ void AjouterRecetteDialog::on_btnAjouterInstruction_clicked()
     ui->tableInstructions->editItem(ui->tableInstructions->item(row, 1));
 }
 
+
+void AjouterRecetteDialog::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::LanguageChange) {
+        ui->retranslateUi(this);
+
+        // headers doivent être remis !
+        ui->tableIngredients->setHorizontalHeaderLabels({
+            tr("Nom"), tr("Quantité"), tr("Unité")
+        });
+
+        ui->tableInstructions->setHorizontalHeaderLabels({
+            tr("Type"), tr("Contenu"), tr("Parent")
+        });
+    }
+    QDialog::changeEvent(event);
+}
