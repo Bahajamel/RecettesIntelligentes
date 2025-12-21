@@ -19,7 +19,6 @@
 #include "metiersHeader/instructioncomposee.h"
 #include "metiersHeader/unite.h"
 #include "ImageDropLabel.h"
-#include "mainwindow.h"
 #include <QDragEnterEvent>
 #include <QDropEvent>
 #include <QMimeData>
@@ -33,14 +32,17 @@ MainWindow::MainWindow(Backend *backend, QWidget *parent)
     , backend(backend)
     , m_ingredientModel(this)
     , m_instructionModel(backend->instructionService())
+    , m_proxyModel(nullptr)          // Déplacé ici
+    , m_selectedRecipeId(-1)         // Déplacé ici
 {
     ui->setupUi(this);
 
-    // Modèle des recettes avec proxy pour la recherche
+    // Setup proxy model for filtering
+    RecetteTableModel *sourceModel = backend->recetteModel();
     m_proxyModel = new QSortFilterProxyModel(this);
-    m_proxyModel->setSourceModel(backend->recetteModel());
-    m_proxyModel->setFilterKeyColumn(0); // Filtrer sur la colonne 0 (Titre)
-    m_proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive); // Recherche insensible à la casse
+    m_proxyModel->setSourceModel(sourceModel);
+    m_proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
+    m_proxyModel->setFilterKeyColumn(-1);
     ui->tableViewRecettes->setModel(m_proxyModel);
 
     // Vue des ingrédients (utilise le modèle RecetteIngredientTableModel)
@@ -64,36 +66,26 @@ MainWindow::MainWindow(Backend *backend, QWidget *parent)
     instrLayout->addWidget(m_instructionsView);
     m_instructionsView->setModel(&m_instructionModel);
 
-    // Connecter le champ de recherche au filtre
+    // Connect search
     connect(ui->searchLineEdit, &QLineEdit::textChanged,
             this, &MainWindow::onSearchTextChanged);
-    , m_proxyModel(nullptr)
-    , m_selectedRecipeId(-1)
-{
-    ui->setupUi(this);
-
-
-    // Setup proxy model for filtering
-    RecetteTableModel *sourceModel = backend->recetteModel();
-    m_proxyModel = new QSortFilterProxyModel(this);
-    m_proxyModel->setSourceModel(sourceModel);
-    m_proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
-    m_proxyModel->setFilterKeyColumn(-1);
-
-    // Connect search
-    connect(ui->searchLineEdit, &QLineEdit::textChanged, this, &MainWindow::on_searchLineEdit_textChanged);
 
     // Connect buttons
-    connect(ui->btnAddRecipe, &QPushButton::clicked, this, &MainWindow::on_btnAddRecipe_clicked);
-    connect(ui->btnDeleteRecipe, &QPushButton::clicked, this, &MainWindow::on_btnDeleteRecipe_clicked);
-    connect(ui->btnAddIngredient, &QPushButton::clicked, this, &MainWindow::on_btnAddIngredient_clicked);
-    connect(ui->btnAddInstruction, &QPushButton::clicked, this, &MainWindow::on_btnAddInstruction_clicked);
+    connect(ui->btnAddRecipe, &QPushButton::clicked,
+            this, &MainWindow::on_btnAddRecipe_clicked);
+    connect(ui->btnDeleteRecipe, &QPushButton::clicked,
+            this, &MainWindow::on_btnDeleteRecipe_clicked);
+    connect(ui->btnAddIngredient, &QPushButton::clicked,
+            this, &MainWindow::on_btnAddIngredient_clicked);
+    connect(ui->btnAddInstruction, &QPushButton::clicked,
+            this, &MainWindow::on_btnAddInstruction_clicked);
 
     // Connect recipe detail edits avec délai pour éviter trop de sauvegardes
     m_updateTimer = new QTimer(this);
     m_updateTimer->setSingleShot(true);
     m_updateTimer->setInterval(1000); // 1 seconde de délai
-    connect(m_updateTimer, &QTimer::timeout, this, &MainWindow::updateRecipeDetails);
+    connect(m_updateTimer, &QTimer::timeout,
+            this, &MainWindow::updateRecipeDetails);
 
     connect(ui->recipeTitleEdit, &QLineEdit::textChanged, this, [this]() {
         m_updateTimer->start(); // Redémarrer le timer à chaque changement
@@ -104,30 +96,29 @@ MainWindow::MainWindow(Backend *backend, QWidget *parent)
 
     // Load recipes
     backend->chargerRecettes();
-    auto sourceModel = backend->recetteModel();
     if (sourceModel) {
         connect(backend, &Backend::recettesModifiees,
-                sourceModel,
-                &RecetteTableModel::recharger);
+                sourceModel, &RecetteTableModel::recharger);
     }
 
     // Réagir à la sélection d'une recette pour afficher les détails
     if (ui->tableViewRecettes->selectionModel()) {
         connect(ui->tableViewRecettes->selectionModel(),
                 &QItemSelectionModel::selectionChanged,
-                this,
-                &MainWindow::onRecetteSelectionChanged);
+                this, &MainWindow::onRecetteSelectionChanged);
     }
 
     // Sélectionner la première recette si disponible
     if (m_proxyModel && m_proxyModel->rowCount() > 0) {
         ui->tableViewRecettes->selectRow(0);
     }
+
     refreshRecipeList();
 
     // Show empty state initially
     clearRecipeDetails();
 }
+
 
 MainWindow::~MainWindow()
 {
@@ -778,13 +769,6 @@ void MainWindow::on_actionRecherche_triggered()
     ui->searchLineEdit->setFocus();
 }
 
-void MainWindow::on_btnMyRecipes_clicked()
-{
-    AjouterRecetteDialog dlg(backend, this);
-    if (dlg.exec() == QDialog::Accepted) {
-        backend->chargerRecettes(); // rafraîchir la table
-    }
-}
 
 void MainWindow::on_actionRenitialiser_triggered()
 {
@@ -826,4 +810,5 @@ void MainWindow::onSearchTextChanged(const QString &text)
         m_proxyModel->setFilterRegularExpression(QRegularExpression::escape(text));
     }
 }
-}
+
+

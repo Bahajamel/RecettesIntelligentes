@@ -114,7 +114,6 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 4: _t->on_actionEdit_triggered(); break;
         case 5: _t->on_actionDelete_triggered(); break;
         case 6: _t->on_actionRecherche_triggered(); break;
-        case 7: _t->on_btnMyRecipes_clicked(); break;
         case 8: _t->on_actionRenitialiser_triggered(); break;
         case 9: _t->onRecetteSelectionChanged((*reinterpret_cast< std::add_pointer_t<QItemSelection>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QItemSelection>>(_a[2]))); break;
         case 10: _t->onSearchTextChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;

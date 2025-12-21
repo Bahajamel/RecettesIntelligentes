@@ -55,7 +55,6 @@ bool DatabaseManager::open()
 
 void DatabaseManager::close()
 {
-<<<<<<< HEAD
     if (m_db.isOpen()) {
         // Vérifier si la connexion est encore utilisée avant de la supprimer
         QStringList connections = QSqlDatabase::connectionNames();
@@ -65,12 +64,6 @@ void DatabaseManager::close()
             // Elle sera supprimée automatiquement à la fin du programme
         }
     }
-=======
-    if (m_db.isOpen())
-        m_db.close();
-
-    //QSqlDatabase::removeDatabase("GESTION_RECETTES_CONN");
->>>>>>> 3567aa235b818089fe94588a01d93cf16570992a
 }
 
 QSqlDatabase DatabaseManager::database() const
