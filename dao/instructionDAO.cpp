@@ -15,10 +15,19 @@ int InstructionDAO::createSimple(int recetteId, int parentId, int ordre, const Q
 {
     QSqlQuery q(m_db);
 
-    q.prepare("INSERT INTO instruction (recette_id, parent_id, ordre, type) "
-              "VALUES (?, ?, ?, 'simple')");
+    q.prepare(
+        "INSERT INTO instruction (recette_id, parent_id, ordre, type) "
+        "VALUES (?, ?, ?, 'simple')"
+        );
+
     q.addBindValue(recetteId);
-    q.addBindValue(parentId == -1 ? QVariant(): QVariant::fromValue(parentId));
+
+    // 🔥 NULL SQL correct
+    if (parentId == -1)
+        q.addBindValue(QVariant(QVariant::Int)); // NULL
+    else
+        q.addBindValue(parentId);
+
     q.addBindValue(ordre);
 
     if (!q.exec()) {
@@ -29,24 +38,39 @@ int InstructionDAO::createSimple(int recetteId, int parentId, int ordre, const Q
     int idInstr = q.lastInsertId().toInt();
 
     QSqlQuery qi(m_db);
-    qi.prepare("INSERT INTO instruction_simple (instruction_id, texte) VALUES (?, ?)");
+    qi.prepare(
+        "INSERT INTO instruction_simple (instruction_id, texte) "
+        "VALUES (?, ?)"
+        );
     qi.addBindValue(idInstr);
     qi.addBindValue(texte);
 
-    qi.exec();
+    if (!qi.exec()) {
+        qWarning() << "Error insert instruction_simple:" << qi.lastError();
+        return -1;
+    }
 
     return idInstr;
 }
+
 
 // ------------------ CREATE Composée --------------------
 int InstructionDAO::createComposee(int recetteId, int parentId, int ordre, const QString &titre)
 {
     QSqlQuery q(m_db);
 
-    q.prepare("INSERT INTO instruction (recette_id, parent_id, ordre, type) "
-              "VALUES (?, ?, ?, 'composee')");
+    q.prepare(
+        "INSERT INTO instruction (recette_id, parent_id, ordre, type) "
+        "VALUES (?, ?, ?, 'composee')"
+        );
+
     q.addBindValue(recetteId);
-    q.addBindValue(parentId == -1 ? QVariant() : QVariant::fromValue(parentId));
+
+    if (parentId == -1)
+        q.addBindValue(QVariant(QVariant::Int)); // NULL
+    else
+        q.addBindValue(parentId);
+
     q.addBindValue(ordre);
 
     if (!q.exec()) {
@@ -57,14 +81,21 @@ int InstructionDAO::createComposee(int recetteId, int parentId, int ordre, const
     int idInstr = q.lastInsertId().toInt();
 
     QSqlQuery qi(m_db);
-    qi.prepare("INSERT INTO instruction_composee (instruction_id, titre) VALUES (?, ?)");
+    qi.prepare(
+        "INSERT INTO instruction_composee (instruction_id, titre) "
+        "VALUES (?, ?)"
+        );
     qi.addBindValue(idInstr);
     qi.addBindValue(titre);
 
-    qi.exec();
+    if (!qi.exec()) {
+        qWarning() << "Error insert instruction_composee:" << qi.lastError();
+        return -1;
+    }
 
     return idInstr;
 }
+
 
 // ------------------ LOAD tree --------------------
 QList<QSharedPointer<Instruction>> InstructionDAO::loadForRecette(int recetteId)
@@ -77,8 +108,14 @@ QList<QSharedPointer<Instruction>> InstructionDAO::loadForRecette(int recetteId)
     QSqlQuery q(m_db);
     q.prepare("SELECT id, parent_id, type, ordre FROM instruction WHERE recette_id=?");
     q.addBindValue(recetteId);
-    q.exec();
 
+    if (!q.exec()) {
+        qDebug() << "❌ ERREUR SQL instruction:" << q.lastError().text();
+        return QList<QSharedPointer<Instruction>>();
+    }
+
+    qDebug() << "🔍 Recherche instructions pour recette" << recetteId;
+    int count = 0;
     while (q.next()) {
         QVariantMap map;
         int id = q.value("id").toInt();
@@ -86,23 +123,38 @@ QList<QSharedPointer<Instruction>> InstructionDAO::loadForRecette(int recetteId)
         map["type"] = q.value("type");
         map["ordre"] = q.value("ordre");
         nodes[id] = map;
+        count++;
+        qDebug() << "  → Instruction trouvée: ID=" << id << "type=" << map["type"];
     }
+    qDebug() << "✅ Total:" << count << "instructions trouvées";
 
     // 2) Charger simples
     QSqlQuery s(m_db);
-    s.exec("SELECT instruction_id, texte FROM instruction_simple");
-    while (s.next()) {
-        simpleTexts[s.value(0).toInt()] = s.value(1).toString();
+    s.prepare("SELECT instruction_id, texte FROM instruction_simple WHERE instruction_id IN (SELECT id FROM instruction WHERE recette_id=?)");
+    s.addBindValue(recetteId);
+    if (!s.exec()) {
+        qDebug() << "❌ ERREUR SQL instruction_simple:" << s.lastError().text();
+    } else {
+        while (s.next()) {
+            simpleTexts[s.value(0).toInt()] = s.value(1).toString();
+            qDebug() << "  → Simple:" << s.value(1).toString();
+        }
     }
 
     // 3) Charger composées
     QSqlQuery c(m_db);
-    c.exec("SELECT instruction_id, titre FROM instruction_composee");
-    while (c.next()) {
-        composeeTitles[c.value(0).toInt()] = c.value(1).toString();
+    c.prepare("SELECT instruction_id, titre FROM instruction_composee WHERE instruction_id IN (SELECT id FROM instruction WHERE recette_id=?)");
+    c.addBindValue(recetteId);
+    if (!c.exec()) {
+        qDebug() << "❌ ERREUR SQL instruction_composee:" << c.lastError().text();
+    } else {
+        while (c.next()) {
+            composeeTitles[c.value(0).toInt()] = c.value(1).toString();
+            qDebug() << "  → Composée:" << c.value(1).toString();
+        }
     }
 
-    // 4) Trouver racines et construire l’arbre
+    // 4) Trouver racines et construire l'arbre
     QList<QSharedPointer<Instruction>> roots;
     for (int id : nodes.keys()) {
         if (nodes[id]["parent"].isNull()) {
@@ -114,6 +166,7 @@ QList<QSharedPointer<Instruction>> InstructionDAO::loadForRecette(int recetteId)
     std::sort(roots.begin(), roots.end(),
               [](auto a, auto b){ return a->m_ordre < b->m_ordre; });
 
+    qDebug() << "📦 Retour de" << roots.size() << "instructions racines";
     return roots;
 }
 

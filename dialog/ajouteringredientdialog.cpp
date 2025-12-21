@@ -1,4 +1,4 @@
-#include "ajouteringredientdialog.h"
+#include "dialogHeader/ajouteringredientdialog.h"
 #include "ui_ajouteringredientdialog.h"
 #include <QMessageBox>
 
