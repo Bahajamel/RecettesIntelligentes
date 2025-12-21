@@ -1,6 +1,8 @@
 #ifndef BACKEND_H
 #define BACKEND_H
 
+#include <QPixmap>  // ← AJOUTER CETTE LIGNE !
+
 #include <QObject>
 #include "dataHeader/databasemanager.h"
 
@@ -46,6 +48,7 @@ public slots:
     bool mettreAJourRecette(int id, const QString &titre, const QString &description, const QString &photo);
     bool supprimerRecette(int id);
     QString sauvegarderImage(const QString &cheminSource);
+    QPixmap chargerImageDepuisBase64(const QString &base64Data);
 
 
 signals :

@@ -83,7 +83,8 @@ bool DatabaseManager::createTables()
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             titre TEXT NOT NULL,
             description TEXT,
-            photo TEXT
+            photo TEXT,
+            photo BLOB
         );
         )",
 

@@ -7,6 +7,11 @@
 #include <QCryptographicHash>
 #include <QStandardPaths>
 
+#include <QStandardPaths>
+#include <QFileInfo>
+#include <QBuffer>
+#include <QPixmap>
+#include <QDebug>
 
 Backend::Backend(QObject *parent)
     : QObject(parent),
@@ -28,12 +33,6 @@ Backend::Backend(QObject *parent)
     // 4️⃣ Models
     m_recetteModel(m_recetteService)
 {
-    m_dossierImages = QDir::currentPath() + "/recettes_images";
-    QDir dir;
-    if (!dir.exists(m_dossierImages)) {
-        dir.mkpath(m_dossierImages);
-        qDebug() << "✓ Dossier images créé:" << m_dossierImages;
-    }
 
     if (!m_dbManager.open()) {
         qCritical() << "ERREUR: Impossible d'ouvrir la base de données!";
@@ -42,9 +41,8 @@ Backend::Backend(QObject *parent)
     }
 
 
-    qDebug() << "📁 Dossier de l'application:" << getAppDataPath();
     qDebug() << "📁 Base de données:" << getAppDataPath() + "/app.db";
-    qDebug() << "📁 Dossier images:" << m_dossierImages;
+    qDebug() << "📸 Images stockées en Base64 dans la BDD";
 
     chargerRecettes();
 
@@ -391,49 +389,65 @@ void Backend::insererRecettesTest()
 
 QString Backend::sauvegarderImage(const QString &cheminSource)
 {
-    // Si c'est déjà une image dans notre dossier, ne rien faire
-    if (cheminSource.startsWith(m_dossierImages)) {
-        return cheminSource;
-    }
+    qDebug() << "📸 Conversion de l'image en Base64:" << cheminSource;
 
-    // Vérifier que le fichier source existe
-    QFileInfo sourceInfo(cheminSource);
-    if (!sourceInfo.exists() || !sourceInfo.isFile()) {
-        qWarning() << "⚠️ Fichier source introuvable:" << cheminSource;
+    // Charger l'image
+    QPixmap pixmap(cheminSource);
+    if (pixmap.isNull()) {
+        qWarning() << "⚠️ Impossible de charger l'image";
         return QString();
     }
 
-    // Générer un nom unique basé sur le hash du fichier + timestamp
-    QFile sourceFile(cheminSource);
-    if (!sourceFile.open(QIODevice::ReadOnly)) {
-        qWarning() << "⚠️ Impossible d'ouvrir le fichier source";
-        return QString();
+    // Redimensionner si trop grande (optimisation)
+    if (pixmap.width() > 800 || pixmap.height() > 800) {
+        pixmap = pixmap.scaled(800, 800, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        qDebug() << "   → Image redimensionnée à" << pixmap.size();
     }
 
-    QByteArray fileData = sourceFile.readAll();
-    sourceFile.close();
+    // Convertir en Base64
+    QByteArray byteArray;
+    QBuffer buffer(&byteArray);
+    buffer.open(QIODevice::WriteOnly);
+    pixmap.save(&buffer, "JPG", 85); // Qualité 85%
 
-    // Hash MD5 du contenu
-    QByteArray hash = QCryptographicHash::hash(fileData, QCryptographicHash::Md5);
-    QString hashStr = hash.toHex();
+    QString base64 = QString("data:image/jpeg;base64,") + byteArray.toBase64();
 
-    // Extension du fichier original
-    QString extension = sourceInfo.suffix().toLower();
-    if (extension.isEmpty()) {
-        extension = "jpg"; // Par défaut
+    qDebug() << "✓ Image convertie en Base64 (" << base64.size() << "caractères)";
+
+    return base64;
+}
+
+// ============================================
+// NOUVELLE MÉTHODE : Charger une image depuis Base64
+// ============================================
+QPixmap Backend::chargerImageDepuisBase64(const QString &base64Data)
+{
+    if (base64Data.isEmpty()) {
+        return QPixmap();
     }
 
-    // Nom du nouveau fichier : hash_timestamp.extension
-    QString timestamp = QString::number(QDateTime::currentSecsSinceEpoch());
-    QString nouveauNom = QString("%1_%2.%3").arg(hashStr.left(12)).arg(timestamp).arg(extension);
-    QString cheminDestination = m_dossierImages + "/" + nouveauNom;
-
-    // Copier le fichier
-    if (QFile::copy(cheminSource, cheminDestination)) {
-        qDebug() << "✓ Image copiée:" << cheminDestination;
-        return cheminDestination;
-    } else {
-        qWarning() << "⚠️ Échec de la copie de l'image";
-        return QString();
+    // Si c'est un chemin fichier (ancien système), le charger normalement
+    if (QFile::exists(base64Data)) {
+        return QPixmap(base64Data);
     }
+
+    // Sinon, c'est du Base64
+    QString base64Clean = base64Data;
+
+    // Retirer le préfixe "data:image/...;base64," si présent
+    if (base64Clean.startsWith("data:image")) {
+        int idx = base64Clean.indexOf("base64,");
+        if (idx != -1) {
+            base64Clean = base64Clean.mid(idx + 7);
+        }
+    }
+
+    // Décoder le Base64
+    QByteArray byteArray = QByteArray::fromBase64(base64Clean.toUtf8());
+
+    // Créer le QPixmap
+    QPixmap pixmap;
+    pixmap.loadFromData(byteArray);
+
+    return pixmap;
 }

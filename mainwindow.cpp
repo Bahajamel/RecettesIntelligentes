@@ -201,7 +201,6 @@ QPushButton* MainWindow::createRecipeCard(const Recette &recipe, int &index)
     thumbnail->setScaledContents(false);
     thumbnail->setAlignment(Qt::AlignCenter);
 
-    // Style pour le thumbnail
     thumbnail->setStyleSheet(
         "QLabel { "
         "  background: #f5f2e8; "
@@ -211,9 +210,9 @@ QPushButton* MainWindow::createRecipeCard(const Recette &recipe, int &index)
         );
 
     if (!recipe.getPhoto().isEmpty()) {
-        QPixmap pixmap(recipe.getPhoto());
+        // Charger l'image depuis Base64 ou chemin
+        QPixmap pixmap = backend->chargerImageDepuisBase64(recipe.getPhoto());
         if (!pixmap.isNull()) {
-            // Centrer l'image sans déformation
             QPixmap scaled = pixmap.scaled(70, 70, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
 
             // Crop au centre si nécessaire
@@ -263,7 +262,7 @@ QPushButton* MainWindow::createRecipeCard(const Recette &recipe, int &index)
     contentLayout->setSpacing(6);
     contentLayout->setContentsMargins(0, 0, 0, 0);
 
-    // Titre - GRAS et visible
+    // Titre
     QLabel *titleLabel = new QLabel(recipe.getTitre(), card);
     titleLabel->setStyleSheet(
         "QLabel { "
@@ -276,12 +275,11 @@ QPushButton* MainWindow::createRecipeCard(const Recette &recipe, int &index)
     titleLabel->setWordWrap(true);
     contentLayout->addWidget(titleLabel);
 
-    // Description - 3 lignes visibles comme dans l'image
+    // Description
     QString desc = recipe.getDescription();
     if (desc.length() > 80) {
         desc = desc.left(80) + "...";
     }
-
     QLabel *descLabel = new QLabel(desc, card);
     descLabel->setStyleSheet(
         "QLabel { "
@@ -292,13 +290,11 @@ QPushButton* MainWindow::createRecipeCard(const Recette &recipe, int &index)
         "}"
         );
     descLabel->setWordWrap(true);
-    descLabel->setMinimumHeight(45); // Assurer 3 lignes
+    descLabel->setMinimumHeight(45);
     descLabel->setAlignment(Qt::AlignLeft | Qt::AlignTop);
     contentLayout->addWidget(descLabel);
 
-    // Ajouter stretch pour pousser le contenu vers le haut
     contentLayout->addStretch();
-
     cardLayout->addLayout(contentLayout, 1);
 
     // Connect click
@@ -311,6 +307,7 @@ QPushButton* MainWindow::createRecipeCard(const Recette &recipe, int &index)
 
     return card;
 }
+
 
 void MainWindow::displayRecipeDetails(const Recette &recipe)
 {
@@ -623,53 +620,50 @@ void MainWindow::displayInstructions(const Recette &recipe)
 
 // Dans mainwindow.cpp, modifiez displayRecipeImage :
 
-void MainWindow::displayRecipeImage(const QString &photoUrl)
+void MainWindow::displayRecipeImage(const QString &photoData)
 {
-    m_currentPhotoUrl = photoUrl;
+    m_currentPhotoUrl = photoData;
 
     QWidget *detailsContent = ui->detailsContent;
     QVBoxLayout *layout = qobject_cast<QVBoxLayout*>(detailsContent->layout());
     if (!layout) return;
 
-    // Chercher si une image existe déjà
+    // Chercher le label d'image
     ImageDropLabel *imageLabel = detailsContent->findChild<ImageDropLabel*>("recipeImageLabel");
     QLineEdit *photoUrlEdit = detailsContent->findChild<QLineEdit*>("photoUrlEdit");
     QPushButton *browseBtn = detailsContent->findChild<QPushButton*>("browsePhotoBtn");
 
     if (!imageLabel) {
-        // Créer le label d'image avec drag & drop
         imageLabel = new ImageDropLabel(detailsContent);
         imageLabel->setObjectName("recipeImageLabel");
         imageLabel->setText("📷\n\nGlissez une image ici\nou cliquez sur Parcourir");
         imageLabel->setMinimumHeight(200);
         imageLabel->setMaximumHeight(300);
 
-        // Connecter le signal de drop - AVEC SAUVEGARDE
         connect(imageLabel, &ImageDropLabel::imageDropped, this, [this](const QString &filePath) {
-            // 🔥 SAUVEGARDER L'IMAGE DANS LE DOSSIER DE L'APP
-            QString cheminSauvegarde = backend->sauvegarderImage(filePath);
+            // Convertir en Base64
+            QString base64Data = backend->sauvegarderImage(filePath);
 
-            if (cheminSauvegarde.isEmpty()) {
-                QMessageBox::warning(this, "Erreur", "Impossible de sauvegarder l'image");
+            if (base64Data.isEmpty()) {
+                QMessageBox::warning(this, tr("Erreur"), tr("Impossible de charger l'image"));
                 return;
             }
 
-            m_currentPhotoUrl = cheminSauvegarde;
+            m_currentPhotoUrl = base64Data;
 
             QLineEdit *edit = ui->detailsContent->findChild<QLineEdit*>("photoUrlEdit");
-            if (edit) edit->setText(cheminSauvegarde);
+            if (edit) edit->setText("[Image embarquée]");
 
-            // Mettre à jour l'affichage
+            // Afficher l'image
             ImageDropLabel *label = ui->detailsContent->findChild<ImageDropLabel*>("recipeImageLabel");
             if (label) {
-                QPixmap pixmap(cheminSauvegarde);
+                QPixmap pixmap = backend->chargerImageDepuisBase64(base64Data);
                 if (!pixmap.isNull()) {
                     label->setPixmap(pixmap.scaled(label->width(), 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-                    label->setStyleSheet("QLabel { background: transparent; border: none; border-radius: 12px; }");
+                    label->setStyleSheet("QLabel { background: transparent; border: none; }");
                 }
             }
 
-            // Sauvegarder immédiatement
             QTimer::singleShot(500, this, &MainWindow::updateRecipeDetails);
         });
 
@@ -677,63 +671,57 @@ void MainWindow::displayRecipeImage(const QString &photoUrl)
     }
 
     if (!photoUrlEdit) {
-        // Layout horizontal pour URL + bouton
         QWidget *urlWidget = new QWidget(detailsContent);
         QHBoxLayout *urlLayout = new QHBoxLayout(urlWidget);
         urlLayout->setContentsMargins(0, 0, 0, 0);
         urlLayout->setSpacing(8);
 
-        // Champ URL (en lecture seule pour éviter les erreurs)
         photoUrlEdit = new QLineEdit(urlWidget);
         photoUrlEdit->setObjectName("photoUrlEdit");
-        photoUrlEdit->setPlaceholderText("Chemin de l'image...");
-        photoUrlEdit->setReadOnly(true); // Lecture seule
+        photoUrlEdit->setPlaceholderText(tr("Aucune image"));
+        photoUrlEdit->setReadOnly(true);
         photoUrlEdit->setStyleSheet(
             "QLineEdit { "
             "  background: #f5f2e8; "
             "  border: 1px solid #e5ddd0; "
-            "  border-radius: 8px; "
-            "  padding: 10px 12px; "
             "  color: #6b7280; "
             "}"
             );
         urlLayout->addWidget(photoUrlEdit, 1);
 
-        // Bouton parcourir
-        browseBtn = new QPushButton("📁 Parcourir", urlWidget);
+        browseBtn = new QPushButton("📁 " + tr("Parcourir"), urlWidget);
         browseBtn->setObjectName("browsePhotoBtn");
         browseBtn->setFixedWidth(120);
         connect(browseBtn, &QPushButton::clicked, this, [this, photoUrlEdit]() {
             QString filePath = QFileDialog::getOpenFileName(
                 this,
-                "Choisir une image",
+                tr("Choisir une image"),
                 QDir::homePath(),
-                "Images (*.png *.jpg *.jpeg *.gif *.bmp *.webp)"
+                tr("Images (*.png *.jpg *.jpeg *.gif *.bmp *.webp)")
                 );
 
             if (!filePath.isEmpty()) {
-                // 🔥 SAUVEGARDER L'IMAGE
-                QString cheminSauvegarde = backend->sauvegarderImage(filePath);
+                // Convertir en Base64
+                QString base64Data = backend->sauvegarderImage(filePath);
 
-                if (cheminSauvegarde.isEmpty()) {
-                    QMessageBox::warning(this, "Erreur", "Impossible de sauvegarder l'image");
+                if (base64Data.isEmpty()) {
+                    QMessageBox::warning(this, tr("Erreur"), tr("Impossible de charger l'image"));
                     return;
                 }
 
-                m_currentPhotoUrl = cheminSauvegarde;
-                photoUrlEdit->setText(cheminSauvegarde);
+                m_currentPhotoUrl = base64Data;
+                photoUrlEdit->setText("[Image embarquée]");
 
-                // Afficher l'image
+                // Afficher
                 ImageDropLabel *label = ui->detailsContent->findChild<ImageDropLabel*>("recipeImageLabel");
                 if (label) {
-                    QPixmap pixmap(cheminSauvegarde);
+                    QPixmap pixmap = backend->chargerImageDepuisBase64(base64Data);
                     if (!pixmap.isNull()) {
                         label->setPixmap(pixmap.scaled(label->width(), 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-                        label->setStyleSheet("QLabel { background: transparent; border: none; border-radius: 12px; }");
+                        label->setStyleSheet("QLabel { background: transparent; border: none; }");
                     }
                 }
 
-                // Sauvegarder
                 QTimer::singleShot(500, this, &MainWindow::updateRecipeDetails);
             }
         });
@@ -742,37 +730,23 @@ void MainWindow::displayRecipeImage(const QString &photoUrl)
         layout->insertWidget(1, urlWidget);
     }
 
-    photoUrlEdit->setText(photoUrl);
+    // Afficher l'image depuis Base64 ou chemin
+    if (!photoData.isEmpty()) {
+        QPixmap pixmap = backend->chargerImageDepuisBase64(photoData);
 
-    // Afficher l'image
-    if (!photoUrl.isEmpty()) {
-        QPixmap pixmap(photoUrl);
         if (!pixmap.isNull()) {
             imageLabel->setPixmap(pixmap.scaled(imageLabel->width(), 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-            imageLabel->setStyleSheet("QLabel { background: transparent; border: none; border-radius: 12px; }");
+            imageLabel->setStyleSheet("QLabel { background: transparent; border: none; }");
+            photoUrlEdit->setText("[Image embarquée]");
         } else {
             imageLabel->clear();
-            imageLabel->setText("📷\nImage introuvable");
-            imageLabel->setStyleSheet(
-                "QLabel { "
-                "  background: rgba(245, 242, 232, 0.3); "
-                "  border: 2px dashed #e5ddd0; "
-                "  border-radius: 12px; "
-                "  color: #dc2626; "
-                "}"
-                );
+            imageLabel->setText("📷\nImage invalide");
+            photoUrlEdit->setText("");
         }
     } else {
         imageLabel->clear();
-        imageLabel->setText(tr("📷\n\nGlissez une image ici\nou cliquez sur Parcourir"));
-        imageLabel->setStyleSheet(
-            "QLabel { "
-            "  background: rgba(245, 242, 232, 0.3); "
-            "  border: 2px dashed #e5ddd0; "
-            "  border-radius: 12px; "
-            "  color: #6b7280; "
-            "}"
-            );
+        imageLabel->setText("📷\n\nGlissez une image ici\nou cliquez sur Parcourir");
+        photoUrlEdit->setText("");
     }
 }
 
