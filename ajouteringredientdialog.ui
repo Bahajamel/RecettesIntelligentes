@@ -59,17 +59,12 @@
    </item>
    <item>
     <property name="text">
-     <string>Nouvel élément</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
      <string>L</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>piece</string>
+     <string>pièce</string>
     </property>
    </item>
   </widget>

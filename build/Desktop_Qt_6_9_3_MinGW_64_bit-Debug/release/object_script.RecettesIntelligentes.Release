@@ -1,4 +1,5 @@
 release/ajouteringredientdialog.o
+release/ajouterinstructiondialog.o
 release/ajouterrecettedialog.o
 release/backend.o
 release/databasemanager.o
@@ -28,6 +29,7 @@ release/unite.o
 release/qrc_resource.o
 release/qrc_qmake_qmake_immediate.o
 release/moc_ajouteringredientdialog.o
+release/moc_ajouterinstructiondialog.o
 release/moc_ajouterrecettedialog.o
 release/moc_backend.o
 release/moc_imagedroplabel.o

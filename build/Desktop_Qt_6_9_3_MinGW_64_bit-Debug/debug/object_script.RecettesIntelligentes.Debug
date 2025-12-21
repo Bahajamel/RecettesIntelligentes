@@ -1,4 +1,5 @@
 debug/ajouteringredientdialog.o
+debug/ajouterinstructiondialog.o
 debug/ajouterrecettedialog.o
 debug/backend.o
 debug/databasemanager.o
@@ -28,6 +29,7 @@ debug/unite.o
 debug/qrc_resource.o
 debug/qrc_qmake_qmake_immediate.o
 debug/moc_ajouteringredientdialog.o
+debug/moc_ajouterinstructiondialog.o
 debug/moc_ajouterrecettedialog.o
 debug/moc_backend.o
 debug/moc_imagedroplabel.o

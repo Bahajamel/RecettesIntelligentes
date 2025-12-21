@@ -5,6 +5,7 @@
 #include "metiersHeader/instructioncomposee.h"
 #include "metiersHeader/unite.h"
 #include "ajouteringredientdialog.h"
+#include "ajouterinstructiondialog.h"
 #include "ImageDropLabel.h"
 #include <QVBoxLayout>
 #include <QRegularExpression>
@@ -740,14 +741,47 @@ void MainWindow::on_btnAddIngredient_clicked()
     }
 }
 
+
+
 void MainWindow::on_btnAddInstruction_clicked()
 {
     if (m_selectedRecipeId < 0) {
         QMessageBox::information(this, "Info", "Veuillez sélectionner une recette d'abord");
         return;
     }
-    // TODO: Ouvrir un dialog pour ajouter une instruction
-    QMessageBox::information(this, "Info", "Ajouter instruction - Utilisez le dialog d'ajout de recette pour l'instant");
+
+    AjouterInstructionDialog dlg(this);
+
+    if (dlg.exec() == QDialog::Accepted) {
+        QString contenu = dlg.getContenu();
+        int parentId = -1;  // Instruction au niveau racine par défaut
+
+        if (dlg.estComposee()) {
+            // Ajouter une instruction composée
+            int instructionId = backend->ajouterInstructionComposee(
+                m_selectedRecipeId,
+                parentId,
+                contenu
+                );
+
+            QMessageBox::information(this, "Succès",
+                                     QString("Instruction composée '%1' ajoutée (ID: %2)").arg(contenu).arg(instructionId));
+        } else {
+            // Ajouter une instruction simple
+            backend->ajouterInstructionSimple(
+                m_selectedRecipeId,
+                parentId,
+                contenu
+                );
+
+            QMessageBox::information(this, "Succès",
+                                     QString("Instruction '%1' ajoutée").arg(contenu));
+        }
+
+        // Rafraîchir l'affichage
+        Recette recette = backend->obtenirRecetteComplete(m_selectedRecipeId);
+        displayRecipeDetails(recette);
+    }
 }
 
 void MainWindow::on_searchLineEdit_textChanged(const QString &text)

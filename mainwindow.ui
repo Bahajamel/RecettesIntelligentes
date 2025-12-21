@@ -291,7 +291,7 @@
       <item>
        <widget class="QTabWidget" name="recipeTabs">
         <property name="currentIndex">
-         <number>1</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="detailsTab">
          <attribute name="title">

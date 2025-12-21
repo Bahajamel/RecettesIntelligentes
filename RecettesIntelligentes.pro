@@ -12,6 +12,7 @@ CONFIG += c++17
 
 SOURCES += \
     ajouteringredientdialog.cpp \
+    ajouterinstructiondialog.cpp \
     ajouterrecettedialog.cpp \
     backend.cpp \
     data/databasemanager.cpp \
@@ -41,6 +42,7 @@ SOURCES += \
 
 HEADERS += \
     ajouteringredientdialog.h \
+    ajouterinstructiondialog.h \
     ajouterrecettedialog.h \
     backend.h \
     dataHeader/databasemanager.h \
@@ -69,6 +71,7 @@ HEADERS += \
 FORMS += \
     RecetteDetailDialog.ui \
     ajouteringredientdialog.ui \
+    ajouterinstructiondialog.ui \
     ajouterrecettedialog.ui \
     mainwindow.ui
 RESOURCES += \
