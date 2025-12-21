@@ -23,7 +23,6 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
-#include <QtWidgets/QScrollBar>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
@@ -84,7 +83,6 @@ public:
     QSpacerItem *horizontalSpacer_2;
     QWidget *widget;
     QHBoxLayout *horizontalLayout_6;
-    QScrollBar *verticalScrollBar;
     QMenuBar *menubar;
     QMenu *menuFile;
     QMenu *menuEdit;
@@ -305,10 +303,6 @@ public:
         verticalLayout_5->addWidget(tabWidget);
 
         detailsScrollArea->setWidget(scrollAreaWidgetContents);
-        verticalScrollBar = new QScrollBar(centralwidget);
-        verticalScrollBar->setObjectName("verticalScrollBar");
-        verticalScrollBar->setGeometry(QRect(350, 10, 16, 491));
-        verticalScrollBar->setOrientation(Qt::Orientation::Vertical);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");

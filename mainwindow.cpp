@@ -13,6 +13,18 @@ MainWindow::MainWindow( Backend *backend , QWidget *parent)
 {
     ui->setupUi(this);
 
+
+
+    ui->tableViewRecettes->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+
+    // Ou pour toujours afficher la barre de défilement
+    ui->tableViewRecettes->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+
+    // Configuration du comportement de défilement
+    ui->tableViewRecettes->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    ui->tableViewRecettes->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
+    ui->tableViewRecettes->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
+
     // Modèle des recettes avec proxy pour la recherche
     m_proxyModel = new QSortFilterProxyModel(this);
     m_proxyModel->setSourceModel(backend->recetteModel());
