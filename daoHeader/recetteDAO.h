@@ -23,7 +23,7 @@ public:
 
     // Mettre à jour une recette
     bool mettreAJourRecette(int id, const QString &titre, const QString &description);
-    bool mettreAJourRecetteComplete(int id, const QString &titre, const QString &description, const QString &photo);
+    bool mettreAJourRecetteComplete(int id, const QString &titre, const QString &description);
 
     // Supprimer une recette
     bool supprimerRecette(int id);

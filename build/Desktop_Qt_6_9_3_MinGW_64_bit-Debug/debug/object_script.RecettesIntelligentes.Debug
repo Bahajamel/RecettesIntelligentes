@@ -3,7 +3,6 @@ debug/ajouterinstructiondialog.o
 debug/ajouterrecettedialog.o
 debug/backend.o
 debug/databasemanager.o
-debug/initialdata.o
 debug/imagedroplabel.o
 debug/ingredient.o
 debug/ingredientDAO.o

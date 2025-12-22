@@ -3,7 +3,6 @@ release/ajouterinstructiondialog.o
 release/ajouterrecettedialog.o
 release/backend.o
 release/databasemanager.o
-release/initialdata.o
 release/imagedroplabel.o
 release/ingredient.o
 release/ingredientDAO.o

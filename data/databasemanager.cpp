@@ -82,8 +82,7 @@ bool DatabaseManager::createTables()
         CREATE TABLE IF NOT EXISTS recette (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             titre TEXT NOT NULL,
-            description TEXT,
-            photo TEXT
+            description TEXT
         );
         )",
 

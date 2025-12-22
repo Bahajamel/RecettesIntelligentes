@@ -41,9 +41,9 @@ QList<Recette> RecetteService::listerRecettes()
     return m_recDao.obtenirToutesRecettes();
 }
 
-bool RecetteService::mettreAJourRecette(int id, const QString &titre, const QString &description, const QString &photo)
+bool RecetteService::mettreAJourRecette(int id, const QString &titre, const QString &description)
 {
-    return m_recDao.mettreAJourRecetteComplete(id, titre, description, photo);
+    return m_recDao.mettreAJourRecetteComplete(id, titre, description );
 }
 
 Recette RecetteService::obtenirRecetteComplete(int id)

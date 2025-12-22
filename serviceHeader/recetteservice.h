@@ -15,7 +15,7 @@ public:
                    InstructionService &instService);
 
     int creerRecette(const QString &titre, const QString &description);
-    bool mettreAJourRecette(int id, const QString &titre, const QString &description, const QString &photo);
+    bool mettreAJourRecette(int id, const QString &titre, const QString &description);
     bool ajouterIngredient(int recetteId, const Ingredient &ingredient , float qte, UNITE unite);
     QList<Ingredient> ingredientsDeRecette(int recetteId);
     QList<QSharedPointer<Instruction>> instructionsDeRecette(int recetteId);

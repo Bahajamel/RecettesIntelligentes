@@ -1,6 +1,5 @@
 #include "backend.h"
 #include "metiersHeader/unite.h"
-
 Backend::Backend(QObject *parent)
     : QObject(parent),
 
@@ -62,9 +61,9 @@ void Backend::chargerRecettes()
     QList<Recette> recettes = m_recetteService.listerRecettes();
     m_recetteModel.setRecettes(recettes);
 }
-int Backend::creerRecette(const QString &titre, const QString &description)
+int Backend::creerRecette(const QString &titre, const QString &description )
 {
-    int id = m_recetteService.creerRecette(titre, description);
+    int id = m_recetteService.creerRecette(titre, description ) ;
     if (id < 0) {
         emit erreur("Impossible de créer la recette");
         return 0;
@@ -99,10 +98,11 @@ int Backend::ajouterInstructionSimple(int recetteId,
                                        int parentId,
                                        const QString &texte)
 {
+    int ordre = 0;
     int id = m_instructionService.ajouterSimple(
         recetteId,
         parentId,
-        1,          // ordre par défaut
+        ordre++,          // ordre par défaut
         texte
         );
     return id;
@@ -112,10 +112,11 @@ int Backend::ajouterInstructionComposee(int recetteId,
                                         int parentId,
                                         const QString &titre)
 {
+    int ordre = 0 ;
     int id = m_instructionService.ajouterComposee(
     recetteId,
     parentId,
-    1,
+    ordre ++,
     titre
     );
 
@@ -127,9 +128,9 @@ Recette Backend::obtenirRecetteComplete(int id)
     return m_recetteService.obtenirRecetteComplete(id);
 }
 
-bool Backend::mettreAJourRecette(int id, const QString &titre, const QString &description, const QString &photo)
+bool Backend::mettreAJourRecette(int id, const QString &titre, const QString &description)
 {
-    bool success = m_recetteService.mettreAJourRecette(id, titre, description, photo);
+    bool success = m_recetteService.mettreAJourRecette(id, titre, description);
     if (success) {
         chargerRecettes(); // rafraîchir la vue
     }
@@ -250,7 +251,6 @@ void Backend::insererRecettesTest()
     int prepCrepes = ajouterInstructionComposee(crepesId, -1, "Préparation de la pâte");
     ajouterInstructionSimple(crepesId, prepCrepes, "Mélanger la farine et le sucre");
     ajouterInstructionSimple(crepesId, prepCrepes, "Ajouter les œufs et le lait progressivement");
-    ajouterInstructionSimple(crepesId, prepCrepes, "Incorporer le beurre fondu");
     ajouterInstructionSimple(crepesId, -1, "Laisser reposer 30 minutes");
     ajouterInstructionSimple(crepesId, -1, "Cuire à la poêle 2 minutes de chaque côté");
 

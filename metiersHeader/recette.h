@@ -34,8 +34,7 @@ public:
     QString getDescription() const;
     void setDescription(const QString &description);
 
-    QString getPhoto() const;
-    void setPhoto(const QString &photo);
+
 
     // ---- opérations sur ingrédients ---
     void ajouterIngredient(const Ingredient &ingredient ,const float &quantite ,UNITE unite) ;
@@ -56,7 +55,6 @@ private:
     int m_id = -1;
     QString m_titre;
     QString m_description;
-    QString m_photo;
 
     QList<RecetteIngredient> m_ingredients;
     QList<QSharedPointer<Instruction>> m_instructions; // racines (parent_id == NULL)

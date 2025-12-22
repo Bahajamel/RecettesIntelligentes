@@ -2,4 +2,10 @@
     <qresource prefix="/StyleSheet">
         <file>StyleSheet/style.qss</file>
     </qresource>
+    <qresource prefix="/images">
+        <file>images/salade.jpg</file>
+        <file>images/soupe.jpg</file>
+        <file>images/tarte.jpg</file>
+        <file>images/tiramisu.jpg</file>
+    </qresource>
 </RCC>

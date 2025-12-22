@@ -12,10 +12,9 @@ int RecetteDAO::creerRecette(const QString &titre, const QString &description) {
     }
 
     QSqlQuery query(m_db);
-    query.prepare("INSERT INTO recette (titre, description, photo) VALUES (?, ?, ?)");
+    query.prepare("INSERT INTO recette (titre, description) VALUES (?, ?)");
     query.addBindValue(titre);
     query.addBindValue(description);
-    query.addBindValue(QString()); // photo vide par défaut
 
     if (!query.exec()) {
         qWarning() << "ERREUR création recette:" << query.lastError().text();
@@ -32,7 +31,7 @@ Recette RecetteDAO::obtenirRecette(int id) {
     recette.setId(-1); // Valeur par défaut
 
     QSqlQuery query(m_db);
-    query.prepare("SELECT id, titre, description, photo FROM recette WHERE id = ?");
+    query.prepare("SELECT id, titre, description  FROM recette WHERE id = ?");
     query.addBindValue(id);
 
     if (!query.exec()) {
@@ -44,7 +43,6 @@ Recette RecetteDAO::obtenirRecette(int id) {
         recette.setId( query.value(0).toInt());
         recette.setTitre( query.value(1).toString() );
         recette.setDescription(query.value(2).toString() );
-        recette.setPhoto(query.value(3).toString() );
         qDebug() << "✓ Recette trouvée:" << recette.getTitre();
     } else {
         qWarning() << "ATTENTION : Recette avec ID" << id << "non trouvée";
@@ -57,7 +55,7 @@ QList<Recette> RecetteDAO::obtenirToutesRecettes() {
     QList<Recette> recettes;
 
     QSqlQuery query(m_db);
-    if (!query.exec("SELECT id, titre, description, photo FROM recette ORDER BY titre")) {
+    if (!query.exec("SELECT id, titre, description  FROM recette ORDER BY titre")) {
         qWarning() << "ERREUR lecture toutes recettes:" << query.lastError().text();
         return recettes;
     }
@@ -67,7 +65,6 @@ QList<Recette> RecetteDAO::obtenirToutesRecettes() {
         recette.setId(query.value(0).toInt());
         recette.setTitre(query.value(1).toString());
         recette.setDescription(query.value(2).toString());
-        recette.setPhoto(query.value(3).toString());
         recettes.append(recette);
     }
 
@@ -91,12 +88,11 @@ bool RecetteDAO::mettreAJourRecette(int id, const QString &titre, const QString 
     return true;
 }
 
-bool RecetteDAO::mettreAJourRecetteComplete(int id, const QString &titre, const QString &description, const QString &photo) {
+bool RecetteDAO::mettreAJourRecetteComplete(int id, const QString &titre, const QString &description) {
     QSqlQuery query(m_db);
-    query.prepare("UPDATE recette SET titre = ?, description = ?, photo = ? WHERE id = ?");
+    query.prepare("UPDATE recette SET titre = ?, description = ? WHERE id = ?");
     query.addBindValue(titre);
     query.addBindValue(description);
-    query.addBindValue(photo);
     query.addBindValue(id);
 
     if (!query.exec()) {

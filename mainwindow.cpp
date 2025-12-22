@@ -6,7 +6,6 @@
 #include "metiersHeader/unite.h"
 #include "dialogHeader/ajouteringredientdialog.h"
 #include "dialogHeader/ajouterinstructiondialog.h"
-#include "ImageDropLabel.h"
 #include <QVBoxLayout>
 #include <QRegularExpression>
 #include <QHBoxLayout>
@@ -14,17 +13,10 @@
 #include <QScrollArea>
 #include <QDebug>
 #include <QMessageBox>
-#include <QPixmap>
 #include <QLineEdit>
 #include <QPushButton>
 #include <QTextEdit>
 #include <QTimer>
-#include <QDragEnterEvent>
-#include <QDropEvent>
-#include <QMimeData>
-#include <QFileDialog>
-#include <QFileInfo>
-
 
 MainWindow::MainWindow(Backend *backend, QWidget *parent)
     : QMainWindow(parent)
@@ -32,28 +24,47 @@ MainWindow::MainWindow(Backend *backend, QWidget *parent)
     , backend(backend)
     , m_ingredientModel(this)
     , m_instructionModel(backend->instructionService())
-    , m_proxyModel(nullptr)          // Déplacé ici
-    , m_selectedRecipeId(-1)         // Déplacé ici
+    , m_selectedRecipeId(-1)
 {
     ui->setupUi(this);
 
-    // Setup proxy model for filtering
-    RecetteTableModel *sourceModel = backend->recetteModel();
-    m_proxyModel = new QSortFilterProxyModel(this);
-    m_proxyModel->setSourceModel(sourceModel);
-    m_proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
-    m_proxyModel->setFilterKeyColumn(-1);
-    ui->tableViewRecettes->setModel(m_proxyModel);
+    // Style pour la barre de menu
+    menuBar()->setStyleSheet(
+        "QMenuBar {"
+        "    background-color: #f0f0f0;"
+        "    color: black;"
+        "    border-bottom: 1px solid #d0d0d0;"
+        "}"
+        "QMenuBar::item {"
+        "    background-color: transparent;"
+        "    padding: 4px 10px;"
+        "}"
+        "QMenuBar::item:selected {"
+        "    background-color: #e67e22;"
+        "    color: white;"
+        "}"
+        "QMenu {"
+        "    background-color: white;"
+        "    color: black;"
+        "    border: 1px solid #d0d0d0;"
+        "}"
+        "QMenu::item:selected {"
+        "    background-color: #e67e22;"
+        "    color: white;"
+        "}"
+        );
 
-    // Vue des ingrédients (utilise le modèle RecetteIngredientTableModel)
-    ui->ingredientTable->hide(); // widget placeholder dans le .ui
+    creerMenu();
+
+    // Vue des ingrédients
+    ui->ingredientTable->hide();
     m_ingredientsView = new QTableView(ui->tab1);
     m_ingredientsView->setModel(&m_ingredientModel);
     if (ui->verticalLayout_6) {
         ui->verticalLayout_6->insertWidget(0, m_ingredientsView);
     }
 
-    // Vue des instructions (modèle InstructionTreeModel)
+    // Vue des instructions
     if (ui->instructionList) ui->instructionList->hide();
     if (ui->navigation) ui->navigation->hide();
     if (ui->widget) ui->widget->hide();
@@ -68,16 +79,8 @@ MainWindow::MainWindow(Backend *backend, QWidget *parent)
 
     // Connect search
     connect(ui->searchLineEdit, &QLineEdit::textChanged,
-            this, &MainWindow::onSearchTextChanged);
+            this, &MainWindow::on_searchLineEdit_textChanged);
 
-    // Connect search
-    connect(ui->searchLineEdit, &QLineEdit::textChanged, this, &MainWindow::on_searchLineEdit_textChanged);
-
-    // Connect buttons
-    connect(ui->btnAddRecipe, &QPushButton::clicked, this, &MainWindow::on_btnAddRecipe_clicked);
-    connect(ui->btnDeleteRecipe, &QPushButton::clicked, this, &MainWindow::on_btnDeleteRecipe_clicked);
-    connect(ui->btnAddIngredient, &QPushButton::clicked, this, &MainWindow::on_btnAddIngredient_clicked);
-    connect(ui->btnAddInstruction, &QPushButton::clicked, this, &MainWindow::on_btnAddInstruction_clicked);
     // Connect buttons
     connect(ui->btnAddRecipe, &QPushButton::clicked,
             this, &MainWindow::on_btnAddRecipe_clicked);
@@ -88,15 +91,15 @@ MainWindow::MainWindow(Backend *backend, QWidget *parent)
     connect(ui->btnAddInstruction, &QPushButton::clicked,
             this, &MainWindow::on_btnAddInstruction_clicked);
 
-    // Connect recipe detail edits avec délai pour éviter trop de sauvegardes
+    // Connect recipe detail edits
     m_updateTimer = new QTimer(this);
     m_updateTimer->setSingleShot(true);
-    m_updateTimer->setInterval(1000); // 1 seconde de délai
+    m_updateTimer->setInterval(1000);
     connect(m_updateTimer, &QTimer::timeout,
             this, &MainWindow::updateRecipeDetails);
 
     connect(ui->recipeTitleEdit, &QLineEdit::textChanged, this, [this]() {
-        m_updateTimer->start(); // Redémarrer le timer à chaque changement
+        m_updateTimer->start();
     });
     connect(ui->recipeDescriptionEdit, &QTextEdit::textChanged, this, [this]() {
         m_updateTimer->start();
@@ -104,33 +107,73 @@ MainWindow::MainWindow(Backend *backend, QWidget *parent)
 
     // Load recipes
     backend->chargerRecettes();
-    if (sourceModel) {
-        connect(backend, &Backend::recettesModifiees,
-                sourceModel, &RecetteTableModel::recharger);
-    }
 
-    // Réagir à la sélection d'une recette pour afficher les détails
-    if (ui->tableViewRecettes->selectionModel()) {
-        connect(ui->tableViewRecettes->selectionModel(),
-                &QItemSelectionModel::selectionChanged,
-                this, &MainWindow::onRecetteSelectionChanged);
-    }
-
-    // Sélectionner la première recette si disponible
-    if (m_proxyModel && m_proxyModel->rowCount() > 0) {
-        ui->tableViewRecettes->selectRow(0);
-    }
-
+    // Afficher les recettes avec les cartes
     refreshRecipeList();
 
     // Show empty state initially
     clearRecipeDetails();
 }
 
-
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::creerMenu()
+{
+    // Menu Fichier
+    QMenu *menuFichier = menuBar()->addMenu("Fichier");
+
+    QAction *actionNouveau = new QAction("Nouveau", this);
+    actionNouveau->setShortcut(QKeySequence("Ctrl+N"));
+    connect(actionNouveau, &QAction::triggered, this, &MainWindow::on_actionNouveau_triggered);
+    menuFichier->addAction(actionNouveau);
+
+    QAction *actionOuvrir = new QAction("Ouvrir", this);
+    actionOuvrir->setShortcut(QKeySequence("Ctrl+O"));
+    connect(actionOuvrir, &QAction::triggered, this, &MainWindow::on_actionOuvrir_triggered);
+    menuFichier->addAction(actionOuvrir);
+
+    QAction *actionSauvegarder = new QAction("Sauvegarder", this);
+    actionSauvegarder->setShortcut(QKeySequence("Ctrl+S"));
+    connect(actionSauvegarder, &QAction::triggered, this, &MainWindow::on_actionSauvegarder_triggered);
+    menuFichier->addAction(actionSauvegarder);
+
+    menuFichier->addSeparator();
+
+    QAction *actionQuitter = new QAction("Quitter", this);
+    actionQuitter->setShortcut(QKeySequence("Ctrl+Q"));
+    connect(actionQuitter, &QAction::triggered, this, &MainWindow::on_actionQuitter_triggered);
+    menuFichier->addAction(actionQuitter);
+
+    // Menu Édition
+    QMenu *menuEdition = menuBar()->addMenu("Édition");
+
+    QAction *actionEdit = new QAction("Modifier", this);
+    actionEdit->setShortcut(QKeySequence("Ctrl+E"));
+    connect(actionEdit, &QAction::triggered, this, &MainWindow::on_actionEdit_triggered);
+    menuEdition->addAction(actionEdit);
+
+    QAction *actionDelete = new QAction("Supprimer", this);
+    actionDelete->setShortcut(QKeySequence("Delete"));
+    connect(actionDelete, &QAction::triggered, this, &MainWindow::on_actionDelete_triggered);
+    menuEdition->addAction(actionDelete);
+
+    menuEdition->addSeparator();
+
+    QAction *actionRecherche = new QAction("Rechercher", this);
+    actionRecherche->setShortcut(QKeySequence("Ctrl+F"));
+    connect(actionRecherche, &QAction::triggered, this, &MainWindow::on_actionRecherche_triggered);
+    menuEdition->addAction(actionRecherche);
+
+    // Menu Outils
+    QMenu *menuOutils = menuBar()->addMenu("Outils");
+
+    QAction *actionReinitialiser = new QAction("Réinitialiser (données test)", this);
+    actionReinitialiser->setShortcut(QKeySequence("Ctrl+R"));
+    connect(actionReinitialiser, &QAction::triggered, this, &MainWindow::on_actionRenitialiser_triggered);
+    menuOutils->addAction(actionReinitialiser);
 }
 
 void MainWindow::refreshRecipeList()
@@ -176,7 +219,7 @@ void MainWindow::refreshRecipeList()
     layout->addStretch();
 }
 
-QPushButton* MainWindow::createRecipeCard(const Recette &recipe , int &index)
+QPushButton* MainWindow::createRecipeCard(const Recette &recipe, int &index)
 {
     QPushButton *card = new QPushButton(ui->recipeListContainer);
     card->setObjectName(QString("recipeCard_%1").arg(recipe.getId()));
@@ -190,72 +233,39 @@ QPushButton* MainWindow::createRecipeCard(const Recette &recipe , int &index)
     cardLayout->setContentsMargins(12, 12, 12, 12);
     cardLayout->setSpacing(12);
 
-    // Thumbnail avec image - TAILLE AUGMENTÉE
+    // Thumbnail simple sans image
     QLabel *thumbnail = new QLabel(card);
     thumbnail->setFixedSize(90, 90);
     thumbnail->setScaledContents(false);
     thumbnail->setAlignment(Qt::AlignCenter);
+    thumbnail->setText("🍳");
     thumbnail->setStyleSheet(
         "QLabel { "
         "  background: rgba(245, 242, 232, 0.5); "
         "  border-radius: 8px; "
         "  border: 1px solid #e5ddd0; "
+        "  font-size: 32px; "
+        "  color: #9ca3af; "
         "}"
         );
 
-    if (!recipe.getPhoto().isEmpty()) {
-        QPixmap pixmap(recipe.getPhoto());
-        if (!pixmap.isNull()) {
-            //  Centrer l'image sans déformation
-            QPixmap scaled = pixmap.scaled(90, 90, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
-
-            // Crop au centre si nécessaire
-            if (scaled.width() > 90 || scaled.height() > 90) {
-                int x = (scaled.width() - 90) / 2;
-                int y = (scaled.height() - 90) / 2;
-                scaled = scaled.copy(x, y, 90, 90);
-            }
-
-            thumbnail->setPixmap(scaled);
-        } else {
-            thumbnail->setText("📷");
-            thumbnail->setStyleSheet(
-                "QLabel { "
-                "  background: rgba(245, 242, 232, 0.5); "
-                "  border-radius: 8px; "
-                "  font-size: 32px; "
-                "  color: #9ca3af; "
-                "}"
-                );
-        }
-    } else {
-        thumbnail->setText("📷");
-        thumbnail->setStyleSheet(
-            "QLabel { "
-            "  background: rgba(245, 242, 232, 0.5); "
-            "  border-radius: 8px; "
-            "  font-size: 32px; "
-            "  color: #9ca3af; "
-            "}"
-            );
-    }
     cardLayout->addWidget(thumbnail);
 
     // Content
     QVBoxLayout *contentLayout = new QVBoxLayout();
-    contentLayout->setSpacing(6); // Espacement augmenté
+    contentLayout->setSpacing(6);
     contentLayout->setContentsMargins(0, 0, 0, 0);
 
     // Title
     QLabel *titleLabel = new QLabel(recipe.getTitre(), card);
     titleLabel->setStyleSheet(
         "font-weight: 600; "
-        "font-size: 15px; " //  14px → 15px
+        "font-size: 15px; "
         "color: #2d2418; "
         "background: transparent;"
         );
     titleLabel->setWordWrap(true);
-    titleLabel->setMaximumHeight(45); // Limiter la hauteur du titre
+    titleLabel->setMaximumHeight(45);
     contentLayout->addWidget(titleLabel);
 
     // Description preview
@@ -289,9 +299,6 @@ void MainWindow::displayRecipeDetails(const Recette &recipe)
     ui->recipeTitleEdit->setText(recipe.getTitre());
     ui->recipeDescriptionEdit->setPlainText(recipe.getDescription());
 
-    // Afficher l'image dans l'onglet Détails
-    displayRecipeImage(recipe.getPhoto());
-
     // Afficher les ingrédients
     displayIngredients(recipe);
 
@@ -324,13 +331,10 @@ void MainWindow::updateRecipeDetails()
 
     QString titre = ui->recipeTitleEdit->text();
     QString description = ui->recipeDescriptionEdit->toPlainText();
-    QString photo = m_currentPhotoUrl;
 
-    bool success = backend->mettreAJourRecette(m_selectedRecipeId, titre, description, photo);
+    bool success = backend->mettreAJourRecette(m_selectedRecipeId, titre, description);
     if (success) {
         refreshRecipeList();
-        // Ne pas recharger complètement pour éviter de perdre le focus
-        // Juste mettre à jour la liste
     }
 }
 
@@ -361,7 +365,6 @@ void MainWindow::on_btnDeleteRecipe_clicked()
     }
 }
 
-
 void MainWindow::displayIngredients(const Recette &recipe)
 {
     QWidget *ingredientsContent = ui->ingredientsContent;
@@ -388,7 +391,7 @@ void MainWindow::displayIngredients(const Recette &recipe)
         return;
     }
 
-    // Ajouter les ingrédients un par un (sans cadre global)
+    // Ajouter les ingrédients un par un
     for (int i = 0; i < ingredients.size(); ++i) {
         const RecetteIngredient &ri = ingredients[i];
 
@@ -397,7 +400,6 @@ void MainWindow::displayIngredients(const Recette &recipe)
         row->setMinimumHeight(50);
         row->setMaximumHeight(65);
 
-        // Style élégant sans bordure
         row->setStyleSheet(
             "QWidget { "
             "  background: transparent; "
@@ -414,14 +416,13 @@ void MainWindow::displayIngredients(const Recette &recipe)
         rowLayout->setContentsMargins(8, 8, 8, 8);
         rowLayout->setSpacing(20);
 
-        // Quantité + Unité ensemble (plus compact)
+        // Quantité + Unité
         QWidget *qteContainer = new QWidget(row);
         qteContainer->setFixedWidth(140);
         QHBoxLayout *qteLayout = new QHBoxLayout(qteContainer);
         qteLayout->setContentsMargins(0, 0, 0, 0);
         qteLayout->setSpacing(8);
 
-        // Quantité
         QLabel *qteLabel = new QLabel(QString::number(ri.getQuantite()), qteContainer);
         qteLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
         qteLabel->setStyleSheet(
@@ -432,7 +433,6 @@ void MainWindow::displayIngredients(const Recette &recipe)
             );
         qteLayout->addWidget(qteLabel);
 
-        // Unité
         QLabel *unitLabel = new QLabel(uniteToString(ri.getUnite()), qteContainer);
         unitLabel->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         unitLabel->setStyleSheet(
@@ -446,7 +446,7 @@ void MainWindow::displayIngredients(const Recette &recipe)
 
         rowLayout->addWidget(qteContainer);
 
-        // Nom de l'ingrédient (plus grand, plus lisible)
+        // Nom de l'ingrédient
         QLabel *nameLabel = new QLabel(ri.getIngredient().getNom(), row);
         nameLabel->setStyleSheet(
             "font-weight: 500; "
@@ -471,250 +471,195 @@ void MainWindow::displayInstructions(const Recette &recipe)
     // Nettoyer les widgets existants
     QLayoutItem *item;
     while ((item = layout->takeAt(0)) != nullptr) {
-        if (item->widget() && item->widget()->objectName().startsWith("instruction_")) {
-            delete item->widget();
-        }
+        delete item->widget();
         delete item;
     }
 
-    const QList<QSharedPointer<Instruction>> &instructions = recipe.getInstructions();
+    m_currentInstructions = recipe.getInstructions();
 
-    qDebug() << "📝 [DISPLAY] Affichage de" << instructions.size() << "instructions";
-
-    if (instructions.isEmpty()) {
+    if (m_currentInstructions.isEmpty()) {
         QLabel *emptyLabel = new QLabel("Aucune instruction", instructionsContent);
         emptyLabel->setAlignment(Qt::AlignCenter);
-        emptyLabel->setStyleSheet("color: #9ca3af; padding: 40px; background: transparent;");
+        emptyLabel->setStyleSheet("color: #9ca3af; padding: 40px;");
         layout->addWidget(emptyLabel);
         layout->addStretch();
         return;
     }
 
-    // Ajouter les instructions avec un meilleur design
-    int order = 1;
-    for (const QSharedPointer<Instruction> &inst : instructions) {
-        if (inst.isNull()) {
-            qWarning() << "   ⚠️ Instruction nulle ignorée";
-            continue;
-        }
+    // Réinitialiser l'index
+    m_currentInstructionIndex = 0;
 
-        QWidget *instWidget = new QWidget(instructionsContent);
-        instWidget->setObjectName(QString("instruction_%1").arg(order));
-        instWidget->setStyleSheet(
-            "QWidget#instruction_" + QString::number(order) + " { "
-                                                              "  background: #ffffff; "
-                                                              "  border: 1px solid #e5ddd0; "
-                                                              "  border-radius: 8px; "
-                                                              "  padding: 16px; "
-                                                              "  margin-bottom: 12px; "
-                                                              "}"
-                                                              "QWidget#instruction_" + QString::number(order) + ":hover { "
-                                       "  background: #fefcf8; "
-                                       "  border-color: #d97706; "
-                                       "}"
-            );
+    // ============ COMPTEUR ============
+    QLabel *counterLabel = new QLabel(instructionsContent);
+    counterLabel->setObjectName("counterLabel");
+    counterLabel->setAlignment(Qt::AlignCenter);
+    counterLabel->setStyleSheet(
+        "font-size: 18px; "
+        "font-weight: bold; "
+        "color: #d97706; "
+        "padding: 10px; "
+        "background: transparent;"
+        );
+    layout->addWidget(counterLabel);
 
-        QHBoxLayout *instLayout = new QHBoxLayout(instWidget);
-        instLayout->setContentsMargins(12, 12, 12, 12);
-        instLayout->setSpacing(16);
+    // ============ ZONE D'INSTRUCTION ============
+    QWidget *instructionZone = new QWidget(instructionsContent);
+    instructionZone->setObjectName("instructionZone");
+    instructionZone->setMinimumHeight(150);
+    instructionZone->setStyleSheet(
+        "QWidget#instructionZone { "
+        "  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, "
+        "    stop:0 #fef3c7, stop:1 #fde68a); "
+        "  border: 3px solid #f59e0b; "
+        "  border-radius: 12px; "
+        "  padding: 24px; "
+        "  margin: 20px 0; "
+        "}"
+        );
 
-        // Numéro d'ordre avec style moderne
-        QLabel *orderLabel = new QLabel(QString::number(order), instWidget);
-        orderLabel->setFixedSize(40, 40);
-        orderLabel->setAlignment(Qt::AlignCenter);
-        orderLabel->setStyleSheet(
-            "QLabel { "
-            "  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, "
-            "    stop:0 #f59e0b, stop:1 #d97706); "
-            "  color: white; "
-            "  border-radius: 20px; "
-            "  font-weight: bold; "
-            "  font-size: 16px; "
-            "}"
-            );
-        instLayout->addWidget(orderLabel);
+    QVBoxLayout *zoneLayout = new QVBoxLayout(instructionZone);
+    zoneLayout->setSpacing(12);
 
-        // Contenu de l'instruction
-        QLabel *contentLabel = new QLabel(instWidget);
-        contentLabel->setWordWrap(true);
-        contentLabel->setTextFormat(Qt::PlainText);
-        contentLabel->setStyleSheet(
-            "QLabel { "
-            "  color: #2d2418; "
-            "  font-size: 15px; "
-            "  line-height: 1.6; "
-            "  background: transparent; "
-            "  padding: 4px; "
-            "}"
-            );
+    // Numéro + Texte
+    QLabel *instructionLabel = new QLabel(instructionZone);
+    instructionLabel->setObjectName("instructionLabel");
+    instructionLabel->setWordWrap(true);
+    instructionLabel->setTextFormat(Qt::RichText);
+    instructionLabel->setStyleSheet(
+        "font-size: 17px; "
+        "line-height: 1.8; "
+        "color: #2d2418; "
+        "background: transparent;"
+        );
+    zoneLayout->addWidget(instructionLabel);
 
-        QString texte;
-        if (inst->estSimple()) {
-            // Instruction simple - utiliser afficher() qui retourne m_titre
-            texte = inst->afficher();
-            qDebug() << "   ✓ Instruction" << order << "(simple):" << texte;
-        } else {
-            // Instruction composée
-            QSharedPointer<InstructionComposee> composee = inst.staticCast<InstructionComposee>();
-            texte = "📌 " + composee->getTitre();
-            qDebug() << "   ✓ Instruction" << order << "(composée):" << composee->getTitre();
+    layout->addWidget(instructionZone);
 
-            // Ajouter les sous-instructions
-            const QList<QSharedPointer<Instruction>> &enfants = composee->getEnfants();
-            if (!enfants.isEmpty()) {
-                texte += "\n";
-                for (int i = 0; i < enfants.size(); ++i) {
-                    if (!enfants[i].isNull() && enfants[i]->estSimple()) {
-                        QString sousTexte = enfants[i]->afficher();
-                        texte += QString("\n  %1. %2").arg(i + 1).arg(sousTexte);
-                    }
-                }
-            }
-        }
+    // ============ BOUTONS DE NAVIGATION ============
+    QWidget *navWidget = new QWidget(instructionsContent);
+    QHBoxLayout *navLayout = new QHBoxLayout(navWidget);
+    navLayout->setSpacing(20);
+    navLayout->setContentsMargins(0, 20, 0, 20);
 
-        if (texte.isEmpty()) {
-            texte = "⚠️ Contenu manquant";
-            qWarning() << "   ️ Texte vide pour instruction" << order;
-        }
+    QPushButton *btnPrev = new QPushButton("← Précédent", navWidget);
+    btnPrev->setObjectName("btnPrev");
+    btnPrev->setMinimumHeight(45);
+    btnPrev->setCursor(Qt::PointingHandCursor);
 
-        contentLabel->setText(texte);
-        instLayout->addWidget(contentLabel, 1);
+    QPushButton *btnNext = new QPushButton("Suivant →", navWidget);
+    btnNext->setObjectName("btnNext");
+    btnNext->setMinimumHeight(45);
+    btnNext->setCursor(Qt::PointingHandCursor);
 
-        layout->addWidget(instWidget);
-        order++;
-    }
+    QString btnStyle =
+        "QPushButton { "
+        "  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, "
+        "    stop:0 #f59e0b, stop:1 #d97706); "
+        "  color: white; "
+        "  border: none; "
+        "  border-radius: 8px; "
+        "  padding: 12px 32px; "
+        "  font-size: 15px; "
+        "  font-weight: bold; "
+        "} "
+        "QPushButton:hover { "
+        "  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, "
+        "    stop:0 #d97706, stop:1 #b45309); "
+        "} "
+        "QPushButton:pressed { "
+        "  background: #92400e; "
+        "} "
+        "QPushButton:disabled { "
+        "  background: #d1d5db; "
+        "  color: #9ca3af; "
+        "}";
 
-    qDebug() << "✅ [DISPLAY]" << (order - 1) << "instructions affichées";
+    btnPrev->setStyleSheet(btnStyle);
+    btnNext->setStyleSheet(btnStyle);
 
-    // Ajouter un espacement à la fin
+    navLayout->addWidget(btnPrev);
+    navLayout->addStretch();
+    navLayout->addWidget(btnNext);
+
+    layout->addWidget(navWidget);
     layout->addStretch();
-}
 
-void MainWindow::displayRecipeImage(const QString &photoUrl)
-{
-    m_currentPhotoUrl = photoUrl;
-
-    QWidget *detailsContent = ui->detailsContent;
-    QVBoxLayout *layout = qobject_cast<QVBoxLayout*>(detailsContent->layout());
-    if (!layout) return;
-
-    // Chercher si une image existe déjà
-    ImageDropLabel *imageLabel = detailsContent->findChild<ImageDropLabel*>("recipeImageLabel");
-    QLineEdit *photoUrlEdit = detailsContent->findChild<QLineEdit*>("photoUrlEdit");
-    QPushButton *browseBtn = detailsContent->findChild<QPushButton*>("browsePh otoBtn");
-
-    if (!imageLabel) {
-        // Créer le label d'image avec drag & drop
-        imageLabel = new ImageDropLabel(detailsContent);
-        imageLabel->setObjectName("recipeImageLabel");
-        imageLabel->setText("📷\n\nGlissez une image ici\nou collez une URL ci-dessous");
-
-        // Connecter le signal de drop
-        connect(imageLabel, &ImageDropLabel::imageDropped, this, [this](const QString &filePath) {
-            m_currentPhotoUrl = filePath;
-            QLineEdit *edit = ui->detailsContent->findChild<QLineEdit*>("photoUrlEdit");
-            if (edit) edit->setText(filePath);
-
-            // Mettre à jour l'affichage
-            ImageDropLabel *label = ui->detailsContent->findChild<ImageDropLabel*>("recipeImageLabel");
-            if (label) {
-                QPixmap pixmap(filePath);
-                if (!pixmap.isNull()) {
-                    label->setPixmap(pixmap.scaled(label->width(), 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-                    label->setStyleSheet("QLabel { background: transparent; border: none; border-radius: 12px; }");
-                }
-            }
-
-            // Sauvegarder
-            QTimer::singleShot(500, this, &MainWindow::updateRecipeDetails);
-        });
-
-        layout->insertWidget(0, imageLabel);
-    }
-
-    if (!photoUrlEdit) {
-        // Layout horizontal pour URL + bouton
-        QWidget *urlWidget = new QWidget(detailsContent);
-        QHBoxLayout *urlLayout = new QHBoxLayout(urlWidget);
-        urlLayout->setContentsMargins(0, 0, 0, 0);
-        urlLayout->setSpacing(8);
-
-        // Champ URL
-        photoUrlEdit = new QLineEdit(urlWidget);
-        photoUrlEdit->setObjectName("photoUrlEdit");
-        photoUrlEdit->setPlaceholderText("URL de la photo ou chemin local...");
-        connect(photoUrlEdit, &QLineEdit::textChanged, this, [this, imageLabel](const QString &url) {
-            m_currentPhotoUrl = url;
-            if (!url.isEmpty()) {
-                QPixmap pixmap(url);
-                if (!pixmap.isNull()) {
-                    imageLabel->setPixmap(pixmap.scaled(imageLabel->width(), 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-                    imageLabel->setStyleSheet("QLabel { background: transparent; border: none; border-radius: 12px; }");
-                } else {
-                    imageLabel->clear();
-                    imageLabel->setText("📷\nURL d'image invalide");
-                    imageLabel->setStyleSheet(
-                        "QLabel { "
-                        "  background: rgba(245, 242, 232, 0.3); "
-                        "  border: 2px dashed #e5ddd0; "
-                        "  border-radius: 12px; "
-                        "  color: #6b7280; "
-                        "}"
-                        );
-                }
-            } else {
-                imageLabel->clear();
-                imageLabel->setText("📷\n\nGlissez une image ici\nou collez une URL ci-dessous");
-                imageLabel->setStyleSheet(
-                    "QLabel { "
-                    "  background: rgba(245, 242, 232, 0.3); "
-                    "  border: 2px dashed #e5ddd0; "
-                    "  border-radius: 12px; "
-                    "  color: #6b7280; "
-                    "}"
-                    );
-            }
-            QTimer::singleShot(1000, this, &MainWindow::updateRecipeDetails);
-        });
-        urlLayout->addWidget(photoUrlEdit, 1);
-
-        // Bouton parcourir
-        browseBtn = new QPushButton("📁 Parcourir", urlWidget);
-        browseBtn->setObjectName("browsePhotoBtn");
-        browseBtn->setFixedWidth(120);
-        connect(browseBtn, &QPushButton::clicked, this, [this, photoUrlEdit]() {
-            QString filePath = QFileDialog::getOpenFileName(
-                this,
-                "Choisir une image",
-                QDir::homePath(),
-                "Images (*.png *.jpg *.jpeg *.gif *.bmp *.webp)"
-                );
-            if (!filePath.isEmpty()) {
-                photoUrlEdit->setText(filePath);
-            }
-        });
-        urlLayout->addWidget(browseBtn);
-
-        layout->insertWidget(1, urlWidget);
-    }
-
-    photoUrlEdit->setText(photoUrl);
-
-    // Afficher l'image
-    if (!photoUrl.isEmpty()) {
-        QPixmap pixmap(photoUrl);
-        if (!pixmap.isNull()) {
-            imageLabel->setPixmap(pixmap.scaled(imageLabel->width(), 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-            imageLabel->setStyleSheet("QLabel { background: transparent; border: none; border-radius: 12px; }");
-        } else {
-            imageLabel->clear();
-            imageLabel->setText("📷\nURL d'image invalide");
+    // ============ CONNEXIONS ============
+    connect(btnPrev, &QPushButton::clicked, this, [=]() {
+        if (m_currentInstructionIndex > 0) {
+            m_currentInstructionIndex--;
+            updateInstructionDisplay();
         }
-    } else {
-        imageLabel->clear();
-        imageLabel->setText("📷\n\nGlissez une image ici\nou collez une URL ci-dessous");
-    }
+    });
+
+    connect(btnNext, &QPushButton::clicked, this, [=]() {
+        if (m_currentInstructionIndex < m_currentInstructions.size() - 1) {
+            m_currentInstructionIndex++;
+            updateInstructionDisplay();
+        }
+    });
+
+    // Afficher la première instruction
+    updateInstructionDisplay();
 }
+
+void MainWindow::updateInstructionDisplay()
+{
+    QWidget *instructionsContent = ui->instructionsContent;
+
+    // Récupérer les widgets
+    QLabel *counterLabel = instructionsContent->findChild<QLabel*>("counterLabel");
+    QLabel *instructionLabel = instructionsContent->findChild<QLabel*>("instructionLabel");
+    QPushButton *btnPrev = instructionsContent->findChild<QPushButton*>("btnPrev");
+    QPushButton *btnNext = instructionsContent->findChild<QPushButton*>("btnNext");
+
+    if (!counterLabel || !instructionLabel || !btnPrev || !btnNext) return;
+
+    // Mettre à jour le compteur
+    counterLabel->setText(QString("Étape %1 sur %2")
+                              .arg(m_currentInstructionIndex + 1)
+                              .arg(m_currentInstructions.size()));
+
+    // Mettre à jour le texte de l'instruction
+    QSharedPointer<Instruction> inst = m_currentInstructions[m_currentInstructionIndex];
+    QString texte;
+
+    if (inst->estSimple()) {
+        texte = QString("<div style='font-size: 20px;'>"
+                        "<span style='color: #f59e0b; font-weight: bold; font-size: 28px;'>%1.</span> "
+                        "%2"
+                        "</div>")
+                    .arg(m_currentInstructionIndex + 1)
+                    .arg(inst->afficher());
+    } else {
+        QSharedPointer<InstructionComposee> composee = inst.staticCast<InstructionComposee>();
+        texte = QString("<div style='font-size: 20px;'>"
+                        "<span style='color: #f59e0b; font-weight: bold; font-size: 28px;'>%1.</span> "
+                        "<span style='font-weight: bold;'>📌 %2</span>"
+                        "</div>")
+                    .arg(m_currentInstructionIndex + 1)
+                    .arg(composee->getTitre());
+
+        const QList<QSharedPointer<Instruction>> &enfants = composee->getEnfants();
+        if (!enfants.isEmpty()) {
+            texte += "<div style='margin-left: 30px; margin-top: 15px;'>";
+            for (int i = 0; i < enfants.size(); ++i) {
+                if (!enfants[i].isNull() && enfants[i]->estSimple()) {
+                    texte += QString("<div style='margin: 8px 0;'>• %1</div>")
+                                 .arg(enfants[i]->afficher());
+                }
+            }
+            texte += "</div>";
+        }
+    }
+
+    instructionLabel->setText(texte);
+
+    // Mettre à jour l'état des boutons
+    btnPrev->setEnabled(m_currentInstructionIndex > 0);
+    btnNext->setEnabled(m_currentInstructionIndex < m_currentInstructions.size() - 1);
+}
+
 
 void MainWindow::on_btnAddIngredient_clicked()
 {
@@ -732,7 +677,6 @@ void MainWindow::on_btnAddIngredient_clicked()
 
         backend->ajouterIngredientARecette(m_selectedRecipeId, nom, qte, unite);
 
-        // Récupérer la recette mise à jour (par valeur)
         Recette recette = backend->obtenirRecetteComplete(m_selectedRecipeId);
         displayRecipeDetails(recette);
 
@@ -740,8 +684,6 @@ void MainWindow::on_btnAddIngredient_clicked()
                                  QString("Ingrédient '%1' ajouté avec succès").arg(nom));
     }
 }
-
-
 
 void MainWindow::on_btnAddInstruction_clicked()
 {
@@ -754,10 +696,9 @@ void MainWindow::on_btnAddInstruction_clicked()
 
     if (dlg.exec() == QDialog::Accepted) {
         QString contenu = dlg.getContenu();
-        int parentId = -1;  // Instruction au niveau racine par défaut
+        int parentId = -1;
 
         if (dlg.estComposee()) {
-            // Ajouter une instruction composée
             int instructionId = backend->ajouterInstructionComposee(
                 m_selectedRecipeId,
                 parentId,
@@ -767,7 +708,6 @@ void MainWindow::on_btnAddInstruction_clicked()
             QMessageBox::information(this, "Succès",
                                      QString("Instruction composée '%1' ajoutée (ID: %2)").arg(contenu).arg(instructionId));
         } else {
-            // Ajouter une instruction simple
             backend->ajouterInstructionSimple(
                 m_selectedRecipeId,
                 parentId,
@@ -778,7 +718,6 @@ void MainWindow::on_btnAddInstruction_clicked()
                                      QString("Instruction '%1' ajoutée").arg(contenu));
         }
 
-        // Rafraîchir l'affichage
         Recette recette = backend->obtenirRecetteComplete(m_selectedRecipeId);
         displayRecipeDetails(recette);
     }
@@ -825,7 +764,6 @@ void MainWindow::on_actionRecherche_triggered()
     ui->searchLineEdit->setFocus();
 }
 
-
 void MainWindow::on_actionRenitialiser_triggered()
 {
     backend->insererRecettesTest();
@@ -836,10 +774,9 @@ void MainWindow::onRecetteSelectionChanged(const QItemSelection &selected, const
     if (!m_proxyModel || selected.indexes().isEmpty())
         return;
 
-    // Obtenir l'index source depuis le proxy
     QModelIndex proxyIndex = selected.indexes().first();
     QModelIndex sourceIndex = m_proxyModel->mapToSource(proxyIndex);
-    
+
     auto sourceModel = qobject_cast<RecetteTableModel*>(m_proxyModel->sourceModel());
     if (!sourceModel)
         return;
@@ -847,23 +784,18 @@ void MainWindow::onRecetteSelectionChanged(const QItemSelection &selected, const
     int row = sourceIndex.row();
     Recette r = sourceModel->recetteAt(row);
 
-    // Afficher titre / description
     ui->titleLineEdit->setText(r.getTitre());
     ui->descriptionTextEdit->setPlainText(r.getDescription());
 
-    // Ingrédients
     auto ingredients = backend->ingredientsDeRecette(r.getId());
     m_ingredientModel.setRecetteIngredients(ingredients);
 
-    // Instructions
     backend->chargerInstructionsDansModele(m_instructionModel, r.getId());
 }
 
 void MainWindow::onSearchTextChanged(const QString &text)
 {
     if (m_proxyModel) {
-        // Utiliser une expression régulière pour la recherche
         m_proxyModel->setFilterRegularExpression(QRegularExpression::escape(text));
     }
 }
-

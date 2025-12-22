@@ -44,6 +44,8 @@ private slots:
     void on_actionRenitialiser_triggered();
     void onRecetteSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected);
     void onSearchTextChanged(const QString &text);
+    void creerMenu();
+    void updateInstructionDisplay();
 
 private:
     void refreshRecipeList();
@@ -63,7 +65,8 @@ private:
     QTableView *m_ingredientsView = nullptr;
     QTreeView *m_instructionsView = nullptr;
     QSortFilterProxyModel *m_proxyModel = nullptr;
-
+    int m_currentInstructionIndex = 0;
+    QList<QSharedPointer<Instruction>> m_currentInstructions;
     QList<QPushButton*> m_recipeCards;
     int m_selectedRecipeId = -1;
     QString m_searchQuery;

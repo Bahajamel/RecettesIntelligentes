@@ -41,7 +41,7 @@ public slots:
     void resetDatabase();
     void insererRecettesTest() ;
     Recette obtenirRecetteComplete(int id);
-    bool mettreAJourRecette(int id, const QString &titre, const QString &description, const QString &photo);
+    bool mettreAJourRecette(int id, const QString &titre, const QString &description);
     bool supprimerRecette(int id);
 
 signals :
