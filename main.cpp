@@ -1,5 +1,5 @@
-#include "mainwindow.h"
-#include "backend.h"
+#include "ControllerHeader/mainwindow.h"
+#include "modelsHeader/ServiceLayerHeader/backend.h"
 #include <QApplication>
 #include <QSqlDatabase>
 #include <QFile>
