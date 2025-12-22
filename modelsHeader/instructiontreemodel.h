@@ -2,7 +2,7 @@
 #define INSTRUCTIONTREEMODEL_H
 
 #include <QAbstractItemModel>
-#include "serviceHeader/instructionservice.h"
+#include "ServiceLayerHeader/instructionservice.h"
 
 class InstructionTreeModel : public QAbstractItemModel
 {

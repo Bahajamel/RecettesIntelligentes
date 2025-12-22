@@ -2,8 +2,8 @@
 #define RECETETABLEMODEL_H
 
 #include <QAbstractTableModel>
-#include "metiersHeader/recette.h"
-#include "serviceHeader/recetteservice.h"
+#include "recette.h"
+#include "ServiceLayerHeader/recetteservice.h"
 
 class RecetteTableModel : public QAbstractTableModel
 {

@@ -2,8 +2,8 @@
 #define INGREDIENTMODEL_H
 
 #include <QAbstractTableModel>
-#include "serviceHeader/ingredientservice.h"
-#include "metiersHeader/ingredient.h"
+#include "ServiceLayerHeader/ingredientservice.h"
+#include "ingredient.h"
 
 class IngredientTableModel : public QAbstractTableModel
 {

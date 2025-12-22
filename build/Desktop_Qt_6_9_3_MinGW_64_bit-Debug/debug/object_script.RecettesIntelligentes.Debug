@@ -23,7 +23,6 @@ debug/recetteingredientdao.o
 debug/recetteingredientmodel.o
 debug/recettemodel.o
 debug/recetteservice.o
-debug/test.o
 debug/unite.o
 debug/qrc_resource.o
 debug/qrc_qmake_qmake_immediate.o

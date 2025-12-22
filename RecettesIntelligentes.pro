@@ -11,60 +11,59 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    dialog/ajouteringredientdialog.cpp \
-    dialog/ajouterinstructiondialog.cpp \
-    dialog/ajouterrecettedialog.cpp \
-    backend.cpp \
+    Controller/ajouteringredientdialog.cpp \
+    Controller/ajouterinstructiondialog.cpp \
+    Controller/ajouterrecettedialog.cpp \
+    models/ServiceLayer/backend.cpp \
     data/databasemanager.cpp \
-    imagedroplabel.cpp \
-    metiers/ingredient.cpp \
-    dao/ingredientDAO.cpp \
+    Controller/imagedroplabel.cpp \
+    models/ingredient.cpp \
+    data/ingredientDAO.cpp \
     models/ingredientmodel.cpp \
-    service/ingredientservice.cpp \
-    metiers/instruction.cpp \
-    dao/instructionDAO.cpp \
-    metiers/instructioncomposee.cpp \
-    service/instructionservice.cpp \
-    metiers/instructionsimple.cpp \
+    models/ServiceLayer/ingredientservice.cpp \
+    models/instruction.cpp \
+    data/instructionDAO.cpp \
+    models/instructioncomposee.cpp \
+    models/ServiceLayer/instructionservice.cpp \
+    models/instructionsimple.cpp \
     models/instructiontreemodel.cpp \
     main.cpp \
-    mainwindow.cpp \
-    metiers/recette.cpp \
-    dao/recetteDAO.cpp \
-    metiers/recetteingredient.cpp \
-    dao/recetteingredientdao.cpp \
+    Controller/mainwindow.cpp \
+    models/recette.cpp \
+    data/recetteDAO.cpp \
+    models/recetteingredient.cpp \
+    data/recetteingredientdao.cpp \
     models/recetteingredientmodel.cpp \
     models/recettemodel.cpp \
-    service/recetteservice.cpp \
-    test.cpp \
-    metiers/unite.cpp
+    models/ServiceLayer/recetteservice.cpp \
+    models/unite.cpp
 
 HEADERS += \
-    dialogHeader/ajouteringredientdialog.h \
-    dialogHeader/ajouterinstructiondialog.h \
-    dialogHeader/ajouterrecettedialog.h \
-    backend.h \
+    ControllerHeader/ajouteringredientdialog.h \
+    ControllerHeader/ajouterinstructiondialog.h \
+    ControllerHeader/ajouterrecettedialog.h \
+    modelsHeader/ServiceLayerHeader/backend.h \
     dataHeader/databasemanager.h \
-    imagedroplabel.h \
-    metiersHeader/ingredient.h \
-    daoHeader/ingredientDAO.h \
+    ControllerHeader/imagedroplabel.h \
+    modelsHeader/ingredient.h \
+    dataHeader/ingredientDAO.h \
     modelsHeader/ingredientmodel.h \
-    serviceHeader/ingredientservice.h \
-    metiersHeader/instruction.h \
-    daoHeader/instructionDAO.h \
-    metiersHeader/instructioncomposee.h \
-    serviceHeader/instructionservice.h \
-    metiersHeader/instructionsimple.h \
+    modelsHeader/ServiceLayerHeader/ingredientservice.h \
+    modelsHeader/instruction.h \
+    dataHeader/instructionDAO.h \
+    modelsHeader/instructioncomposee.h \
+    modelsHeader/ServiceLayerHeader/instructionservice.h \
+    modelsHeader/instructionsimple.h \
     modelsHeader/instructiontreemodel.h \
-    mainwindow.h \
-    metiersHeader/recette.h \
-    daoHeader/recetteDAO.h \
-    metiersHeader/recetteingredient.h \
-    daoHeader/recetteingredientdao.h \
+    ControllerHeader/mainwindow.h \
+    modelsHeader/recette.h \
+    dataHeader/recetteDAO.h \
+    modelsHeader/recetteingredient.h \
+    dataHeader/recetteingredientdao.h \
     modelsHeader/recetteingredientmodel.h \
     modelsHeader/recettemodel.h \
-    serviceHeader/recetteservice.h \
-    metiersHeader/unite.h
+    modelsHeader/ServiceLayerHeader/recetteservice.h \
+    modelsHeader/unite.h
 
 FORMS += \
     RecetteDetailDialog.ui \

@@ -2,7 +2,7 @@
 #define RECETTEINGREDIENTMODEL_H
 
 #include <QAbstractTableModel>
-#include "metiersHeader/recetteingredient.h"
+#include "recetteingredient.h"
 
 class RecetteIngredientTableModel : public QAbstractTableModel
 {

@@ -50,33 +50,32 @@ OBJECTS_DIR   = debug
 
 ####### Files
 
-SOURCES       = ..\..\dialog\ajouteringredientdialog.cpp \
-		..\..\dialog\ajouterinstructiondialog.cpp \
-		..\..\dialog\ajouterrecettedialog.cpp \
-		..\..\backend.cpp \
+SOURCES       = ..\..\Controller\ajouteringredientdialog.cpp \
+		..\..\Controller\ajouterinstructiondialog.cpp \
+		..\..\Controller\ajouterrecettedialog.cpp \
+		models/ServiceLayer/backend.cpp \
 		..\..\data\databasemanager.cpp \
-		..\..\imagedroplabel.cpp \
-		..\..\metiers\ingredient.cpp \
-		..\..\dao\ingredientDAO.cpp \
+		..\..\Controller\imagedroplabel.cpp \
+		..\..\models\ingredient.cpp \
+		..\..\data\ingredientDAO.cpp \
 		..\..\models\ingredientmodel.cpp \
-		..\..\service\ingredientservice.cpp \
-		..\..\metiers\instruction.cpp \
-		..\..\dao\instructionDAO.cpp \
-		..\..\metiers\instructioncomposee.cpp \
-		..\..\service\instructionservice.cpp \
-		..\..\metiers\instructionsimple.cpp \
+		models/ServiceLayer/ingredientservice.cpp \
+		..\..\models\instruction.cpp \
+		..\..\data\instructionDAO.cpp \
+		..\..\models\instructioncomposee.cpp \
+		models/ServiceLayer/instructionservice.cpp \
+		..\..\models\instructionsimple.cpp \
 		..\..\models\instructiontreemodel.cpp \
 		..\..\main.cpp \
-		..\..\mainwindow.cpp \
-		..\..\metiers\recette.cpp \
-		..\..\dao\recetteDAO.cpp \
-		..\..\metiers\recetteingredient.cpp \
-		..\..\dao\recetteingredientdao.cpp \
+		..\..\Controller\mainwindow.cpp \
+		..\..\models\recette.cpp \
+		..\..\data\recetteDAO.cpp \
+		..\..\models\recetteingredient.cpp \
+		..\..\data\recetteingredientdao.cpp \
 		..\..\models\recetteingredientmodel.cpp \
 		..\..\models\recettemodel.cpp \
-		..\..\service\recetteservice.cpp \
-		..\..\test.cpp \
-		..\..\metiers\unite.cpp debug\qrc_resource.cpp \
+		models/ServiceLayer/recetteservice.cpp \
+		..\..\models\unite.cpp debug\qrc_resource.cpp \
 		debug\qrc_qmake_qmake_immediate.cpp \
 		debug\moc_ajouteringredientdialog.cpp \
 		debug\moc_ajouterinstructiondialog.cpp \
@@ -113,7 +112,6 @@ OBJECTS       = debug/ajouteringredientdialog.o \
 		debug/recetteingredientmodel.o \
 		debug/recettemodel.o \
 		debug/recetteservice.o \
-		debug/test.o \
 		debug/unite.o \
 		debug/qrc_resource.o \
 		debug/qrc_qmake_qmake_immediate.o \
@@ -128,57 +126,56 @@ OBJECTS       = debug/ajouteringredientdialog.o \
 		debug/moc_recetteingredientmodel.o \
 		debug/moc_recettemodel.o
 
-DIST          =  ..\..\dialogHeader\ajouteringredientdialog.h \
-		..\..\dialogHeader\ajouterinstructiondialog.h \
-		..\..\dialogHeader\ajouterrecettedialog.h \
-		..\..\backend.h \
+DIST          =  ..\..\ControllerHeader\ajouteringredientdialog.h \
+		..\..\ControllerHeader\ajouterinstructiondialog.h \
+		..\..\ControllerHeader\ajouterrecettedialog.h \
+		..\..\modelsHeader\ServiceLayerHeader\backend.h \
 		..\..\dataHeader\databasemanager.h \
-		..\..\imagedroplabel.h \
-		..\..\metiersHeader\ingredient.h \
-		..\..\daoHeader\ingredientDAO.h \
+		..\..\ControllerHeader\imagedroplabel.h \
+		..\..\modelsHeader\ingredient.h \
+		..\..\dataHeader\ingredientDAO.h \
 		..\..\modelsHeader\ingredientmodel.h \
-		..\..\serviceHeader\ingredientservice.h \
-		..\..\metiersHeader\instruction.h \
-		..\..\daoHeader\instructionDAO.h \
-		..\..\metiersHeader\instructioncomposee.h \
-		..\..\serviceHeader\instructionservice.h \
-		..\..\metiersHeader\instructionsimple.h \
+		..\..\modelsHeader\ServiceLayerHeader\ingredientservice.h \
+		..\..\modelsHeader\instruction.h \
+		..\..\dataHeader\instructionDAO.h \
+		..\..\modelsHeader\instructioncomposee.h \
+		..\..\modelsHeader\ServiceLayerHeader\instructionservice.h \
+		..\..\modelsHeader\instructionsimple.h \
 		..\..\modelsHeader\instructiontreemodel.h \
-		..\..\mainwindow.h \
-		..\..\metiersHeader\recette.h \
-		..\..\daoHeader\recetteDAO.h \
-		..\..\metiersHeader\recetteingredient.h \
-		..\..\daoHeader\recetteingredientdao.h \
+		..\..\ControllerHeader\mainwindow.h \
+		..\..\modelsHeader\recette.h \
+		..\..\dataHeader\recetteDAO.h \
+		..\..\modelsHeader\recetteingredient.h \
+		..\..\dataHeader\recetteingredientdao.h \
 		..\..\modelsHeader\recetteingredientmodel.h \
 		..\..\modelsHeader\recettemodel.h \
-		..\..\serviceHeader\recetteservice.h \
-		..\..\metiersHeader\unite.h ..\..\dialog\ajouteringredientdialog.cpp \
-		..\..\dialog\ajouterinstructiondialog.cpp \
-		..\..\dialog\ajouterrecettedialog.cpp \
-		..\..\backend.cpp \
+		..\..\modelsHeader\ServiceLayerHeader\recetteservice.h \
+		..\..\modelsHeader\unite.h ..\..\Controller\ajouteringredientdialog.cpp \
+		..\..\Controller\ajouterinstructiondialog.cpp \
+		..\..\Controller\ajouterrecettedialog.cpp \
+		models/ServiceLayer/backend.cpp \
 		..\..\data\databasemanager.cpp \
-		..\..\imagedroplabel.cpp \
-		..\..\metiers\ingredient.cpp \
-		..\..\dao\ingredientDAO.cpp \
+		..\..\Controller\imagedroplabel.cpp \
+		..\..\models\ingredient.cpp \
+		..\..\data\ingredientDAO.cpp \
 		..\..\models\ingredientmodel.cpp \
-		..\..\service\ingredientservice.cpp \
-		..\..\metiers\instruction.cpp \
-		..\..\dao\instructionDAO.cpp \
-		..\..\metiers\instructioncomposee.cpp \
-		..\..\service\instructionservice.cpp \
-		..\..\metiers\instructionsimple.cpp \
+		models/ServiceLayer/ingredientservice.cpp \
+		..\..\models\instruction.cpp \
+		..\..\data\instructionDAO.cpp \
+		..\..\models\instructioncomposee.cpp \
+		models/ServiceLayer/instructionservice.cpp \
+		..\..\models\instructionsimple.cpp \
 		..\..\models\instructiontreemodel.cpp \
 		..\..\main.cpp \
-		..\..\mainwindow.cpp \
-		..\..\metiers\recette.cpp \
-		..\..\dao\recetteDAO.cpp \
-		..\..\metiers\recetteingredient.cpp \
-		..\..\dao\recetteingredientdao.cpp \
+		..\..\Controller\mainwindow.cpp \
+		..\..\models\recette.cpp \
+		..\..\data\recetteDAO.cpp \
+		..\..\models\recetteingredient.cpp \
+		..\..\data\recetteingredientdao.cpp \
 		..\..\models\recetteingredientmodel.cpp \
 		..\..\models\recettemodel.cpp \
-		..\..\service\recetteservice.cpp \
-		..\..\test.cpp \
-		..\..\metiers\unite.cpp
+		models/ServiceLayer/recetteservice.cpp \
+		..\..\models\unite.cpp
 QMAKE_TARGET  = RecettesIntelligentes
 DESTDIR        = debug\ #avoid trailing-slash linebreak
 TARGET         = RecettesIntelligentes.exe
@@ -198,10 +195,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) RecettesIntelligentes.zip $(SOURCES) $(DIST) ..\..\..\..\RecettesIntelligentes.pro C:\Qt\6.9.3\mingw_64\mkspecs\features\spec_pre.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\device_config.prf C:\Qt\6.9.3\mingw_64\mkspecs\common\sanitize.conf C:\Qt\6.9.3\mingw_64\mkspecs\common\gcc-base.conf C:\Qt\6.9.3\mingw_64\mkspecs\common\g++-base.conf C:\Qt\6.9.3\mingw_64\mkspecs\features\win32\windows_vulkan_sdk.prf C:\Qt\6.9.3\mingw_64\mkspecs\common\windows-vulkan.conf C:\Qt\6.9.3\mingw_64\mkspecs\common\g++-win32.conf C:\Qt\6.9.3\mingw_64\mkspecs\common\windows-desktop.conf C:\Qt\6.9.3\mingw_64\mkspecs\qconfig.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_ext_freetype.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_ext_libjpeg.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_ext_libpng.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_ext_openxr_loader.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_charts.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_charts_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_chartsqml.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_chartsqml_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_core.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_core_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_dbus.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_designer.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_entrypoint_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_example_icons_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_examples_asset_downloader_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_fb_support_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_ffmpegmediapluginimpl_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_freetype_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_gui.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_harfbuzz_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_help.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_help_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_jpeg_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_labsanimation.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_labsanimation_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_labsfolderlistmodel.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_labsfolderlistmodel_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_labsplatform.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_labsplatform_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_labsqmlmodels.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_labsqmlmodels_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_labssettings.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_labssettings_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_labssharedimage.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_labssharedimage_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_labswavefrontmesh.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_labswavefrontmesh_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_linguist.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_multimedia.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_multimedia_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_multimediaquick_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_multimediatestlibprivate_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_multimediawidgets.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_network.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_network_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_opengl.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_openglwidgets.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_openglwidgets_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_packetprotocol_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_png_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qdoccatch_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qdoccatchconversions_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qdoccatchgenerators_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qml.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlassetdownloader.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlassetdownloader_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlcompiler.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlcompiler_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlcore.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlcore_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmldebug_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmldom_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlformat_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlintegration.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlintegration_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmllocalstorage.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmllocalstorage_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlls_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlmeta.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlmeta_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlmodels.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlmodels_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlnetwork.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlnetwork_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmltoolingsettings_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmltyperegistrar_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlworkerscript.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlxmllistmodel.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlxmllistmodel_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3d.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3d_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dassetimport.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dassetimport_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dassetutils.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dassetutils_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3deffects.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3deffects_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dglslparser_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dhelpers.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dhelpers_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dhelpersimpl.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dhelpersimpl_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3diblbaker.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3diblbaker_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dparticleeffects.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dparticleeffects_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dparticles.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dparticles_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3druntimerender.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3druntimerender_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dspatialaudio_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dutils.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dutils_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dxr.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dxr_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2basic.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2basic_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2basicstyleimpl.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2basicstyleimpl_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fluentwinui3styleimpl.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fluentwinui3styleimpl_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fusion.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fusion_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fusionstyleimpl.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fusionstyleimpl_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2imagine.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2imagine_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2imaginestyleimpl.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2imaginestyleimpl_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2impl.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2impl_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2material.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2material_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2materialstyleimpl.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2materialstyleimpl_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2universal.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2universal_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2universalstyleimpl.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2universalstyleimpl_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2windowsstyleimpl.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2windowsstyleimpl_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrolstestutilsprivate_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2utils.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2utils_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickeffects.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickeffects_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quicklayouts.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quicklayouts_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickshapes_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quicktemplates2.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quicktestutilsprivate_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quicktimeline.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quicktimeline_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quicktimelineblendtrees.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quicktimelineblendtrees_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickvectorimage.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickvectorimage_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickvectorimagegenerator_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_shadertools.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_shadertools_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_spatialaudio.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_spatialaudio_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_sql.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_svg.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_svgwidgets.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_svgwidgets_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_testinternals_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_testlib.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_tools_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_uiplugin.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_uitools.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_widgets.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_xml.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_zlib_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\features\qt_functions.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\qt_config.prf C:\Qt\6.9.3\mingw_64\mkspecs\win32-g++\qmake.conf C:\Qt\6.9.3\mingw_64\mkspecs\features\spec_post.prf .qmake.stash C:\Qt\6.9.3\mingw_64\mkspecs\features\exclusive_builds.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\toolchain.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\default_pre.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\win32\default_pre.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\resolve_config.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\exclusive_builds_post.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\default_post.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\build_pass.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\qml_debug.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\precompile_header.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\warn_on.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\permissions.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\qt.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\resources_functions.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\resources.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\moc.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\testlib_defines.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\win32\console.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\win32\opengl.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\uic.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\qmake_use.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\file_copies.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\testcase_targets.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\exceptions.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\yacc.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\lex.prf ..\..\RecettesIntelligentes.pro ..\..\resource.qrc debug\qmake_qmake_immediate.qrc C:\Qt\6.9.3\mingw_64\lib\Qt6Quick.prl C:\Qt\6.9.3\mingw_64\lib\Qt6OpenGL.prl C:\Qt\6.9.3\mingw_64\lib\Qt6Widgets.prl C:\Qt\6.9.3\mingw_64\lib\Qt6Gui.prl C:\Qt\6.9.3\mingw_64\lib\Qt6Sql.prl C:\Qt\6.9.3\mingw_64\lib\Qt6QmlMeta.prl C:\Qt\6.9.3\mingw_64\lib\Qt6QmlModels.prl C:\Qt\6.9.3\mingw_64\lib\Qt6QmlWorkerScript.prl C:\Qt\6.9.3\mingw_64\lib\Qt6Qml.prl C:\Qt\6.9.3\mingw_64\lib\Qt6Network.prl C:\Qt\6.9.3\mingw_64\lib\Qt6Test.prl C:\Qt\6.9.3\mingw_64\lib\Qt6Core.prl C:\Qt\6.9.3\mingw_64\lib\Qt6EntryPoint.prl   ..\..\resource.qrc debug\qmake_qmake_immediate.qrc C:\Qt\6.9.3\mingw_64\mkspecs\features\data\dummy.cpp ..\..\dialogHeader\ajouteringredientdialog.h ..\..\dialogHeader\ajouterinstructiondialog.h ..\..\dialogHeader\ajouterrecettedialog.h ..\..\backend.h ..\..\dataHeader\databasemanager.h ..\..\imagedroplabel.h ..\..\metiersHeader\ingredient.h ..\..\daoHeader\ingredientDAO.h ..\..\modelsHeader\ingredientmodel.h ..\..\serviceHeader\ingredientservice.h ..\..\metiersHeader\instruction.h ..\..\daoHeader\instructionDAO.h ..\..\metiersHeader\instructioncomposee.h ..\..\serviceHeader\instructionservice.h ..\..\metiersHeader\instructionsimple.h ..\..\modelsHeader\instructiontreemodel.h ..\..\mainwindow.h ..\..\metiersHeader\recette.h ..\..\daoHeader\recetteDAO.h ..\..\metiersHeader\recetteingredient.h ..\..\daoHeader\recetteingredientdao.h ..\..\modelsHeader\recetteingredientmodel.h ..\..\modelsHeader\recettemodel.h ..\..\serviceHeader\recetteservice.h ..\..\metiersHeader\unite.h  ..\..\dialog\ajouteringredientdialog.cpp ..\..\dialog\ajouterinstructiondialog.cpp ..\..\dialog\ajouterrecettedialog.cpp ..\..\backend.cpp ..\..\data\databasemanager.cpp ..\..\imagedroplabel.cpp ..\..\metiers\ingredient.cpp ..\..\dao\ingredientDAO.cpp ..\..\models\ingredientmodel.cpp ..\..\service\ingredientservice.cpp ..\..\metiers\instruction.cpp ..\..\dao\instructionDAO.cpp ..\..\metiers\instructioncomposee.cpp ..\..\service\instructionservice.cpp ..\..\metiers\instructionsimple.cpp ..\..\models\instructiontreemodel.cpp ..\..\main.cpp ..\..\mainwindow.cpp ..\..\metiers\recette.cpp ..\..\dao\recetteDAO.cpp ..\..\metiers\recetteingredient.cpp ..\..\dao\recetteingredientdao.cpp ..\..\models\recetteingredientmodel.cpp ..\..\models\recettemodel.cpp ..\..\service\recetteservice.cpp ..\..\test.cpp ..\..\metiers\unite.cpp ..\..\RecetteDetailDialog.ui ..\..\ajouteringredientdialog.ui ..\..\ajouterinstructiondialog.ui ..\..\ajouterrecettedialog.ui ..\..\mainwindow.ui    
+	$(ZIP) RecettesIntelligentes.zip $(SOURCES) $(DIST) ..\..\..\..\RecettesIntelligentes.pro C:\Qt\6.9.3\mingw_64\mkspecs\features\spec_pre.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\device_config.prf C:\Qt\6.9.3\mingw_64\mkspecs\common\sanitize.conf C:\Qt\6.9.3\mingw_64\mkspecs\common\gcc-base.conf C:\Qt\6.9.3\mingw_64\mkspecs\common\g++-base.conf C:\Qt\6.9.3\mingw_64\mkspecs\features\win32\windows_vulkan_sdk.prf C:\Qt\6.9.3\mingw_64\mkspecs\common\windows-vulkan.conf C:\Qt\6.9.3\mingw_64\mkspecs\common\g++-win32.conf C:\Qt\6.9.3\mingw_64\mkspecs\common\windows-desktop.conf C:\Qt\6.9.3\mingw_64\mkspecs\qconfig.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_ext_freetype.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_ext_libjpeg.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_ext_libpng.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_ext_openxr_loader.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_charts.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_charts_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_chartsqml.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_chartsqml_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_core.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_core_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_dbus.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_designer.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_entrypoint_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_example_icons_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_examples_asset_downloader_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_fb_support_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_ffmpegmediapluginimpl_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_freetype_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_gui.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_harfbuzz_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_help.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_help_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_jpeg_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_labsanimation.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_labsanimation_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_labsfolderlistmodel.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_labsfolderlistmodel_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_labsplatform.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_labsplatform_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_labsqmlmodels.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_labsqmlmodels_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_labssettings.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_labssettings_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_labssharedimage.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_labssharedimage_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_labswavefrontmesh.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_labswavefrontmesh_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_linguist.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_multimedia.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_multimedia_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_multimediaquick_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_multimediatestlibprivate_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_multimediawidgets.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_network.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_network_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_opengl.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_openglwidgets.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_openglwidgets_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_packetprotocol_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_png_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qdoccatch_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qdoccatchconversions_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qdoccatchgenerators_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qml.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlassetdownloader.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlassetdownloader_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlcompiler.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlcompiler_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlcore.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlcore_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmldebug_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmldom_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlformat_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlintegration.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlintegration_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmllocalstorage.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmllocalstorage_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlls_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlmeta.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlmeta_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlmodels.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlmodels_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlnetwork.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlnetwork_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmltoolingsettings_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmltyperegistrar_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlworkerscript.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlxmllistmodel.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_qmlxmllistmodel_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3d.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3d_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dassetimport.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dassetimport_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dassetutils.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dassetutils_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3deffects.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3deffects_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dglslparser_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dhelpers.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dhelpers_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dhelpersimpl.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dhelpersimpl_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3diblbaker.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3diblbaker_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dparticleeffects.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dparticleeffects_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dparticles.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dparticles_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3druntimerender.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3druntimerender_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dspatialaudio_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dutils.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dutils_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dxr.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick3dxr_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2basic.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2basic_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2basicstyleimpl.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2basicstyleimpl_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fluentwinui3styleimpl.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fluentwinui3styleimpl_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fusion.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fusion_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fusionstyleimpl.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fusionstyleimpl_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2imagine.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2imagine_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2imaginestyleimpl.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2imaginestyleimpl_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2impl.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2impl_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2material.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2material_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2materialstyleimpl.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2materialstyleimpl_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2universal.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2universal_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2universalstyleimpl.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2universalstyleimpl_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2windowsstyleimpl.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2windowsstyleimpl_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickcontrolstestutilsprivate_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2utils.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2utils_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickeffects.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickeffects_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quicklayouts.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quicklayouts_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickshapes_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quicktemplates2.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quicktestutilsprivate_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quicktimeline.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quicktimeline_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quicktimelineblendtrees.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quicktimelineblendtrees_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickvectorimage.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickvectorimage_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickvectorimagegenerator_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_shadertools.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_shadertools_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_spatialaudio.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_spatialaudio_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_sql.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_svg.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_svgwidgets.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_svgwidgets_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_testinternals_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_testlib.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_tools_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_uiplugin.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_uitools.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_widgets.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_xml.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\modules\qt_lib_zlib_private.pri C:\Qt\6.9.3\mingw_64\mkspecs\features\qt_functions.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\qt_config.prf C:\Qt\6.9.3\mingw_64\mkspecs\win32-g++\qmake.conf C:\Qt\6.9.3\mingw_64\mkspecs\features\spec_post.prf .qmake.stash C:\Qt\6.9.3\mingw_64\mkspecs\features\exclusive_builds.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\toolchain.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\default_pre.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\win32\default_pre.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\resolve_config.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\exclusive_builds_post.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\default_post.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\build_pass.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\qml_debug.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\precompile_header.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\warn_on.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\permissions.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\qt.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\resources_functions.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\resources.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\moc.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\testlib_defines.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\win32\console.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\win32\opengl.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\uic.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\qmake_use.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\file_copies.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\testcase_targets.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\exceptions.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\yacc.prf C:\Qt\6.9.3\mingw_64\mkspecs\features\lex.prf ..\..\RecettesIntelligentes.pro ..\..\resource.qrc debug\qmake_qmake_immediate.qrc C:\Qt\6.9.3\mingw_64\lib\Qt6Quick.prl C:\Qt\6.9.3\mingw_64\lib\Qt6OpenGL.prl C:\Qt\6.9.3\mingw_64\lib\Qt6Widgets.prl C:\Qt\6.9.3\mingw_64\lib\Qt6Gui.prl C:\Qt\6.9.3\mingw_64\lib\Qt6Sql.prl C:\Qt\6.9.3\mingw_64\lib\Qt6QmlMeta.prl C:\Qt\6.9.3\mingw_64\lib\Qt6QmlModels.prl C:\Qt\6.9.3\mingw_64\lib\Qt6QmlWorkerScript.prl C:\Qt\6.9.3\mingw_64\lib\Qt6Qml.prl C:\Qt\6.9.3\mingw_64\lib\Qt6Network.prl C:\Qt\6.9.3\mingw_64\lib\Qt6Test.prl C:\Qt\6.9.3\mingw_64\lib\Qt6Core.prl C:\Qt\6.9.3\mingw_64\lib\Qt6EntryPoint.prl   ..\..\resource.qrc debug\qmake_qmake_immediate.qrc C:\Qt\6.9.3\mingw_64\mkspecs\features\data\dummy.cpp ..\..\ControllerHeader\ajouteringredientdialog.h ..\..\ControllerHeader\ajouterinstructiondialog.h ..\..\ControllerHeader\ajouterrecettedialog.h ..\..\modelsHeader\ServiceLayerHeader\backend.h ..\..\dataHeader\databasemanager.h ..\..\ControllerHeader\imagedroplabel.h ..\..\modelsHeader\ingredient.h ..\..\dataHeader\ingredientDAO.h ..\..\modelsHeader\ingredientmodel.h ..\..\modelsHeader\ServiceLayerHeader\ingredientservice.h ..\..\modelsHeader\instruction.h ..\..\dataHeader\instructionDAO.h ..\..\modelsHeader\instructioncomposee.h ..\..\modelsHeader\ServiceLayerHeader\instructionservice.h ..\..\modelsHeader\instructionsimple.h ..\..\modelsHeader\instructiontreemodel.h ..\..\ControllerHeader\mainwindow.h ..\..\modelsHeader\recette.h ..\..\dataHeader\recetteDAO.h ..\..\modelsHeader\recetteingredient.h ..\..\dataHeader\recetteingredientdao.h ..\..\modelsHeader\recetteingredientmodel.h ..\..\modelsHeader\recettemodel.h ..\..\modelsHeader\ServiceLayerHeader\recetteservice.h ..\..\modelsHeader\unite.h  ..\..\Controller\ajouteringredientdialog.cpp ..\..\Controller\ajouterinstructiondialog.cpp ..\..\Controller\ajouterrecettedialog.cpp models/ServiceLayer/backend.cpp ..\..\data\databasemanager.cpp ..\..\Controller\imagedroplabel.cpp ..\..\models\ingredient.cpp ..\..\data\ingredientDAO.cpp ..\..\models\ingredientmodel.cpp models/ServiceLayer/ingredientservice.cpp ..\..\models\instruction.cpp ..\..\data\instructionDAO.cpp ..\..\models\instructioncomposee.cpp models/ServiceLayer/instructionservice.cpp ..\..\models\instructionsimple.cpp ..\..\models\instructiontreemodel.cpp ..\..\main.cpp ..\..\Controller\mainwindow.cpp ..\..\models\recette.cpp ..\..\data\recetteDAO.cpp ..\..\models\recetteingredient.cpp ..\..\data\recetteingredientdao.cpp ..\..\models\recetteingredientmodel.cpp ..\..\models\recettemodel.cpp models/ServiceLayer/recetteservice.cpp ..\..\models\unite.cpp ..\..\RecetteDetailDialog.ui ..\..\ajouteringredientdialog.ui ..\..\ajouterinstructiondialog.ui ..\..\ajouterrecettedialog.ui ..\..\mainwindow.ui    
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug\ajouteringredientdialog.o debug\ajouterinstructiondialog.o debug\ajouterrecettedialog.o debug\backend.o debug\databasemanager.o debug\imagedroplabel.o debug\ingredient.o debug\ingredientDAO.o debug\ingredientmodel.o debug\ingredientservice.o debug\instruction.o debug\instructionDAO.o debug\instructioncomposee.o debug\instructionservice.o debug\instructionsimple.o debug\instructiontreemodel.o debug\main.o debug\mainwindow.o debug\recette.o debug\recetteDAO.o debug\recetteingredient.o debug\recetteingredientdao.o debug\recetteingredientmodel.o debug\recettemodel.o debug\recetteservice.o debug\test.o debug\unite.o debug\qrc_resource.o debug\qrc_qmake_qmake_immediate.o debug\moc_ajouteringredientdialog.o debug\moc_ajouterinstructiondialog.o debug\moc_ajouterrecettedialog.o debug\moc_backend.o debug\moc_imagedroplabel.o debug\moc_ingredientmodel.o debug\moc_instructiontreemodel.o debug\moc_mainwindow.o debug\moc_recetteingredientmodel.o debug\moc_recettemodel.o
+	-$(DEL_FILE) debug\ajouteringredientdialog.o debug\ajouterinstructiondialog.o debug\ajouterrecettedialog.o debug\backend.o debug\databasemanager.o debug\imagedroplabel.o debug\ingredient.o debug\ingredientDAO.o debug\ingredientmodel.o debug\ingredientservice.o debug\instruction.o debug\instructionDAO.o debug\instructioncomposee.o debug\instructionservice.o debug\instructionsimple.o debug\instructiontreemodel.o debug\main.o debug\mainwindow.o debug\recette.o debug\recetteDAO.o debug\recetteingredient.o debug\recetteingredientdao.o debug\recetteingredientmodel.o debug\recettemodel.o debug\recetteservice.o debug\unite.o debug\qrc_resource.o debug\qrc_qmake_qmake_immediate.o debug\moc_ajouteringredientdialog.o debug\moc_ajouterinstructiondialog.o debug\moc_ajouterrecettedialog.o debug\moc_backend.o debug\moc_imagedroplabel.o debug\moc_ingredientmodel.o debug\moc_instructiontreemodel.o debug\moc_mainwindow.o debug\moc_recetteingredientmodel.o debug\moc_recettemodel.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -244,7 +241,7 @@ debug/moc_predefs.h: C:/Qt/6.9.3/mingw_64/mkspecs/features/data/dummy.cpp
 compiler_moc_header_make_all: debug/moc_ajouteringredientdialog.cpp debug/moc_ajouterinstructiondialog.cpp debug/moc_ajouterrecettedialog.cpp debug/moc_backend.cpp debug/moc_imagedroplabel.cpp debug/moc_ingredientmodel.cpp debug/moc_instructiontreemodel.cpp debug/moc_mainwindow.cpp debug/moc_recetteingredientmodel.cpp debug/moc_recettemodel.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) debug\moc_ajouteringredientdialog.cpp debug\moc_ajouterinstructiondialog.cpp debug\moc_ajouterrecettedialog.cpp debug\moc_backend.cpp debug\moc_imagedroplabel.cpp debug\moc_ingredientmodel.cpp debug\moc_instructiontreemodel.cpp debug\moc_mainwindow.cpp debug\moc_recetteingredientmodel.cpp debug\moc_recettemodel.cpp
-debug/moc_ajouteringredientdialog.cpp: ../../dialogHeader/ajouteringredientdialog.h \
+debug/moc_ajouteringredientdialog.cpp: ../../ControllerHeader/ajouteringredientdialog.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/QDialog \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qdialog.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -445,9 +442,9 @@ debug/moc_ajouteringredientdialog.cpp: ../../dialogHeader/ajouteringredientdialo
 		C:/Qt/6.9.3/mingw_64/include/QtGui/qguiapplication_platform.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.9.3/mingw_64/bin/moc.exe
-	C:\Qt\6.9.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/MSI/RecettesIntelligentes/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.9.3/mingw_64/mkspecs/win32-g++ -IC:/Users/MSI/RecettesIntelligentes -IC:/Qt/6.9.3/mingw_64/include -IC:/Qt/6.9.3/mingw_64/include/QtQuick -IC:/Qt/6.9.3/mingw_64/include/QtOpenGL -IC:/Qt/6.9.3/mingw_64/include/QtWidgets -IC:/Qt/6.9.3/mingw_64/include/QtGui -IC:/Qt/6.9.3/mingw_64/include/QtSql -IC:/Qt/6.9.3/mingw_64/include/QtQmlMeta -IC:/Qt/6.9.3/mingw_64/include/QtQmlModels -IC:/Qt/6.9.3/mingw_64/include/QtQmlWorkerScript -IC:/Qt/6.9.3/mingw_64/include/QtQml -IC:/Qt/6.9.3/mingw_64/include/QtQmlIntegration -IC:/Qt/6.9.3/mingw_64/include/QtNetwork -IC:/Qt/6.9.3/mingw_64/include/QtTest -IC:/Qt/6.9.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++ -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed -IC:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include ..\..\dialogHeader\ajouteringredientdialog.h -o debug\moc_ajouteringredientdialog.cpp
+	C:\Qt\6.9.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/MSI/RecettesIntelligentes/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.9.3/mingw_64/mkspecs/win32-g++ -IC:/Users/MSI/RecettesIntelligentes -IC:/Qt/6.9.3/mingw_64/include -IC:/Qt/6.9.3/mingw_64/include/QtQuick -IC:/Qt/6.9.3/mingw_64/include/QtOpenGL -IC:/Qt/6.9.3/mingw_64/include/QtWidgets -IC:/Qt/6.9.3/mingw_64/include/QtGui -IC:/Qt/6.9.3/mingw_64/include/QtSql -IC:/Qt/6.9.3/mingw_64/include/QtQmlMeta -IC:/Qt/6.9.3/mingw_64/include/QtQmlModels -IC:/Qt/6.9.3/mingw_64/include/QtQmlWorkerScript -IC:/Qt/6.9.3/mingw_64/include/QtQml -IC:/Qt/6.9.3/mingw_64/include/QtQmlIntegration -IC:/Qt/6.9.3/mingw_64/include/QtNetwork -IC:/Qt/6.9.3/mingw_64/include/QtTest -IC:/Qt/6.9.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++ -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed -IC:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include ..\..\ControllerHeader\ajouteringredientdialog.h -o debug\moc_ajouteringredientdialog.cpp
 
-debug/moc_ajouterinstructiondialog.cpp: ../../dialogHeader/ajouterinstructiondialog.h \
+debug/moc_ajouterinstructiondialog.cpp: ../../ControllerHeader/ajouterinstructiondialog.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/QDialog \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qdialog.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -648,9 +645,9 @@ debug/moc_ajouterinstructiondialog.cpp: ../../dialogHeader/ajouterinstructiondia
 		C:/Qt/6.9.3/mingw_64/include/QtGui/qguiapplication_platform.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.9.3/mingw_64/bin/moc.exe
-	C:\Qt\6.9.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/MSI/RecettesIntelligentes/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.9.3/mingw_64/mkspecs/win32-g++ -IC:/Users/MSI/RecettesIntelligentes -IC:/Qt/6.9.3/mingw_64/include -IC:/Qt/6.9.3/mingw_64/include/QtQuick -IC:/Qt/6.9.3/mingw_64/include/QtOpenGL -IC:/Qt/6.9.3/mingw_64/include/QtWidgets -IC:/Qt/6.9.3/mingw_64/include/QtGui -IC:/Qt/6.9.3/mingw_64/include/QtSql -IC:/Qt/6.9.3/mingw_64/include/QtQmlMeta -IC:/Qt/6.9.3/mingw_64/include/QtQmlModels -IC:/Qt/6.9.3/mingw_64/include/QtQmlWorkerScript -IC:/Qt/6.9.3/mingw_64/include/QtQml -IC:/Qt/6.9.3/mingw_64/include/QtQmlIntegration -IC:/Qt/6.9.3/mingw_64/include/QtNetwork -IC:/Qt/6.9.3/mingw_64/include/QtTest -IC:/Qt/6.9.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++ -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed -IC:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include ..\..\dialogHeader\ajouterinstructiondialog.h -o debug\moc_ajouterinstructiondialog.cpp
+	C:\Qt\6.9.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/MSI/RecettesIntelligentes/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.9.3/mingw_64/mkspecs/win32-g++ -IC:/Users/MSI/RecettesIntelligentes -IC:/Qt/6.9.3/mingw_64/include -IC:/Qt/6.9.3/mingw_64/include/QtQuick -IC:/Qt/6.9.3/mingw_64/include/QtOpenGL -IC:/Qt/6.9.3/mingw_64/include/QtWidgets -IC:/Qt/6.9.3/mingw_64/include/QtGui -IC:/Qt/6.9.3/mingw_64/include/QtSql -IC:/Qt/6.9.3/mingw_64/include/QtQmlMeta -IC:/Qt/6.9.3/mingw_64/include/QtQmlModels -IC:/Qt/6.9.3/mingw_64/include/QtQmlWorkerScript -IC:/Qt/6.9.3/mingw_64/include/QtQml -IC:/Qt/6.9.3/mingw_64/include/QtQmlIntegration -IC:/Qt/6.9.3/mingw_64/include/QtNetwork -IC:/Qt/6.9.3/mingw_64/include/QtTest -IC:/Qt/6.9.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++ -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed -IC:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include ..\..\ControllerHeader\ajouterinstructiondialog.h -o debug\moc_ajouterinstructiondialog.cpp
 
-debug/moc_ajouterrecettedialog.cpp: ../../dialogHeader/ajouterrecettedialog.h \
+debug/moc_ajouterrecettedialog.cpp: ../../ControllerHeader/ajouterrecettedialog.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/QDialog \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qdialog.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -854,9 +851,9 @@ debug/moc_ajouterrecettedialog.cpp: ../../dialogHeader/ajouterrecettedialog.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.9.3/mingw_64/bin/moc.exe
-	C:\Qt\6.9.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/MSI/RecettesIntelligentes/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.9.3/mingw_64/mkspecs/win32-g++ -IC:/Users/MSI/RecettesIntelligentes -IC:/Qt/6.9.3/mingw_64/include -IC:/Qt/6.9.3/mingw_64/include/QtQuick -IC:/Qt/6.9.3/mingw_64/include/QtOpenGL -IC:/Qt/6.9.3/mingw_64/include/QtWidgets -IC:/Qt/6.9.3/mingw_64/include/QtGui -IC:/Qt/6.9.3/mingw_64/include/QtSql -IC:/Qt/6.9.3/mingw_64/include/QtQmlMeta -IC:/Qt/6.9.3/mingw_64/include/QtQmlModels -IC:/Qt/6.9.3/mingw_64/include/QtQmlWorkerScript -IC:/Qt/6.9.3/mingw_64/include/QtQml -IC:/Qt/6.9.3/mingw_64/include/QtQmlIntegration -IC:/Qt/6.9.3/mingw_64/include/QtNetwork -IC:/Qt/6.9.3/mingw_64/include/QtTest -IC:/Qt/6.9.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++ -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed -IC:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include ..\..\dialogHeader\ajouterrecettedialog.h -o debug\moc_ajouterrecettedialog.cpp
+	C:\Qt\6.9.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/MSI/RecettesIntelligentes/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.9.3/mingw_64/mkspecs/win32-g++ -IC:/Users/MSI/RecettesIntelligentes -IC:/Qt/6.9.3/mingw_64/include -IC:/Qt/6.9.3/mingw_64/include/QtQuick -IC:/Qt/6.9.3/mingw_64/include/QtOpenGL -IC:/Qt/6.9.3/mingw_64/include/QtWidgets -IC:/Qt/6.9.3/mingw_64/include/QtGui -IC:/Qt/6.9.3/mingw_64/include/QtSql -IC:/Qt/6.9.3/mingw_64/include/QtQmlMeta -IC:/Qt/6.9.3/mingw_64/include/QtQmlModels -IC:/Qt/6.9.3/mingw_64/include/QtQmlWorkerScript -IC:/Qt/6.9.3/mingw_64/include/QtQml -IC:/Qt/6.9.3/mingw_64/include/QtQmlIntegration -IC:/Qt/6.9.3/mingw_64/include/QtNetwork -IC:/Qt/6.9.3/mingw_64/include/QtTest -IC:/Qt/6.9.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++ -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed -IC:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include ..\..\ControllerHeader\ajouterrecettedialog.h -o debug\moc_ajouterrecettedialog.cpp
 
-debug/moc_backend.cpp: ../../backend.h \
+debug/moc_backend.cpp: ../../modelsHeader/ServiceLayerHeader/backend.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QObject \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qobject.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qobjectdefs.h \
@@ -989,36 +986,36 @@ debug/moc_backend.cpp: ../../backend.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qvarlengtharray.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/q23utility.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/q20utility.h \
-		../../daoHeader/ingredientDAO.h \
-		../../metiersHeader/ingredient.h \
-		../../metiersHeader/unite.h \
-		../../daoHeader/recetteDAO.h \
-		../../metiersHeader/recette.h \
+		../../dataHeader/ingredientDAO.h \
+		../../modelsHeader/ingredient.h \
+		../../modelsHeader/unite.h \
+		../../dataHeader/recetteDAO.h \
+		../../modelsHeader/recette.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QList \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QSharedPointer \
-		../../metiersHeader/instruction.h \
-		../../metiersHeader/recetteingredient.h \
+		../../modelsHeader/instruction.h \
+		../../modelsHeader/recetteingredient.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QVariant \
-		../../daoHeader/recetteingredientdao.h \
-		../../daoHeader/instructionDAO.h \
-		../../serviceHeader/ingredientService.h \
-		../../serviceHeader/instructionService.h \
-		../../daoHeader/instructiondao.h \
-		../../serviceHeader/recetteService.h \
-		../../daoHeader/recettedao.h \
-		../../serviceHeader/instructionservice.h \
-		../../serviceHeader/ingredientservice.h \
+		../../dataHeader/recetteingredientdao.h \
+		../../dataHeader/instructionDAO.h \
+		../../modelsHeader/ServiceLayerHeader/ingredientService.h \
+		../../modelsHeader/ServiceLayerHeader/instructionService.h \
+		../../dataHeader/instructiondao.h \
+		../../modelsHeader/ServiceLayerHeader/recetteService.h \
+		../../dataHeader/recettedao.h \
+		../../modelsHeader/ServiceLayerHeader/instructionservice.h \
+		../../modelsHeader/ServiceLayerHeader/ingredientservice.h \
 		../../modelsHeader/recettemodel.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QAbstractTableModel \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qabstractitemmodel.h \
-		../../serviceHeader/recetteservice.h \
+		../../modelsHeader/ServiceLayerHeader/recetteservice.h \
 		../../modelsHeader/instructiontreemodel.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QAbstractItemModel \
 		debug/moc_predefs.h \
 		C:/Qt/6.9.3/mingw_64/bin/moc.exe
-	C:\Qt\6.9.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/MSI/RecettesIntelligentes/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.9.3/mingw_64/mkspecs/win32-g++ -IC:/Users/MSI/RecettesIntelligentes -IC:/Qt/6.9.3/mingw_64/include -IC:/Qt/6.9.3/mingw_64/include/QtQuick -IC:/Qt/6.9.3/mingw_64/include/QtOpenGL -IC:/Qt/6.9.3/mingw_64/include/QtWidgets -IC:/Qt/6.9.3/mingw_64/include/QtGui -IC:/Qt/6.9.3/mingw_64/include/QtSql -IC:/Qt/6.9.3/mingw_64/include/QtQmlMeta -IC:/Qt/6.9.3/mingw_64/include/QtQmlModels -IC:/Qt/6.9.3/mingw_64/include/QtQmlWorkerScript -IC:/Qt/6.9.3/mingw_64/include/QtQml -IC:/Qt/6.9.3/mingw_64/include/QtQmlIntegration -IC:/Qt/6.9.3/mingw_64/include/QtNetwork -IC:/Qt/6.9.3/mingw_64/include/QtTest -IC:/Qt/6.9.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++ -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed -IC:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include ..\..\backend.h -o debug\moc_backend.cpp
+	C:\Qt\6.9.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/MSI/RecettesIntelligentes/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.9.3/mingw_64/mkspecs/win32-g++ -IC:/Users/MSI/RecettesIntelligentes -IC:/Qt/6.9.3/mingw_64/include -IC:/Qt/6.9.3/mingw_64/include/QtQuick -IC:/Qt/6.9.3/mingw_64/include/QtOpenGL -IC:/Qt/6.9.3/mingw_64/include/QtWidgets -IC:/Qt/6.9.3/mingw_64/include/QtGui -IC:/Qt/6.9.3/mingw_64/include/QtSql -IC:/Qt/6.9.3/mingw_64/include/QtQmlMeta -IC:/Qt/6.9.3/mingw_64/include/QtQmlModels -IC:/Qt/6.9.3/mingw_64/include/QtQmlWorkerScript -IC:/Qt/6.9.3/mingw_64/include/QtQml -IC:/Qt/6.9.3/mingw_64/include/QtQmlIntegration -IC:/Qt/6.9.3/mingw_64/include/QtNetwork -IC:/Qt/6.9.3/mingw_64/include/QtTest -IC:/Qt/6.9.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++ -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed -IC:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include ..\..\modelsHeader\ServiceLayerHeader\backend.h -o debug\moc_backend.cpp
 
-debug/moc_imagedroplabel.cpp: ../../imagedroplabel.h \
+debug/moc_imagedroplabel.cpp: ../../ControllerHeader/imagedroplabel.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/QLabel \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qlabel.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -1223,7 +1220,7 @@ debug/moc_imagedroplabel.cpp: ../../imagedroplabel.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QString \
 		debug/moc_predefs.h \
 		C:/Qt/6.9.3/mingw_64/bin/moc.exe
-	C:\Qt\6.9.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/MSI/RecettesIntelligentes/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.9.3/mingw_64/mkspecs/win32-g++ -IC:/Users/MSI/RecettesIntelligentes -IC:/Qt/6.9.3/mingw_64/include -IC:/Qt/6.9.3/mingw_64/include/QtQuick -IC:/Qt/6.9.3/mingw_64/include/QtOpenGL -IC:/Qt/6.9.3/mingw_64/include/QtWidgets -IC:/Qt/6.9.3/mingw_64/include/QtGui -IC:/Qt/6.9.3/mingw_64/include/QtSql -IC:/Qt/6.9.3/mingw_64/include/QtQmlMeta -IC:/Qt/6.9.3/mingw_64/include/QtQmlModels -IC:/Qt/6.9.3/mingw_64/include/QtQmlWorkerScript -IC:/Qt/6.9.3/mingw_64/include/QtQml -IC:/Qt/6.9.3/mingw_64/include/QtQmlIntegration -IC:/Qt/6.9.3/mingw_64/include/QtNetwork -IC:/Qt/6.9.3/mingw_64/include/QtTest -IC:/Qt/6.9.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++ -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed -IC:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include ..\..\imagedroplabel.h -o debug\moc_imagedroplabel.cpp
+	C:\Qt\6.9.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/MSI/RecettesIntelligentes/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.9.3/mingw_64/mkspecs/win32-g++ -IC:/Users/MSI/RecettesIntelligentes -IC:/Qt/6.9.3/mingw_64/include -IC:/Qt/6.9.3/mingw_64/include/QtQuick -IC:/Qt/6.9.3/mingw_64/include/QtOpenGL -IC:/Qt/6.9.3/mingw_64/include/QtWidgets -IC:/Qt/6.9.3/mingw_64/include/QtGui -IC:/Qt/6.9.3/mingw_64/include/QtSql -IC:/Qt/6.9.3/mingw_64/include/QtQmlMeta -IC:/Qt/6.9.3/mingw_64/include/QtQmlModels -IC:/Qt/6.9.3/mingw_64/include/QtQmlWorkerScript -IC:/Qt/6.9.3/mingw_64/include/QtQml -IC:/Qt/6.9.3/mingw_64/include/QtQmlIntegration -IC:/Qt/6.9.3/mingw_64/include/QtNetwork -IC:/Qt/6.9.3/mingw_64/include/QtTest -IC:/Qt/6.9.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++ -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed -IC:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include ..\..\ControllerHeader\imagedroplabel.h -o debug\moc_imagedroplabel.cpp
 
 debug/moc_ingredientmodel.cpp: ../../modelsHeader/ingredientmodel.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QAbstractTableModel \
@@ -1351,20 +1348,20 @@ debug/moc_ingredientmodel.cpp: ../../modelsHeader/ingredientmodel.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qvarlengtharray.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/q23utility.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/q20utility.h \
-		../../serviceHeader/ingredientservice.h \
-		../../daoHeader/ingredientDAO.h \
+		../../modelsHeader/ServiceLayerHeader/ingredientservice.h \
+		../../dataHeader/ingredientDAO.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/QSqlDatabase \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qsqldatabase.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsqlglobal.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsql-config.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsqlexports.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qmetaobject.h \
-		../../metiersHeader/ingredient.h \
-		../../metiersHeader/unite.h \
+		../../modelsHeader/ingredient.h \
+		../../modelsHeader/unite.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QString \
-		../../daoHeader/recetteingredientdao.h \
+		../../dataHeader/recetteingredientdao.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QList \
-		../../metiersHeader/recetteingredient.h \
+		../../modelsHeader/recetteingredient.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.9.3/mingw_64/bin/moc.exe
 	C:\Qt\6.9.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/MSI/RecettesIntelligentes/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.9.3/mingw_64/mkspecs/win32-g++ -IC:/Users/MSI/RecettesIntelligentes -IC:/Qt/6.9.3/mingw_64/include -IC:/Qt/6.9.3/mingw_64/include/QtQuick -IC:/Qt/6.9.3/mingw_64/include/QtOpenGL -IC:/Qt/6.9.3/mingw_64/include/QtWidgets -IC:/Qt/6.9.3/mingw_64/include/QtGui -IC:/Qt/6.9.3/mingw_64/include/QtSql -IC:/Qt/6.9.3/mingw_64/include/QtQmlMeta -IC:/Qt/6.9.3/mingw_64/include/QtQmlModels -IC:/Qt/6.9.3/mingw_64/include/QtQmlWorkerScript -IC:/Qt/6.9.3/mingw_64/include/QtQml -IC:/Qt/6.9.3/mingw_64/include/QtQmlIntegration -IC:/Qt/6.9.3/mingw_64/include/QtNetwork -IC:/Qt/6.9.3/mingw_64/include/QtTest -IC:/Qt/6.9.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++ -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed -IC:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include ..\..\modelsHeader\ingredientmodel.h -o debug\moc_ingredientmodel.cpp
@@ -1495,8 +1492,8 @@ debug/moc_instructiontreemodel.cpp: ../../modelsHeader/instructiontreemodel.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qvarlengtharray.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/q23utility.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/q20utility.h \
-		../../serviceHeader/instructionservice.h \
-		../../daoHeader/instructiondao.h \
+		../../modelsHeader/ServiceLayerHeader/instructionservice.h \
+		../../dataHeader/instructiondao.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/QSqlDatabase \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qsqldatabase.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsqlglobal.h \
@@ -1504,13 +1501,13 @@ debug/moc_instructiontreemodel.cpp: ../../modelsHeader/instructiontreemodel.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsqlexports.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qmetaobject.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QSharedPointer \
-		../../metiersHeader/instruction.h \
+		../../modelsHeader/instruction.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QString \
 		debug/moc_predefs.h \
 		C:/Qt/6.9.3/mingw_64/bin/moc.exe
 	C:\Qt\6.9.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/MSI/RecettesIntelligentes/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.9.3/mingw_64/mkspecs/win32-g++ -IC:/Users/MSI/RecettesIntelligentes -IC:/Qt/6.9.3/mingw_64/include -IC:/Qt/6.9.3/mingw_64/include/QtQuick -IC:/Qt/6.9.3/mingw_64/include/QtOpenGL -IC:/Qt/6.9.3/mingw_64/include/QtWidgets -IC:/Qt/6.9.3/mingw_64/include/QtGui -IC:/Qt/6.9.3/mingw_64/include/QtSql -IC:/Qt/6.9.3/mingw_64/include/QtQmlMeta -IC:/Qt/6.9.3/mingw_64/include/QtQmlModels -IC:/Qt/6.9.3/mingw_64/include/QtQmlWorkerScript -IC:/Qt/6.9.3/mingw_64/include/QtQml -IC:/Qt/6.9.3/mingw_64/include/QtQmlIntegration -IC:/Qt/6.9.3/mingw_64/include/QtNetwork -IC:/Qt/6.9.3/mingw_64/include/QtTest -IC:/Qt/6.9.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++ -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed -IC:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include ..\..\modelsHeader\instructiontreemodel.h -o debug\moc_instructiontreemodel.cpp
 
-debug/moc_mainwindow.cpp: ../../mainwindow.h \
+debug/moc_mainwindow.cpp: ../../ControllerHeader/mainwindow.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/QMainWindow \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qmainwindow.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -1733,7 +1730,7 @@ debug/moc_mainwindow.cpp: ../../mainwindow.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QSortFilterProxyModel \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qsortfilterproxymodel.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qabstractproxymodel.h \
-		../../backend.h \
+		../../modelsHeader/ServiceLayerHeader/backend.h \
 		../../dataHeader/databasemanager.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QString \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/QSqlDatabase \
@@ -1742,27 +1739,27 @@ debug/moc_mainwindow.cpp: ../../mainwindow.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsql-config.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsqlexports.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qmetaobject.h \
-		../../daoHeader/ingredientDAO.h \
-		../../metiersHeader/ingredient.h \
-		../../metiersHeader/unite.h \
-		../../daoHeader/recetteDAO.h \
-		../../metiersHeader/recette.h \
+		../../dataHeader/ingredientDAO.h \
+		../../modelsHeader/ingredient.h \
+		../../modelsHeader/unite.h \
+		../../dataHeader/recetteDAO.h \
+		../../modelsHeader/recette.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QSharedPointer \
-		../../metiersHeader/instruction.h \
-		../../metiersHeader/recetteingredient.h \
+		../../modelsHeader/instruction.h \
+		../../modelsHeader/recetteingredient.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QVariant \
-		../../daoHeader/recetteingredientdao.h \
-		../../daoHeader/instructionDAO.h \
-		../../serviceHeader/ingredientService.h \
-		../../serviceHeader/instructionService.h \
-		../../daoHeader/instructiondao.h \
-		../../serviceHeader/recetteService.h \
-		../../daoHeader/recettedao.h \
-		../../serviceHeader/instructionservice.h \
-		../../serviceHeader/ingredientservice.h \
+		../../dataHeader/recetteingredientdao.h \
+		../../dataHeader/instructionDAO.h \
+		../../modelsHeader/ServiceLayerHeader/ingredientService.h \
+		../../modelsHeader/ServiceLayerHeader/instructionService.h \
+		../../dataHeader/instructiondao.h \
+		../../modelsHeader/ServiceLayerHeader/recetteService.h \
+		../../dataHeader/recettedao.h \
+		../../modelsHeader/ServiceLayerHeader/instructionservice.h \
+		../../modelsHeader/ServiceLayerHeader/ingredientservice.h \
 		../../modelsHeader/recettemodel.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QAbstractTableModel \
-		../../serviceHeader/recetteservice.h \
+		../../modelsHeader/ServiceLayerHeader/recetteservice.h \
 		../../modelsHeader/instructiontreemodel.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QAbstractItemModel \
 		../../modelsHeader/recetteingredientmodel.h \
@@ -1777,7 +1774,7 @@ debug/moc_mainwindow.cpp: ../../mainwindow.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qgridlayout.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.9.3/mingw_64/bin/moc.exe
-	C:\Qt\6.9.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/MSI/RecettesIntelligentes/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.9.3/mingw_64/mkspecs/win32-g++ -IC:/Users/MSI/RecettesIntelligentes -IC:/Qt/6.9.3/mingw_64/include -IC:/Qt/6.9.3/mingw_64/include/QtQuick -IC:/Qt/6.9.3/mingw_64/include/QtOpenGL -IC:/Qt/6.9.3/mingw_64/include/QtWidgets -IC:/Qt/6.9.3/mingw_64/include/QtGui -IC:/Qt/6.9.3/mingw_64/include/QtSql -IC:/Qt/6.9.3/mingw_64/include/QtQmlMeta -IC:/Qt/6.9.3/mingw_64/include/QtQmlModels -IC:/Qt/6.9.3/mingw_64/include/QtQmlWorkerScript -IC:/Qt/6.9.3/mingw_64/include/QtQml -IC:/Qt/6.9.3/mingw_64/include/QtQmlIntegration -IC:/Qt/6.9.3/mingw_64/include/QtNetwork -IC:/Qt/6.9.3/mingw_64/include/QtTest -IC:/Qt/6.9.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++ -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed -IC:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include ..\..\mainwindow.h -o debug\moc_mainwindow.cpp
+	C:\Qt\6.9.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/MSI/RecettesIntelligentes/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.9.3/mingw_64/mkspecs/win32-g++ -IC:/Users/MSI/RecettesIntelligentes -IC:/Qt/6.9.3/mingw_64/include -IC:/Qt/6.9.3/mingw_64/include/QtQuick -IC:/Qt/6.9.3/mingw_64/include/QtOpenGL -IC:/Qt/6.9.3/mingw_64/include/QtWidgets -IC:/Qt/6.9.3/mingw_64/include/QtGui -IC:/Qt/6.9.3/mingw_64/include/QtSql -IC:/Qt/6.9.3/mingw_64/include/QtQmlMeta -IC:/Qt/6.9.3/mingw_64/include/QtQmlModels -IC:/Qt/6.9.3/mingw_64/include/QtQmlWorkerScript -IC:/Qt/6.9.3/mingw_64/include/QtQml -IC:/Qt/6.9.3/mingw_64/include/QtQmlIntegration -IC:/Qt/6.9.3/mingw_64/include/QtNetwork -IC:/Qt/6.9.3/mingw_64/include/QtTest -IC:/Qt/6.9.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++ -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed -IC:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include ..\..\ControllerHeader\mainwindow.h -o debug\moc_mainwindow.cpp
 
 debug/moc_recetteingredientmodel.cpp: ../../modelsHeader/recetteingredientmodel.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QAbstractTableModel \
@@ -1905,9 +1902,9 @@ debug/moc_recetteingredientmodel.cpp: ../../modelsHeader/recetteingredientmodel.
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qvarlengtharray.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/q23utility.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/q20utility.h \
-		../../metiersHeader/recetteingredient.h \
-		../../metiersHeader/ingredient.h \
-		../../metiersHeader/unite.h \
+		../../modelsHeader/recetteingredient.h \
+		../../modelsHeader/ingredient.h \
+		../../modelsHeader/unite.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QString \
 		debug/moc_predefs.h \
 		C:/Qt/6.9.3/mingw_64/bin/moc.exe
@@ -2039,16 +2036,16 @@ debug/moc_recettemodel.cpp: ../../modelsHeader/recettemodel.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qvarlengtharray.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/q23utility.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/q20utility.h \
-		../../metiersHeader/recette.h \
+		../../modelsHeader/recette.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QString \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QList \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QSharedPointer \
-		../../metiersHeader/ingredient.h \
-		../../metiersHeader/unite.h \
-		../../metiersHeader/instruction.h \
-		../../metiersHeader/recetteingredient.h \
-		../../serviceHeader/recetteservice.h \
-		../../daoHeader/recettedao.h \
+		../../modelsHeader/ingredient.h \
+		../../modelsHeader/unite.h \
+		../../modelsHeader/instruction.h \
+		../../modelsHeader/recetteingredient.h \
+		../../modelsHeader/ServiceLayerHeader/recetteservice.h \
+		../../dataHeader/recettedao.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QVariant \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/QSqlDatabase \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qsqldatabase.h \
@@ -2056,11 +2053,11 @@ debug/moc_recettemodel.cpp: ../../modelsHeader/recettemodel.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsql-config.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsqlexports.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qmetaobject.h \
-		../../daoHeader/recetteingredientdao.h \
-		../../serviceHeader/instructionservice.h \
-		../../daoHeader/instructiondao.h \
-		../../serviceHeader/ingredientservice.h \
-		../../daoHeader/ingredientDAO.h \
+		../../dataHeader/recetteingredientdao.h \
+		../../modelsHeader/ServiceLayerHeader/instructionservice.h \
+		../../dataHeader/instructiondao.h \
+		../../modelsHeader/ServiceLayerHeader/ingredientservice.h \
+		../../dataHeader/ingredientDAO.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.9.3/mingw_64/bin/moc.exe
 	C:\Qt\6.9.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/MSI/RecettesIntelligentes/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.9.3/mingw_64/mkspecs/win32-g++ -IC:/Users/MSI/RecettesIntelligentes -IC:/Qt/6.9.3/mingw_64/include -IC:/Qt/6.9.3/mingw_64/include/QtQuick -IC:/Qt/6.9.3/mingw_64/include/QtOpenGL -IC:/Qt/6.9.3/mingw_64/include/QtWidgets -IC:/Qt/6.9.3/mingw_64/include/QtGui -IC:/Qt/6.9.3/mingw_64/include/QtSql -IC:/Qt/6.9.3/mingw_64/include/QtQmlMeta -IC:/Qt/6.9.3/mingw_64/include/QtQmlModels -IC:/Qt/6.9.3/mingw_64/include/QtQmlWorkerScript -IC:/Qt/6.9.3/mingw_64/include/QtQml -IC:/Qt/6.9.3/mingw_64/include/QtQmlIntegration -IC:/Qt/6.9.3/mingw_64/include/QtNetwork -IC:/Qt/6.9.3/mingw_64/include/QtTest -IC:/Qt/6.9.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++ -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include -IC:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed -IC:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include ..\..\modelsHeader\recettemodel.h -o debug\moc_recettemodel.cpp
@@ -2104,7 +2101,7 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 
 ####### Compile
 
-debug/ajouteringredientdialog.o: ../../dialog/ajouteringredientdialog.cpp ../../dialogHeader/ajouteringredientdialog.h \
+debug/ajouteringredientdialog.o: ../../Controller/ajouteringredientdialog.cpp ../../ControllerHeader/ajouteringredientdialog.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/QDialog \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qdialog.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -2340,9 +2337,9 @@ debug/ajouteringredientdialog.o: ../../dialog/ajouteringredientdialog.cpp ../../
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/QMessageBox \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qmessagebox.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qdialogbuttonbox.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\ajouteringredientdialog.o ..\..\dialog\ajouteringredientdialog.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\ajouteringredientdialog.o ..\..\Controller\ajouteringredientdialog.cpp
 
-debug/ajouterinstructiondialog.o: ../../dialog/ajouterinstructiondialog.cpp ../../dialogHeader/ajouterinstructiondialog.h \
+debug/ajouterinstructiondialog.o: ../../Controller/ajouterinstructiondialog.cpp ../../ControllerHeader/ajouterinstructiondialog.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/QDialog \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qdialog.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -2565,9 +2562,9 @@ debug/ajouterinstructiondialog.o: ../../dialog/ajouterinstructiondialog.cpp ../.
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/QMessageBox \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qmessagebox.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qdialogbuttonbox.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\ajouterinstructiondialog.o ..\..\dialog\ajouterinstructiondialog.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\ajouterinstructiondialog.o ..\..\Controller\ajouterinstructiondialog.cpp
 
-debug/ajouterrecettedialog.o: ../../dialog/ajouterrecettedialog.cpp ../../dialogHeader/ajouterrecettedialog.h \
+debug/ajouterrecettedialog.o: ../../Controller/ajouterrecettedialog.cpp ../../ControllerHeader/ajouterrecettedialog.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/QDialog \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qdialog.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -2809,7 +2806,7 @@ debug/ajouterrecettedialog.o: ../../dialog/ajouterrecettedialog.cpp ../../dialog
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qtableview.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/QTextEdit \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qtextedit.h \
-		../../backend.h \
+		../../modelsHeader/ServiceLayerHeader/backend.h \
 		../../dataHeader/databasemanager.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QString \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/QSqlDatabase \
@@ -2818,193 +2815,36 @@ debug/ajouterrecettedialog.o: ../../dialog/ajouterrecettedialog.cpp ../../dialog
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsql-config.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsqlexports.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qmetaobject.h \
-		../../daoHeader/ingredientDAO.h \
-		../../metiersHeader/ingredient.h \
-		../../metiersHeader/unite.h \
-		../../daoHeader/recetteDAO.h \
-		../../metiersHeader/recette.h \
+		../../dataHeader/ingredientDAO.h \
+		../../modelsHeader/ingredient.h \
+		../../modelsHeader/unite.h \
+		../../dataHeader/recetteDAO.h \
+		../../modelsHeader/recette.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QSharedPointer \
-		../../metiersHeader/instruction.h \
-		../../metiersHeader/recetteingredient.h \
-		../../daoHeader/recetteingredientdao.h \
-		../../daoHeader/instructionDAO.h \
-		../../serviceHeader/ingredientService.h \
-		../../serviceHeader/instructionService.h \
-		../../daoHeader/instructiondao.h \
-		../../serviceHeader/recetteService.h \
-		../../daoHeader/recettedao.h \
-		../../serviceHeader/instructionservice.h \
-		../../serviceHeader/ingredientservice.h \
+		../../modelsHeader/instruction.h \
+		../../modelsHeader/recetteingredient.h \
+		../../dataHeader/recetteingredientdao.h \
+		../../dataHeader/instructionDAO.h \
+		../../modelsHeader/ServiceLayerHeader/ingredientService.h \
+		../../modelsHeader/ServiceLayerHeader/instructionService.h \
+		../../dataHeader/instructiondao.h \
+		../../modelsHeader/ServiceLayerHeader/recetteService.h \
+		../../dataHeader/recettedao.h \
+		../../modelsHeader/ServiceLayerHeader/instructionservice.h \
+		../../modelsHeader/ServiceLayerHeader/ingredientservice.h \
 		../../modelsHeader/recettemodel.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QAbstractTableModel \
-		../../serviceHeader/recetteservice.h \
+		../../modelsHeader/ServiceLayerHeader/recetteservice.h \
 		../../modelsHeader/instructiontreemodel.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QAbstractItemModel \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QDebug \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QHash \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QVector \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qvector.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\ajouterrecettedialog.o ..\..\dialog\ajouterrecettedialog.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\ajouterrecettedialog.o ..\..\Controller\ajouterrecettedialog.cpp
 
-debug/backend.o: ../../backend.cpp ../../backend.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/QObject \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qobject.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qobjectdefs.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qnamespace.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qglobal.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtcoreglobal.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtversionchecks.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtconfiginclude.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qconfig.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtcore-config.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtconfigmacros.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtdeprecationdefinitions.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcompilerdetection.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qprocessordetection.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qsystemdetection.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtcoreexports.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtdeprecationmarkers.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtclasshelpermacros.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtpreprocessorsupport.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qassert.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtnoop.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtypes.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtversion.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtypeinfo.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcontainerfwd.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qsysinfo.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qlogging.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qflags.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcompare_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qatomic.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qbasicatomic.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qatomic_cxx11.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qgenericatomic.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qyieldcpu.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qconstructormacros.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qdarwinhelpers.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qexceptionhandling.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qforeach.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qttypetraits.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qfunctionpointer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qglobalstatic.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qmalloc.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qminmax.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qnumeric.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qoverload.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qswap.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtenvironmentvariables.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtresource.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qttranslation.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qversiontagging.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcompare.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstdlibdetection.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcomparehelpers.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/q20type_traits.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtmetamacros.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qobjectdefs_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qfunctionaltools_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstring.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qchar.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringview.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qbytearray.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qrefcount.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qarraydata.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qpair.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qarraydatapointer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qarraydataops.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcontainertools_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qxptype_traits.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/q20functional.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/q20memory.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/q17memory.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qbytearrayalgorithms.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qbytearrayview.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringfwd.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringliteral.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringalgorithms.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qlatin1stringview.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qanystringview.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qutf8stringview.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringtokenizer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringbuilder.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringconverter.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringconverter_base.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qlist.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qhashfunctions.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qiterator.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qbytearraylist.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringlist.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qalgorithms.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringmatcher.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcoreevent.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qbasictimer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qabstracteventdispatcher.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qeventloop.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qdeadlinetimer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qelapsedtimer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qmetatype.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qdatastream.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qscopedpointer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qiodevicebase.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qfloat16.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qmath.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtformat_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qiterable.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qmetacontainer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcontainerinfo.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtaggedpointer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qscopeguard.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qobject_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qbindingstorage.h \
-		../../dataHeader/databasemanager.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/QString \
-		C:/Qt/6.9.3/mingw_64/include/QtSql/QSqlDatabase \
-		C:/Qt/6.9.3/mingw_64/include/QtSql/qsqldatabase.h \
-		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsqlglobal.h \
-		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsql-config.h \
-		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsqlexports.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qmetaobject.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qvariant.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qdebug.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtextstream.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcontiguouscache.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qsharedpointer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qshareddata.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qsharedpointer_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qmap.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qshareddata_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qset.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qhash.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qvarlengtharray.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/q23utility.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/q20utility.h \
-		../../daoHeader/ingredientDAO.h \
-		../../metiersHeader/ingredient.h \
-		../../metiersHeader/unite.h \
-		../../daoHeader/recetteDAO.h \
-		../../metiersHeader/recette.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/QList \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/QSharedPointer \
-		../../metiersHeader/instruction.h \
-		../../metiersHeader/recetteingredient.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/QVariant \
-		../../daoHeader/recetteingredientdao.h \
-		../../daoHeader/instructionDAO.h \
-		../../serviceHeader/ingredientService.h \
-		../../serviceHeader/instructionService.h \
-		../../daoHeader/instructiondao.h \
-		../../serviceHeader/recetteService.h \
-		../../daoHeader/recettedao.h \
-		../../serviceHeader/instructionservice.h \
-		../../serviceHeader/ingredientservice.h \
-		../../modelsHeader/recettemodel.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/QAbstractTableModel \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qabstractitemmodel.h \
-		../../serviceHeader/recetteservice.h \
-		../../modelsHeader/instructiontreemodel.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/QAbstractItemModel
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\backend.o ..\..\backend.cpp
+debug/backend.o: models/ServiceLayer/backend.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\backend.o models/ServiceLayer/backend.cpp
 
 debug/databasemanager.o: ../../data/databasemanager.cpp ../../dataHeader/databasemanager.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QString \
@@ -3146,7 +2986,7 @@ debug/databasemanager.o: ../../data/databasemanager.cpp ../../dataHeader/databas
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qsqldriver.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\databasemanager.o ..\..\data\databasemanager.cpp
 
-debug/imagedroplabel.o: ../../imagedroplabel.cpp ../../ImageDropLabel.h \
+debug/imagedroplabel.o: ../../Controller/imagedroplabel.cpp ../../ControllerHeader/ImageDropLabel.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/QLabel \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qlabel.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -3362,10 +3202,10 @@ debug/imagedroplabel.o: ../../imagedroplabel.cpp ../../ImageDropLabel.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qcalendar.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qtimezone.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QUrl
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\imagedroplabel.o ..\..\imagedroplabel.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\imagedroplabel.o ..\..\Controller\imagedroplabel.cpp
 
-debug/ingredient.o: ../../metiers/ingredient.cpp ../../metiersHeader/ingredient.h \
-		../../metiersHeader/unite.h \
+debug/ingredient.o: ../../models/ingredient.cpp ../../modelsHeader/ingredient.h \
+		../../modelsHeader/unite.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QString \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qstring.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qchar.h \
@@ -3445,9 +3285,9 @@ debug/ingredient.o: ../../metiers/ingredient.cpp ../../metiersHeader/ingredient.
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringbuilder.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringconverter.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringconverter_base.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\ingredient.o ..\..\metiers\ingredient.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\ingredient.o ..\..\models\ingredient.cpp
 
-debug/ingredientDAO.o: ../../dao/ingredientDAO.cpp ../../daoHeader/ingredientDAO.h \
+debug/ingredientDAO.o: ../../data/ingredientDAO.cpp ../../dataHeader/ingredientDAO.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/QSqlDatabase \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qsqldatabase.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsqlglobal.h \
@@ -3577,15 +3417,15 @@ debug/ingredientDAO.o: ../../dao/ingredientDAO.cpp ../../daoHeader/ingredientDAO
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qelapsedtimer.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qobject_impl.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qbindingstorage.h \
-		../../metiersHeader/ingredient.h \
-		../../metiersHeader/unite.h \
+		../../modelsHeader/ingredient.h \
+		../../modelsHeader/unite.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QString \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/QSqlQuery \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qsqlquery.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/QSqlError \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qsqlerror.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QDebug
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\ingredientDAO.o ..\..\dao\ingredientDAO.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\ingredientDAO.o ..\..\data\ingredientDAO.cpp
 
 debug/ingredientmodel.o: ../../models/ingredientmodel.cpp ../../modelsHeader/ingredientmodel.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QAbstractTableModel \
@@ -3713,162 +3553,26 @@ debug/ingredientmodel.o: ../../models/ingredientmodel.cpp ../../modelsHeader/ing
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qvarlengtharray.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/q23utility.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/q20utility.h \
-		../../serviceHeader/ingredientservice.h \
-		../../daoHeader/ingredientDAO.h \
+		../../modelsHeader/ServiceLayerHeader/ingredientservice.h \
+		../../dataHeader/ingredientDAO.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/QSqlDatabase \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qsqldatabase.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsqlglobal.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsql-config.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsqlexports.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qmetaobject.h \
-		../../metiersHeader/ingredient.h \
-		../../metiersHeader/unite.h \
+		../../modelsHeader/ingredient.h \
+		../../modelsHeader/unite.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QString \
-		../../daoHeader/recetteingredientdao.h \
+		../../dataHeader/recetteingredientdao.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QList \
-		../../metiersHeader/recetteingredient.h
+		../../modelsHeader/recetteingredient.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\ingredientmodel.o ..\..\models\ingredientmodel.cpp
 
-debug/ingredientservice.o: ../../service/ingredientservice.cpp ../../serviceHeader/ingredientservice.h \
-		../../daoHeader/ingredientDAO.h \
-		C:/Qt/6.9.3/mingw_64/include/QtSql/QSqlDatabase \
-		C:/Qt/6.9.3/mingw_64/include/QtSql/qsqldatabase.h \
-		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsqlglobal.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qglobal.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtcoreglobal.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtversionchecks.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtconfiginclude.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qconfig.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtcore-config.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtconfigmacros.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtdeprecationdefinitions.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcompilerdetection.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qprocessordetection.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qsystemdetection.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtcoreexports.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtdeprecationmarkers.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtclasshelpermacros.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtpreprocessorsupport.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qassert.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtnoop.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtypes.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtversion.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtypeinfo.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcontainerfwd.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qsysinfo.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qlogging.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qflags.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcompare_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qatomic.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qbasicatomic.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qatomic_cxx11.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qgenericatomic.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qyieldcpu.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qconstructormacros.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qdarwinhelpers.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qexceptionhandling.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qforeach.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qttypetraits.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qfunctionpointer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qglobalstatic.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qmalloc.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qminmax.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qnumeric.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qoverload.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qswap.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtenvironmentvariables.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtresource.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qttranslation.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qversiontagging.h \
-		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsql-config.h \
-		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsqlexports.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qmetaobject.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qobjectdefs.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qnamespace.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcompare.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstdlibdetection.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcomparehelpers.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/q20type_traits.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtmetamacros.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qobjectdefs_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qfunctionaltools_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qvariant.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qmetatype.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qbytearray.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qrefcount.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qarraydata.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qpair.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qarraydatapointer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qarraydataops.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcontainertools_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qxptype_traits.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/q20functional.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/q20memory.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/q17memory.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qbytearrayalgorithms.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qbytearrayview.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringfwd.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qdatastream.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qscopedpointer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qiodevicebase.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qfloat16.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qhashfunctions.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstring.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qchar.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringview.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringliteral.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringalgorithms.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qlatin1stringview.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qanystringview.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qutf8stringview.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringtokenizer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringbuilder.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringconverter.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringconverter_base.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qmath.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qalgorithms.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtformat_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qiterable.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qmetacontainer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcontainerinfo.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtaggedpointer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qscopeguard.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qdebug.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtextstream.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcontiguouscache.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qsharedpointer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qshareddata.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qsharedpointer_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qlist.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qiterator.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qbytearraylist.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringlist.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringmatcher.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qmap.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qshareddata_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qset.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qhash.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qvarlengtharray.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/q23utility.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/q20utility.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qobject.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcoreevent.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qbasictimer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qabstracteventdispatcher.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qeventloop.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qdeadlinetimer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qelapsedtimer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qobject_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qbindingstorage.h \
-		../../metiersHeader/ingredient.h \
-		../../metiersHeader/unite.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/QString \
-		../../daoHeader/recetteingredientdao.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/QList \
-		../../metiersHeader/recetteingredient.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\ingredientservice.o ..\..\service\ingredientservice.cpp
+debug/ingredientservice.o: models/ServiceLayer/ingredientservice.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\ingredientservice.o models/ServiceLayer/ingredientservice.cpp
 
-debug/instruction.o: ../../metiers/instruction.cpp ../../metiersHeader/instruction.h \
+debug/instruction.o: ../../models/instruction.cpp ../../modelsHeader/instruction.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QString \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qstring.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qchar.h \
@@ -3948,9 +3652,9 @@ debug/instruction.o: ../../metiers/instruction.cpp ../../metiersHeader/instructi
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringbuilder.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringconverter.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringconverter_base.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\instruction.o ..\..\metiers\instruction.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\instruction.o ..\..\models\instruction.cpp
 
-debug/instructionDAO.o: ../../dao/instructionDAO.cpp ../../daoHeader/instructionDAO.h \
+debug/instructionDAO.o: ../../data/instructionDAO.cpp ../../dataHeader/instructionDAO.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/QSqlDatabase \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qsqldatabase.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsqlglobal.h \
@@ -4081,20 +3785,20 @@ debug/instructionDAO.o: ../../dao/instructionDAO.cpp ../../daoHeader/instruction
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qobject_impl.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qbindingstorage.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QSharedPointer \
-		../../metiersHeader/instruction.h \
+		../../modelsHeader/instruction.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QString \
-		../../metiersHeader/instructioncomposee.h \
+		../../modelsHeader/instructioncomposee.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QList \
-		../../metiersHeader/instructionsimple.h \
+		../../modelsHeader/instructionsimple.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/QSqlQuery \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qsqlquery.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/QSqlError \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qsqlerror.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QDebug
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\instructionDAO.o ..\..\dao\instructionDAO.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\instructionDAO.o ..\..\data\instructionDAO.cpp
 
-debug/instructioncomposee.o: ../../metiers/instructioncomposee.cpp ../../metiersHeader/instructioncomposee.h \
-		../../metiersHeader/instruction.h \
+debug/instructioncomposee.o: ../../models/instructioncomposee.cpp ../../modelsHeader/instructioncomposee.h \
+		../../modelsHeader/instruction.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QString \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qstring.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qchar.h \
@@ -4201,149 +3905,13 @@ debug/instructioncomposee.o: ../../metiers/instructioncomposee.cpp ../../metiers
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qobjectdefs_impl.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qfunctionaltools_impl.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qscopeguard.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\instructioncomposee.o ..\..\metiers\instructioncomposee.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\instructioncomposee.o ..\..\models\instructioncomposee.cpp
 
-debug/instructionservice.o: ../../service/instructionservice.cpp ../../serviceHeader/instructionservice.h \
-		../../daoHeader/instructiondao.h \
-		C:/Qt/6.9.3/mingw_64/include/QtSql/QSqlDatabase \
-		C:/Qt/6.9.3/mingw_64/include/QtSql/qsqldatabase.h \
-		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsqlglobal.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qglobal.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtcoreglobal.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtversionchecks.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtconfiginclude.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qconfig.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtcore-config.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtconfigmacros.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtdeprecationdefinitions.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcompilerdetection.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qprocessordetection.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qsystemdetection.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtcoreexports.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtdeprecationmarkers.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtclasshelpermacros.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtpreprocessorsupport.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qassert.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtnoop.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtypes.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtversion.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtypeinfo.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcontainerfwd.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qsysinfo.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qlogging.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qflags.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcompare_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qatomic.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qbasicatomic.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qatomic_cxx11.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qgenericatomic.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qyieldcpu.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qconstructormacros.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qdarwinhelpers.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qexceptionhandling.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qforeach.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qttypetraits.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qfunctionpointer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qglobalstatic.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qmalloc.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qminmax.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qnumeric.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qoverload.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qswap.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtenvironmentvariables.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtresource.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qttranslation.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qversiontagging.h \
-		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsql-config.h \
-		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsqlexports.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qmetaobject.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qobjectdefs.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qnamespace.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcompare.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstdlibdetection.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcomparehelpers.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/q20type_traits.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtmetamacros.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qobjectdefs_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qfunctionaltools_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qvariant.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qmetatype.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qbytearray.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qrefcount.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qarraydata.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qpair.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qarraydatapointer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qarraydataops.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcontainertools_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qxptype_traits.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/q20functional.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/q20memory.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/q17memory.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qbytearrayalgorithms.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qbytearrayview.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringfwd.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qdatastream.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qscopedpointer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qiodevicebase.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qfloat16.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qhashfunctions.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstring.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qchar.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringview.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringliteral.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringalgorithms.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qlatin1stringview.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qanystringview.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qutf8stringview.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringtokenizer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringbuilder.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringconverter.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringconverter_base.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qmath.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qalgorithms.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtformat_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qiterable.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qmetacontainer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcontainerinfo.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtaggedpointer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qscopeguard.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qdebug.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtextstream.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcontiguouscache.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qsharedpointer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qshareddata.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qsharedpointer_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qlist.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qiterator.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qbytearraylist.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringlist.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringmatcher.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qmap.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qshareddata_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qset.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qhash.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qvarlengtharray.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/q23utility.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/q20utility.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qobject.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcoreevent.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qbasictimer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qabstracteventdispatcher.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qeventloop.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qdeadlinetimer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qelapsedtimer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qobject_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qbindingstorage.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/QSharedPointer \
-		../../metiersHeader/instruction.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/QString \
-		../../metiersHeader/instructionsimple.h \
-		../../metiersHeader/instructioncomposee.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/QList
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\instructionservice.o ..\..\service\instructionservice.cpp
+debug/instructionservice.o: models/ServiceLayer/instructionservice.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\instructionservice.o models/ServiceLayer/instructionservice.cpp
 
-debug/instructionsimple.o: ../../metiers/instructionsimple.cpp ../../metiersHeader/instructionsimple.h \
-		../../metiersHeader/instruction.h \
+debug/instructionsimple.o: ../../models/instructionsimple.cpp ../../modelsHeader/instructionsimple.h \
+		../../modelsHeader/instruction.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QString \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qstring.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qchar.h \
@@ -4423,7 +3991,7 @@ debug/instructionsimple.o: ../../metiers/instructionsimple.cpp ../../metiersHead
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringbuilder.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringconverter.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringconverter_base.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\instructionsimple.o ..\..\metiers\instructionsimple.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\instructionsimple.o ..\..\models\instructionsimple.cpp
 
 debug/instructiontreemodel.o: ../../models/instructiontreemodel.cpp ../../modelsHeader/instructiontreemodel.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QAbstractItemModel \
@@ -4551,8 +4119,8 @@ debug/instructiontreemodel.o: ../../models/instructiontreemodel.cpp ../../models
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qvarlengtharray.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/q23utility.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/q20utility.h \
-		../../serviceHeader/instructionservice.h \
-		../../daoHeader/instructiondao.h \
+		../../modelsHeader/ServiceLayerHeader/instructionservice.h \
+		../../dataHeader/instructiondao.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/QSqlDatabase \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qsqldatabase.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsqlglobal.h \
@@ -4560,16 +4128,15 @@ debug/instructiontreemodel.o: ../../models/instructiontreemodel.cpp ../../models
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsqlexports.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qmetaobject.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QSharedPointer \
-		../../metiersHeader/instruction.h \
+		../../modelsHeader/instruction.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QString \
-		../../metiersHeader/instructioncomposee.h \
+		../../modelsHeader/instructioncomposee.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QList \
-		../../metiersHeader/instructionsimple.h
+		../../modelsHeader/instructionsimple.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\instructiontreemodel.o ..\..\models\instructiontreemodel.cpp
 
-debug/main.o: ../../main.cpp ../../mainwindow.h \
-		C:/Qt/6.9.3/mingw_64/include/QtWidgets/QMainWindow \
-		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qmainwindow.h \
+debug/main.o: ../../main.cpp C:/Qt/6.9.3/mingw_64/include/QtWidgets/QApplication \
+		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qapplication.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
 		C:/Qt/6.9.3/mingw_64/include/QtGui/qtguiglobal.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qglobal.h \
@@ -4622,24 +4189,18 @@ debug/main.o: ../../main.cpp ../../mainwindow.h \
 		C:/Qt/6.9.3/mingw_64/include/QtGui/qtguiexports.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qtwidgets-config.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qtwidgetsexports.h \
-		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qwidget.h \
-		C:/Qt/6.9.3/mingw_64/include/QtGui/qwindowdefs.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qobjectdefs.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qnamespace.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qcoreapplication.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qstring.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qchar.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qcompare.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qstdlibdetection.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qcomparehelpers.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/q20type_traits.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtmetamacros.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qobjectdefs_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qfunctionaltools_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtGui/qwindowdefs_win.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qobject.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstring.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qchar.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringview.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qbytearray.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qrefcount.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qnamespace.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qtmetamacros.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qarraydata.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qpair.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qarraydatapointer.h \
@@ -4661,6 +4222,13 @@ debug/main.o: ../../main.cpp ../../mainwindow.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringbuilder.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringconverter.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringconverter_base.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qcoreevent.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qbasictimer.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qabstracteventdispatcher.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qobject.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qobjectdefs.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qobjectdefs_impl.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qfunctionaltools_impl.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qlist.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qhashfunctions.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qiterator.h \
@@ -4668,15 +4236,9 @@ debug/main.o: ../../main.cpp ../../mainwindow.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringlist.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qalgorithms.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringmatcher.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcoreevent.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qbasictimer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qabstracteventdispatcher.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qeventloop.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qdeadlinetimer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qelapsedtimer.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qscopedpointer.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qmetatype.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qdatastream.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qscopedpointer.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qiodevicebase.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qfloat16.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qmath.h \
@@ -4688,21 +4250,49 @@ debug/main.o: ../../main.cpp ../../mainwindow.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qscopeguard.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qobject_impl.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qbindingstorage.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qmargins.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qeventloop.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qdeadlinetimer.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qelapsedtimer.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qnativeinterface.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qcoreapplication_platform.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qfuture.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qfutureinterface.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qmutex.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qtsan_impl.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qresultstore.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qmap.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qshareddata.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qshareddata_impl.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qfuture_impl.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qthreadpool.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qthread.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qrunnable.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qexception.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qpromise.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qvariant.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qdebug.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qtextstream.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qcontiguouscache.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qsharedpointer.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qsharedpointer_impl.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qset.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qhash.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qvarlengtharray.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/q23utility.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/q20utility.h \
-		C:/Qt/6.9.3/mingw_64/include/QtGui/qaction.h \
-		C:/Qt/6.9.3/mingw_64/include/QtGui/qkeysequence.h \
-		C:/Qt/6.9.3/mingw_64/include/QtGui/qicon.h \
+		C:/Qt/6.9.3/mingw_64/include/QtGui/qwindowdefs.h \
+		C:/Qt/6.9.3/mingw_64/include/QtGui/qwindowdefs_win.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qpoint.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qsize.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qmargins.h \
+		C:/Qt/6.9.3/mingw_64/include/QtGui/qcursor.h \
+		C:/Qt/6.9.3/mingw_64/include/QtGui/qbitmap.h \
 		C:/Qt/6.9.3/mingw_64/include/QtGui/qpixmap.h \
 		C:/Qt/6.9.3/mingw_64/include/QtGui/qpaintdevice.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qrect.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qpoint.h \
 		C:/Qt/6.9.3/mingw_64/include/QtGui/qcolor.h \
 		C:/Qt/6.9.3/mingw_64/include/QtGui/qrgb.h \
 		C:/Qt/6.9.3/mingw_64/include/QtGui/qrgba64.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qshareddata.h \
 		C:/Qt/6.9.3/mingw_64/include/QtGui/qimage.h \
 		C:/Qt/6.9.3/mingw_64/include/QtGui/qpixelformat.h \
 		C:/Qt/6.9.3/mingw_64/include/QtGui/qtransform.h \
@@ -4711,136 +4301,24 @@ debug/main.o: ../../main.cpp ../../mainwindow.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qspan.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/q20iterator.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qline.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qvariant.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qdebug.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtextstream.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcontiguouscache.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qsharedpointer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qsharedpointer_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qmap.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qshareddata_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qset.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qhash.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qvarlengtharray.h \
-		C:/Qt/6.9.3/mingw_64/include/QtGui/qpalette.h \
-		C:/Qt/6.9.3/mingw_64/include/QtGui/qbrush.h \
-		C:/Qt/6.9.3/mingw_64/include/QtGui/qfont.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qendian.h \
-		C:/Qt/6.9.3/mingw_64/include/QtGui/qfontmetrics.h \
-		C:/Qt/6.9.3/mingw_64/include/QtGui/qfontinfo.h \
-		C:/Qt/6.9.3/mingw_64/include/QtGui/qfontvariableaxis.h \
-		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qsizepolicy.h \
-		C:/Qt/6.9.3/mingw_64/include/QtGui/qcursor.h \
-		C:/Qt/6.9.3/mingw_64/include/QtGui/qbitmap.h \
-		C:/Qt/6.9.3/mingw_64/include/QtGui/qevent.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qiodevice.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qurl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtGui/qeventpoint.h \
-		C:/Qt/6.9.3/mingw_64/include/QtGui/qvector2d.h \
-		C:/Qt/6.9.3/mingw_64/include/QtGui/qvectornd.h \
-		C:/Qt/6.9.3/mingw_64/include/QtGui/qpointingdevice.h \
-		C:/Qt/6.9.3/mingw_64/include/QtGui/qinputdevice.h \
-		C:/Qt/6.9.3/mingw_64/include/QtGui/qscreen.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/QList \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/QObject \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/QRect \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/QSize \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/QSizeF \
-		C:/Qt/6.9.3/mingw_64/include/QtGui/QTransform \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qnativeinterface.h \
-		C:/Qt/6.9.3/mingw_64/include/QtGui/qscreen_platform.h \
 		C:/Qt/6.9.3/mingw_64/include/QtGui/qguiapplication.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcoreapplication.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcoreapplication_platform.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qfuture.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qfutureinterface.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qmutex.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtsan_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qresultstore.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qfuture_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qthreadpool.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qthread.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qrunnable.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qexception.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qpromise.h \
 		C:/Qt/6.9.3/mingw_64/include/QtGui/qinputmethod.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qlocale.h \
 		C:/Qt/6.9.3/mingw_64/include/QtGui/qguiapplication_platform.h \
-		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qtabwidget.h \
-		C:/Qt/6.9.3/mingw_64/include/QtWidgets/QTableView \
-		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qtableview.h \
-		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qabstractitemview.h \
-		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qabstractscrollarea.h \
-		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qframe.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qabstractitemmodel.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qitemselectionmodel.h \
-		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
-		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qstyleoption.h \
-		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
-		C:/Qt/6.9.3/mingw_64/include/QtGui/qvalidator.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qregularexpression.h \
-		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qslider.h \
-		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qabstractslider.h \
-		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qstyle.h \
-		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qtabbar.h \
-		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qrubberband.h \
-		C:/Qt/6.9.3/mingw_64/include/QtWidgets/QTreeView \
-		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qtreeview.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/QItemSelection \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/QSortFilterProxyModel \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qsortfilterproxymodel.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qabstractproxymodel.h \
-		../../backend.h \
-		../../dataHeader/databasemanager.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/QString \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/QSqlDatabase \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qsqldatabase.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsqlglobal.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsql-config.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsqlexports.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qmetaobject.h \
-		../../daoHeader/ingredientDAO.h \
-		../../metiersHeader/ingredient.h \
-		../../metiersHeader/unite.h \
-		../../daoHeader/recetteDAO.h \
-		../../metiersHeader/recette.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/QSharedPointer \
-		../../metiersHeader/instruction.h \
-		../../metiersHeader/recetteingredient.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/QVariant \
-		../../daoHeader/recetteingredientdao.h \
-		../../daoHeader/instructionDAO.h \
-		../../serviceHeader/ingredientService.h \
-		../../serviceHeader/instructionService.h \
-		../../daoHeader/instructiondao.h \
-		../../serviceHeader/recetteService.h \
-		../../daoHeader/recettedao.h \
-		../../serviceHeader/instructionservice.h \
-		../../serviceHeader/ingredientservice.h \
-		../../modelsHeader/recettemodel.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/QAbstractTableModel \
-		../../serviceHeader/recetteservice.h \
-		../../modelsHeader/instructiontreemodel.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/QAbstractItemModel \
-		../../modelsHeader/recetteingredientmodel.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/QRegularExpression \
-		C:/Qt/6.9.3/mingw_64/include/QtWidgets/QPushButton \
-		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qpushbutton.h \
-		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qabstractbutton.h \
-		C:/Qt/6.9.3/mingw_64/include/QtWidgets/QVBoxLayout \
-		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qboxlayout.h \
-		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qlayout.h \
-		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qgridlayout.h \
-		C:/Qt/6.9.3/mingw_64/include/QtWidgets/QApplication \
-		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qapplication.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QFile \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qfile.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qfiledevice.h \
+		C:/Qt/6.9.3/mingw_64/include/QtCore/qiodevice.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o ..\..\main.cpp
 
-debug/mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
+debug/mainwindow.o: ../../Controller/mainwindow.cpp ../../ControllerHeader/mainwindow.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/QMainWindow \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qmainwindow.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -5063,7 +4541,7 @@ debug/mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QSortFilterProxyModel \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qsortfilterproxymodel.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qabstractproxymodel.h \
-		../../backend.h \
+		../../modelsHeader/ServiceLayerHeader/backend.h \
 		../../dataHeader/databasemanager.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QString \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/QSqlDatabase \
@@ -5072,27 +4550,27 @@ debug/mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsql-config.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsqlexports.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qmetaobject.h \
-		../../daoHeader/ingredientDAO.h \
-		../../metiersHeader/ingredient.h \
-		../../metiersHeader/unite.h \
-		../../daoHeader/recetteDAO.h \
-		../../metiersHeader/recette.h \
+		../../dataHeader/ingredientDAO.h \
+		../../modelsHeader/ingredient.h \
+		../../modelsHeader/unite.h \
+		../../dataHeader/recetteDAO.h \
+		../../modelsHeader/recette.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QSharedPointer \
-		../../metiersHeader/instruction.h \
-		../../metiersHeader/recetteingredient.h \
+		../../modelsHeader/instruction.h \
+		../../modelsHeader/recetteingredient.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QVariant \
-		../../daoHeader/recetteingredientdao.h \
-		../../daoHeader/instructionDAO.h \
-		../../serviceHeader/ingredientService.h \
-		../../serviceHeader/instructionService.h \
-		../../daoHeader/instructiondao.h \
-		../../serviceHeader/recetteService.h \
-		../../daoHeader/recettedao.h \
-		../../serviceHeader/instructionservice.h \
-		../../serviceHeader/ingredientservice.h \
+		../../dataHeader/recetteingredientdao.h \
+		../../dataHeader/instructionDAO.h \
+		../../modelsHeader/ServiceLayerHeader/ingredientService.h \
+		../../modelsHeader/ServiceLayerHeader/instructionService.h \
+		../../dataHeader/instructiondao.h \
+		../../modelsHeader/ServiceLayerHeader/recetteService.h \
+		../../dataHeader/recettedao.h \
+		../../modelsHeader/ServiceLayerHeader/instructionservice.h \
+		../../modelsHeader/ServiceLayerHeader/ingredientservice.h \
 		../../modelsHeader/recettemodel.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QAbstractTableModel \
-		../../serviceHeader/recetteservice.h \
+		../../modelsHeader/ServiceLayerHeader/recetteservice.h \
 		../../modelsHeader/instructiontreemodel.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QAbstractItemModel \
 		../../modelsHeader/recetteingredientmodel.h \
@@ -5138,21 +4616,21 @@ debug/mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/QTextEdit \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qtextedit.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/QWidget \
-		../../dialogHeader/ajouterrecettedialog.h \
+		../../ControllerHeader/ajouterrecettedialog.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/QDialog \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qdialog.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/QMessageBox \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qmessagebox.h \
 		C:/Qt/6.9.3/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
-		../../metiersHeader/instructioncomposee.h \
-		../../dialogHeader/ajouteringredientdialog.h \
-		../../dialogHeader/ajouterinstructiondialog.h \
+		../../modelsHeader/instructioncomposee.h \
+		../../ControllerHeader/ajouteringredientdialog.h \
+		../../ControllerHeader/ajouterinstructiondialog.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QDebug \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QTimer \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qtimer.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mainwindow.o ..\..\mainwindow.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mainwindow.o ..\..\Controller\mainwindow.cpp
 
-debug/recette.o: ../../metiers/recette.cpp ../../metiersHeader/recette.h \
+debug/recette.o: ../../models/recette.cpp ../../modelsHeader/recette.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QString \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qstring.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qchar.h \
@@ -5259,14 +4737,14 @@ debug/recette.o: ../../metiers/recette.cpp ../../metiersHeader/recette.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qobjectdefs_impl.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qfunctionaltools_impl.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qscopeguard.h \
-		../../metiersHeader/ingredient.h \
-		../../metiersHeader/unite.h \
-		../../metiersHeader/instruction.h \
-		../../metiersHeader/recetteingredient.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\recette.o ..\..\metiers\recette.cpp
+		../../modelsHeader/ingredient.h \
+		../../modelsHeader/unite.h \
+		../../modelsHeader/instruction.h \
+		../../modelsHeader/recetteingredient.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\recette.o ..\..\models\recette.cpp
 
-debug/recetteDAO.o: ../../dao/recetteDAO.cpp ../../daoHeader/recetteDAO.h \
-		../../metiersHeader/recette.h \
+debug/recetteDAO.o: ../../data/recetteDAO.cpp ../../dataHeader/recetteDAO.h \
+		../../modelsHeader/recette.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QString \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qstring.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qchar.h \
@@ -5373,10 +4851,10 @@ debug/recetteDAO.o: ../../dao/recetteDAO.cpp ../../daoHeader/recetteDAO.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qobjectdefs_impl.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qfunctionaltools_impl.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qscopeguard.h \
-		../../metiersHeader/ingredient.h \
-		../../metiersHeader/unite.h \
-		../../metiersHeader/instruction.h \
-		../../metiersHeader/recetteingredient.h \
+		../../modelsHeader/ingredient.h \
+		../../modelsHeader/unite.h \
+		../../modelsHeader/instruction.h \
+		../../modelsHeader/recetteingredient.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QVariant \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qvariant.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qdebug.h \
@@ -5409,11 +4887,11 @@ debug/recetteDAO.o: ../../dao/recetteDAO.cpp ../../daoHeader/recetteDAO.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/QSqlError \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qsqlerror.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QDebug
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\recetteDAO.o ..\..\dao\recetteDAO.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\recetteDAO.o ..\..\data\recetteDAO.cpp
 
-debug/recetteingredient.o: ../../metiers/recetteingredient.cpp ../../metiersHeader/recetteingredient.h \
-		../../metiersHeader/ingredient.h \
-		../../metiersHeader/unite.h \
+debug/recetteingredient.o: ../../models/recetteingredient.cpp ../../modelsHeader/recetteingredient.h \
+		../../modelsHeader/ingredient.h \
+		../../modelsHeader/unite.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QString \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qstring.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qchar.h \
@@ -5493,9 +4971,9 @@ debug/recetteingredient.o: ../../metiers/recetteingredient.cpp ../../metiersHead
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringbuilder.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringconverter.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringconverter_base.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\recetteingredient.o ..\..\metiers\recetteingredient.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\recetteingredient.o ..\..\models\recetteingredient.cpp
 
-debug/recetteingredientdao.o: ../../dao/recetteingredientdao.cpp ../../daoHeader/recetteingredientdao.h \
+debug/recetteingredientdao.o: ../../data/recetteingredientdao.cpp ../../dataHeader/recetteingredientdao.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/QSqlDatabase \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qsqldatabase.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsqlglobal.h \
@@ -5626,16 +5104,16 @@ debug/recetteingredientdao.o: ../../dao/recetteingredientdao.cpp ../../daoHeader
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qobject_impl.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qbindingstorage.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QList \
-		../../metiersHeader/recetteingredient.h \
-		../../metiersHeader/ingredient.h \
-		../../metiersHeader/unite.h \
+		../../modelsHeader/recetteingredient.h \
+		../../modelsHeader/ingredient.h \
+		../../modelsHeader/unite.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QString \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/QSqlQuery \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qsqlquery.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/QSqlError \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qsqlerror.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QDebug
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\recetteingredientdao.o ..\..\dao\recetteingredientdao.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\recetteingredientdao.o ..\..\data\recetteingredientdao.cpp
 
 debug/recetteingredientmodel.o: ../../models/recetteingredientmodel.cpp ../../modelsHeader/recetteingredientmodel.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QAbstractTableModel \
@@ -5763,9 +5241,9 @@ debug/recetteingredientmodel.o: ../../models/recetteingredientmodel.cpp ../../mo
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qvarlengtharray.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/q23utility.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/q20utility.h \
-		../../metiersHeader/recetteingredient.h \
-		../../metiersHeader/ingredient.h \
-		../../metiersHeader/unite.h \
+		../../modelsHeader/recetteingredient.h \
+		../../modelsHeader/ingredient.h \
+		../../modelsHeader/unite.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QString
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\recetteingredientmodel.o ..\..\models\recetteingredientmodel.cpp
 
@@ -5895,16 +5373,16 @@ debug/recettemodel.o: ../../models/recettemodel.cpp ../../modelsHeader/recettemo
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qvarlengtharray.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/q23utility.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/q20utility.h \
-		../../metiersHeader/recette.h \
+		../../modelsHeader/recette.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QString \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QList \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QSharedPointer \
-		../../metiersHeader/ingredient.h \
-		../../metiersHeader/unite.h \
-		../../metiersHeader/instruction.h \
-		../../metiersHeader/recetteingredient.h \
-		../../serviceHeader/recetteservice.h \
-		../../daoHeader/recettedao.h \
+		../../modelsHeader/ingredient.h \
+		../../modelsHeader/unite.h \
+		../../modelsHeader/instruction.h \
+		../../modelsHeader/recetteingredient.h \
+		../../modelsHeader/ServiceLayerHeader/recetteservice.h \
+		../../dataHeader/recettedao.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QVariant \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/QSqlDatabase \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qsqldatabase.h \
@@ -5912,164 +5390,17 @@ debug/recettemodel.o: ../../models/recettemodel.cpp ../../modelsHeader/recettemo
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsql-config.h \
 		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsqlexports.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qmetaobject.h \
-		../../daoHeader/recetteingredientdao.h \
-		../../serviceHeader/instructionservice.h \
-		../../daoHeader/instructiondao.h \
-		../../serviceHeader/ingredientservice.h \
-		../../daoHeader/ingredientDAO.h
+		../../dataHeader/recetteingredientdao.h \
+		../../modelsHeader/ServiceLayerHeader/instructionservice.h \
+		../../dataHeader/instructiondao.h \
+		../../modelsHeader/ServiceLayerHeader/ingredientservice.h \
+		../../dataHeader/ingredientDAO.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\recettemodel.o ..\..\models\recettemodel.cpp
 
-debug/recetteservice.o: ../../service/recetteservice.cpp ../../serviceHeader/recetteservice.h \
-		../../daoHeader/recettedao.h \
-		../../metiersHeader/recette.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/QString \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstring.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qchar.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qglobal.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtcoreglobal.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtversionchecks.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtconfiginclude.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qconfig.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtcore-config.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtconfigmacros.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtdeprecationdefinitions.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcompilerdetection.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qprocessordetection.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qsystemdetection.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtcoreexports.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtdeprecationmarkers.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtclasshelpermacros.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtpreprocessorsupport.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qassert.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtnoop.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtypes.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtversion.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtypeinfo.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcontainerfwd.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qsysinfo.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qlogging.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qflags.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcompare_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qatomic.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qbasicatomic.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qatomic_cxx11.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qgenericatomic.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qyieldcpu.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qconstructormacros.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qdarwinhelpers.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qexceptionhandling.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qforeach.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qttypetraits.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qfunctionpointer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qglobalstatic.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qmalloc.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qminmax.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qnumeric.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qoverload.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qswap.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtenvironmentvariables.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtresource.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qttranslation.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qversiontagging.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcompare.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstdlibdetection.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcomparehelpers.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/q20type_traits.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringview.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qbytearray.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qrefcount.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qnamespace.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtmetamacros.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qarraydata.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qpair.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qarraydatapointer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qarraydataops.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcontainertools_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qxptype_traits.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/q20functional.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/q20memory.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/q17memory.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qbytearrayalgorithms.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qbytearrayview.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringfwd.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringliteral.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringalgorithms.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qlatin1stringview.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qanystringview.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qutf8stringview.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringtokenizer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringbuilder.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringconverter.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringconverter_base.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/QList \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qlist.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qhashfunctions.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qiterator.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qbytearraylist.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringlist.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qalgorithms.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringmatcher.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/QSharedPointer \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qsharedpointer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qshareddata.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qsharedpointer_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qmetatype.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qdatastream.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qscopedpointer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qiodevicebase.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qfloat16.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qmath.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtformat_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qiterable.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qmetacontainer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcontainerinfo.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtaggedpointer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qobjectdefs.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qobjectdefs_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qfunctionaltools_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qscopeguard.h \
-		../../metiersHeader/ingredient.h \
-		../../metiersHeader/unite.h \
-		../../metiersHeader/instruction.h \
-		../../metiersHeader/recetteingredient.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/QVariant \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qvariant.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qdebug.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qtextstream.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcontiguouscache.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qmap.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qshareddata_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qset.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qhash.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qvarlengtharray.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/q23utility.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/q20utility.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qobject.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qcoreevent.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qbasictimer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qabstracteventdispatcher.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qeventloop.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qdeadlinetimer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qelapsedtimer.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qobject_impl.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qbindingstorage.h \
-		C:/Qt/6.9.3/mingw_64/include/QtSql/QSqlDatabase \
-		C:/Qt/6.9.3/mingw_64/include/QtSql/qsqldatabase.h \
-		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsqlglobal.h \
-		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsql-config.h \
-		C:/Qt/6.9.3/mingw_64/include/QtSql/qtsqlexports.h \
-		C:/Qt/6.9.3/mingw_64/include/QtCore/qmetaobject.h \
-		../../daoHeader/recetteingredientdao.h \
-		../../serviceHeader/instructionservice.h \
-		../../daoHeader/instructiondao.h \
-		../../serviceHeader/ingredientservice.h \
-		../../daoHeader/ingredientDAO.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\recetteservice.o ..\..\service\recetteservice.cpp
+debug/recetteservice.o: models/ServiceLayer/recetteservice.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\recetteservice.o models/ServiceLayer/recetteservice.cpp
 
-debug/test.o: ../../test.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\test.o ..\..\test.cpp
-
-debug/unite.o: ../../metiers/unite.cpp ../../metiersHeader/unite.h \
+debug/unite.o: ../../models/unite.cpp ../../modelsHeader/unite.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/QString \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qstring.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qchar.h \
@@ -6149,7 +5480,7 @@ debug/unite.o: ../../metiers/unite.cpp ../../metiersHeader/unite.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringbuilder.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringconverter.h \
 		C:/Qt/6.9.3/mingw_64/include/QtCore/qstringconverter_base.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\unite.o ..\..\metiers\unite.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\unite.o ..\..\models\unite.cpp
 
 debug/qrc_resource.o: debug/qrc_resource.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\qrc_resource.o debug\qrc_resource.cpp

@@ -1,6 +1,6 @@
 #include "modelsHeader/instructiontreemodel.h"
-#include "metiersHeader/instructioncomposee.h"
-#include "metiersHeader/instructionsimple.h"
+#include "modelsHeader/instructioncomposee.h"
+#include "modelsHeader/instructionsimple.h"
 
 InstructionTreeModel::InstructionTreeModel(
     InstructionService &service,

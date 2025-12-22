@@ -23,7 +23,6 @@ release/recetteingredientdao.o
 release/recetteingredientmodel.o
 release/recettemodel.o
 release/recetteservice.o
-release/test.o
 release/unite.o
 release/qrc_resource.o
 release/qrc_qmake_qmake_immediate.o
